@@ -26,6 +26,12 @@
   variants (`#spl`, `#spl2`, `#spl3`, spread across the 31 uses) drawn by `tools/splatter.py`: irregular pool, thorn
   spikes (some ending in a droplet), stretched satellite drops with tails outward, mist. +5.7 KB gzipped. Share
   images re-shot.
+- **Flags (Mir, 2026-10-28):** each country in "Where the foreign nationals came from" has its flag: one 4 KB sprite
+  (`img/flags.png`) built by `tools/flags.py` from flag-icons 7.6.0 (MIT) 4x3 SVGs; order = `FLAGS` in story.js.
+  Syria is the 2025 flag; Afghanistan is the UN-recognised tricolour (not the Taliban's white flag).
+- **iOS 16 hero (fixed):** the long paint runs grew with scroll only via scroll-driven CSS (`animation-timeline`),
+  which Safari lacks before 26 (and Firefox), so there they sat still at full length. story.js now moves them the
+  same way on scroll where that CSS is missing (checked: offsets match Chrome's CSS to the pixel, in WebKit too).
 - **Hero:** original hero kept (headline, byline, sword, top drip band); title block sits a little below
   the middle of the hero (Mir). Added the real Daily Star logo top-left.
   Removed the stub line above the byline (house rule). The fixed splatter background became one long

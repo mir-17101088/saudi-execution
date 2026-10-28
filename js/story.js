@@ -1,4 +1,4 @@
-/* Two extraordinary executions: dot-chart scenes, war-on-drugs chart, names list, press release, categories tabs, back to top. */
+/* Two extraordinary executions: dot-chart scenes, war-on-drugs chart, hero runs, names list (with flags), press release, categories tabs, back to top. */
 (function () {
 'use strict';
 var RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -279,8 +279,12 @@ guard(function () {
   var n = function (g) { return sp.filter(function (x) { return !g || x.dataset.g == g; }).length; };
   var esc = function (s) { return String(s).replace(/"/g, '\\"'); };
   ct.innerHTML = [['', 'All'], ['l', 'Saudi nationals'], ['f', 'Foreign nationals']].map(function (a) { return '<button type="button" data-g="' + a[0] + '" aria-pressed="false">' + a[1] + ' (' + n(a[0]) + ')</button>'; }).join('') + '<p></p>';
+  // flags: img/flags.png holds them in this order, 16 px apart (tools/flags.py builds it from flag-icons)
+  var FLAGS = ['Afghanistan', 'Bangladesh', 'Benin', 'Chad', 'Egypt', 'Eritrea', 'Ethiopia', 'India', 'Iran', 'Iraq', 'Jordan', 'Kenya', 'Kuwait', 'Myanmar',
+    'Nepal', 'Nigeria', 'Oman', 'Pakistan', 'Philippines', 'Somalia', 'Sri Lanka', 'Sudan', 'Syria', 'Uganda', 'Yemen'];
+  var flag = function (c) { var i = FLAGS.indexOf(c); return i < 0 ? '' : '<i class="fl' + (c == 'Nepal' ? ' np' : '') + '" style="background-position:0 ' + (-16 * i) + 'px" aria-hidden="true"></i>'; };
   cl.innerHTML = '<h3>Where the foreign nationals came from</h3>' + cs.map(function (a) {
-    return '<li><button type="button" data-c="' + a[0] + '" aria-pressed="false" class="' + (a[0] == 'Bangladesh' ? 'bd' : '') + '" style="--w:' + (a[1] / mx * 100) + '%"><span>' + a[0] + '</span><b>' + a[1] + '</b></button></li>';
+    return '<li><button type="button" data-c="' + a[0] + '" aria-pressed="false" class="' + (a[0] == 'Bangladesh' ? 'bd' : '') + '" style="--w:' + (a[1] / mx * 100) + '%"><span>' + flag(a[0]) + a[0] + '</span><b>' + a[1] + '</b></button></li>';
   }).join('') + '<span class="sm">Countries as stated in the Interior Ministry statements. One person whose nationality was not stated is not assigned to a country. Click a country to filter the names.</span>';
   var note = $('p', ct);
   function pages(np) {
@@ -393,6 +397,28 @@ guard(function () {
   box.addEventListener('toggle', function () { if (box.open) pick(0); });
   $('.cats__in', box).classList.add('tabbed');
   pick(0);
+});
+
+/* ---------- hero paint runs where CSS can't tie animation to scroll (Safari before 26, Firefox) ----------
+   The same motion as the scroll-driven CSS: each run starts at var(--from) of its length and reaches full length when
+   the foot of the hero is 55% of the way up the screen (animation-range: contain 0% exit 45%). */
+guard(function () {
+  var hero = $('.hero'), runs = $$('.run i');
+  if (!hero || !runs.length || RM || (window.CSS && CSS.supports && CSS.supports('animation-timeline', 'view()'))) return;
+  var from = runs.map(function (r) { var f = parseFloat(getComputedStyle(r.parentNode).getPropertyValue('--from')); return isNaN(f) ? 1 : f; });
+  var tick = 0, last = -1;
+  function set() {
+    tick = 0;
+    var r = hero.getBoundingClientRect(), H = r.height, V = innerHeight, y = -r.top;
+    var s = Math.min(0, H - V), e0 = Math.max(0, H - V), e = e0 + .45 * (H - e0);
+    var p = Math.max(0, Math.min(1, (y - s) / (e - s || 1)));
+    if (Math.abs(p - last) < .001) return;
+    last = p;
+    runs.forEach(function (x, i) { x.style.transform = 'translateY(' + ((from[i] - 1) * (1 - p) * 100).toFixed(2) + '%)'; });
+  }
+  addEventListener('scroll', function () { if (!tick) tick = requestAnimationFrame(set); }, { passive: true });
+  addEventListener('resize', set);
+  set();
 });
 
 /* ---------- canvas splatters: pinned in px where they first land ----------

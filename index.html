@@ -108,7 +108,8 @@ h1,h2,h3{text-wrap:balance}
 .run i{position:absolute;top:0;left:50%;bottom:calc(var(--w) * 1.1);width:var(--w);margin-left:calc(var(--w) / -2);background:linear-gradient(#5b0a10,#7d0f15 60%,#9c141b);border-radius:0 0 40% 40%}
 .run i:after{content:"";position:absolute;left:50%;bottom:calc(var(--w) * -.9);width:180%;height:0;padding-top:180%;transform:translateX(-50%);border-radius:50% 50% 50% 50% / 42% 42% 58% 58%;background:#9c141b}
 @media (max-width:599px){.drips>i:nth-child(2n),.run.w{display:none}}
-/* where the browser can tie animation to scroll, the runs creep down the canvas as the reader descends */
+/* where the browser can tie animation to scroll, the runs creep down the canvas as the reader descends;
+   elsewhere (Safari before 26, Firefox) story.js moves them the same way */
 @supports (animation-timeline:view()){
   .hero{view-timeline:--hero block}
   .run i{animation:run linear both;animation-timeline:--hero;animation-range:contain 0% exit 45%}
@@ -291,6 +292,13 @@ html:not(.js) .step p,.nochart .step p{opacity:1}
 .cl li>button.bd:before{background:#bfe6d6}
 .cl li>button.bd.on{outline-color:#0b7f56}
 .cl li>button.bd b{color:#0b6b49}
+
+.cl li>button>span{display:flex;align-items:center;gap:.55rem}
+
+/* flags: one sprite (img/flags.png, tools/flags.py); the hairline keeps white stripes off the white page */
+.cl .fl{flex:none;width:20px;height:15px;background:url(img/flags.png) 0 0/20px auto no-repeat;box-shadow:0 0 0 1px rgba(0,0,0,.14)}
+
+.cl .fl.np{box-shadow:none}
 .cl .sm{font-size:12px;color:#666;margin-top:.6rem;display:block;line-height:1.5}
 .nl{font:12.5px/1.55 var(--serif);color:#333;margin-top:1.2rem}
 .nl span{display:block;padding:5px 0;border-bottom:1px solid rgba(0,0,0,.1)}
