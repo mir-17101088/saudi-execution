@@ -32,6 +32,9 @@
 - **iOS 16 hero (fixed):** the long paint runs grew with scroll only via scroll-driven CSS (`animation-timeline`),
   which Safari lacks before 26 (and Firefox), so there they sat still at full length. story.js now moves them the
   same way on scroll where that CSS is missing (checked: offsets match Chrome's CSS to the pixel, in WebKit too).
+- **Names list, picking a country (Mir, 2026-10-28):** wide screens scroll up to the top of the names column when
+  it is above the screen (Uganda's one name used to sit ~430 px out of view). Phones: a row tapped low on the screen
+  scrolls its names into view without losing the row; paging keeps the country row at the top.
 - **Hero:** original hero kept (headline, byline, sword, top drip band); title block sits a little below
   the middle of the hero (Mir). Added the real Daily Star logo top-left.
   Removed the stub line above the byline (house rule). The fixed splatter background became one long

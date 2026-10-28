@@ -318,6 +318,18 @@ guard(function () {
     var b2 = $(sel);
     if (b2 && y0 != null) { var d = b2.getBoundingClientRect().top - y0; if (Math.abs(d) > 1) window.scrollBy({ top: d, left: 0, behavior: 'instant' }); }
   }
+  function go(d) { if (Math.abs(d) > 1) window.scrollBy({ top: d, left: 0, behavior: RM ? 'instant' : 'smooth' }); }
+  // where the names start: on phones a chosen country's row (its names open under it), otherwise the names column
+  function top() { return (MOB.matches && st.c ? nr.parentNode : nr).getBoundingClientRect().top; }
+  // after a country is picked, bring its names into view. Wide screens: they start at the top of the right-hand column,
+  // which can be far above a country low in the list. Phones: they open under the row; when that is low on the screen
+  // they run off the bottom, so scroll them up, but never so far that the row itself leaves the top.
+  function show() {
+    if (!MOB.matches) { var t = nr.getBoundingClientRect().top; if (t < 0) go(t - 16); return; }
+    if (!st.c) return;
+    var n = nr.getBoundingClientRect(), H = innerHeight;
+    if (n.top > H * .6 && n.bottom > H) go(Math.min(n.bottom - H + 16, top() - 8));
+  }
   ct.addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b) return;
     keep('#ctl button[data-g="' + b.dataset.g + '"]', function () { st.g = b.dataset.g; st.c = ''; st.p = 1; r(); });
@@ -326,12 +338,13 @@ guard(function () {
     var b = e.target.closest('button[data-c]'); if (!b) return;
     var c = b.dataset.c;
     keep('#cl button[data-c="' + esc(c) + '"]', function () { st.c = st.c == c ? '' : c; st.g = st.c ? 'f' : st.g; st.p = 1; r(); });
+    show();
   });
   pg.addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b || b.disabled) return;
     st.p = +b.dataset.p; r();
-    var t = nr.getBoundingClientRect().top;
-    if (t < 0) window.scrollBy({ top: t - 16, left: 0, behavior: RM ? 'instant' : 'smooth' });
+    var t = top();
+    if (t < 0) go(t - (MOB.matches && st.c ? 8 : 16));
   });
   if (MOB.addEventListener) MOB.addEventListener('change', place); else if (MOB.addListener) MOB.addListener(place);
   r();
