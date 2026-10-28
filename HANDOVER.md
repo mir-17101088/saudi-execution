@@ -1,6 +1,7 @@
 # Handover: An ‘extraordinary’ execution (2026-10-28)
 
 ## What changed and why
+- **Copy (Mir, 2026-10-28):** scene 1 card 1 now reads "Each dot represents one of the 887 people" (was "887 people").
 - **Hero:** original hero kept (headline, byline, sword, top drip band); title block sits a little below
   the middle of the hero (Mir). Added the real Daily Star logo top-left.
   Removed the stub line above the byline (house rule). The fixed splatter background became one long
@@ -35,8 +36,6 @@
 - Reduced motion, JS off (cards read as prose, all 887 names present), dialog focus return.
 
 ## Open
-- Copy query for the desk: scene 1 card 1 reads "Each dot represents 887 people"; scene 2 says one person
-  per dot. Left as written.
 - Evaluator (2026-10-28) items not applied, by design: shorter hero, no caps on byline/labels, yellow highlight,
   one meaning per hue across charts (original palette).
 - Canonical/OG URL assumes https://campaign.thedailystar.net/saudi-execution/ and publish date 2026-10-28.
