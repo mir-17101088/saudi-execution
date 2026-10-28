@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://campaign.thedailystar.net/saudi-execution/</loc>
+    <lastmod>2026-10-29T00:00:00+06:00</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>The Daily Star</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-10-29T00:00:00+06:00</news:publication_date>
+      <news:title>An ‘extraordinary’ execution</news:title>
+    </news:news>
+    <image:image>
+      <image:loc>https://campaign.thedailystar.net/saudi-execution/img/share-16x9.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://campaign.thedailystar.net/saudi-execution/img/nazrul-fb-m-720.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://campaign.thedailystar.net/saudi-execution/img/amnesty-illustration-1468.jpg</image:loc>
+    </image:image>
+  </url>
+</urlset>

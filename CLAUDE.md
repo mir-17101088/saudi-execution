@@ -2,7 +2,7 @@
 
 Scroll-driven visual story on Saudi Arabia's execution of Nazrul Islam Abdul Basir and Sweety Akhtar, with
 an analysis of 887 executions (Jan 2024 to 20 Oct 2026). Reporting: Abdullah Hel Bubun, Tarek Hosen.
-Development: Mir Rownak. Planned URL: https://campaign.thedailystar.net/saudi-execution/
+Development: Mir Rownak. Live URL: https://campaign.thedailystar.net/saudi-execution/ (published 2026-10-29).
 
 Not built on the house kit: it is a polish of a hand-built single page whose look the desk asked to keep.
 Use the `daily-star-story` skill for house rules, QA scripts and the evaluator.
@@ -16,7 +16,8 @@ Use the `daily-star-story` skill for house rules, QA scripts and the evaluator.
 - `img/`: WebP + JPEG fallbacks, `share.jpg` 1200x630, `logo.png` (JSON-LD), `canvas.webp` texture tile.
 - `fonts/`: Merriweather 400/700/400i subset to the page's characters (Google Fonts `text=` subset).
   Re-subset if new characters appear in the copy. Arabic in the dialog uses system fonts.
-- `tools/share.html`: source of the share card (screenshot at 1200x630 to `img/share.jpg`).
+- `tools/share_images.py`: re-shoots the hero as `img/share.jpg` (OG) and the 16x9/4x3/1x1 JSON-LD crops.
+- `robots.txt`, `sitemap.xml` (news + image), `llms.txt`, `.htaccess`: SEO and server config; see README.md.
 
 ## Rules for this story
 - Reporter text is verbatim. Do not change any word or number without Mir's permission.

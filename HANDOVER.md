@@ -1,6 +1,9 @@
 # Handover: An ‘extraordinary’ execution (2026-10-28)
 
 ## What changed and why
+- **Production (2026-10-28):** OG/share images are screenshots of the hero; published 2026-10-29; keywords,
+  news_keywords, article tags, fuller JSON-LD; robots.txt (AI crawlers allowed), sitemap.xml (news + image),
+  llms.txt, .htaccess, nginx/Vercel steps in README.md.
 - **Copy (Mir, 2026-10-28):** scene 1 card 1 now reads "Each dot represents one of the 887 people" (was "887 people").
 - **Hero:** original hero kept (headline, byline, sword, top drip band); title block sits a little below
   the middle of the hero (Mir). Added the real Daily Star logo top-left.
@@ -40,7 +43,7 @@
 ## Open
 - Evaluator (2026-10-28) items not applied, by design: shorter hero, no caps on byline/labels, yellow highlight,
   one meaning per hue across charts (original palette).
-- Canonical/OG URL assumes https://campaign.thedailystar.net/saudi-execution/ and publish date 2026-10-28.
+- Root robots.txt on campaign.thedailystar.net needs the Sitemap line (README step 3); ours only works at a site root.
 - Remaining lint flags are intentional (hero glow/drip gradients, shadows on floating layers).
 - perf gates `doc_css_kb`/`dom` fail only from the 887-name list (static HTML for SEO).
 - Run the Facebook sharing debugger after launch.

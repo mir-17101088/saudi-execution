@@ -1,0 +1,43 @@
+# The Daily Star: An ‘extraordinary’ execution
+# https://campaign.thedailystar.net/saudi-execution/
+#
+# Search engines and AI crawlers may read and index this story.
+# NOTE for the live server: crawlers only read robots.txt at the root of the domain
+# (https://campaign.thedailystar.net/robots.txt). Copy the Sitemap line below into that file.
+# This file takes effect on its own only where the folder is the site root (e.g. a Vercel deploy).
+
+User-agent: *
+Allow: /
+
+# Search, AI and answer-engine crawlers, allowed by name
+User-agent: Googlebot
+User-agent: Googlebot-Image
+User-agent: Googlebot-News
+User-agent: Google-Extended
+User-agent: GoogleOther
+User-agent: Bingbot
+User-agent: Applebot
+User-agent: Applebot-Extended
+User-agent: DuckDuckBot
+User-agent: DuckAssistBot
+User-agent: YandexBot
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: anthropic-ai
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: meta-externalagent
+User-agent: Amazonbot
+User-agent: CCBot
+User-agent: cohere-ai
+User-agent: MistralAI-User
+User-agent: facebookexternalhit
+User-agent: Twitterbot
+User-agent: LinkedInBot
+Allow: /
+
+Sitemap: https://campaign.thedailystar.net/saudi-execution/sitemap.xml
