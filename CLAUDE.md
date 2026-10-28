@@ -20,7 +20,7 @@ Use the `daily-star-story` skill for house rules, QA scripts and the evaluator.
 ## Rules for this story
 - Reporter text is verbatim. Do not change any word or number without Mir's permission.
 - Card numbers wear their category colour (`mark.k k-*`), matching the dot colours in `C` in story.js.
-- Scene 1 legend is colour-only; scene 2 legend still shows counts and percentages.
+- Both scene legends are colour-only; the cards carry the numbers.
 
 ## Checks
 ```bash

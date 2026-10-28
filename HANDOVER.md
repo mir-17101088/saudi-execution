@@ -8,8 +8,8 @@
   section break before the story.
 - **Scene 1 (887 executed, by offence):** legend is colour-only (counts and % removed as asked); the numbers in
   the cards wear the matching colour (53.78 pc red, 34 percent blue, 12 percent grey-blue, "indecency" green).
-- **Scene 2 (punishment):** card numbers coloured the same way (64/85 percent taz'ir red, 23 qisas blue,
-  8 hudud grey-blue). Legend still shows counts and % (not requested; ask Mir).
+- **Scene 2 (punishment):** legend colour-only too (Mir, 2026-10-28); card numbers coloured (64/85 percent taz'ir red, 23 qisas blue,
+  8 hudud grey-blue).
 - **Both scenes:** redrawn on one canvas with cached sprites instead of 887 transitioning SVG paths.
   Phones/portrait: chart holds at the top, cards rise below it and slide under it (no card covers a dot).
   Wide landscape: cards in a left column, chart right. Legend never overlaps dots.
@@ -34,7 +34,6 @@
 
 ## Open
 - Canonical/OG URL assumes https://campaign.thedailystar.net/saudi-execution/ and publish date 2026-10-28.
-- Scene 2 legend numbers: keep or strip like scene 1?
 - Remaining lint flags are intentional (hero glow/drip gradients, shadows on floating layers).
 - perf gates `doc_css_kb`/`dom` fail only from the 887-name list (static HTML for SEO).
 - Run the Facebook sharing debugger after launch.

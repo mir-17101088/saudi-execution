@@ -206,12 +206,14 @@ guard(function () {
   var o2 = ['t', 'q', 'h', 'n'], A2 = rank(function () { return 1; }, o2), B2 = rank(function (x) { return x[2] == 'f'; }, o2),
     pa = cnt(function () { return 1; }, 1), pf = cnt(function (x) { return x[2] == 'f'; }, 1);
   var col = function (x) { return [C[x[1]], 1]; };
+  // colour keys only (the cards carry the numbers); a category with nobody in it gets no key
+  var ka = o2.filter(function (k) { return pa[k]; }), kf = o2.filter(function (k) { return pf[k]; });
   scene('s2', { A: A2, B: B2 }, [
     function () { return { l: 'A', leg: '<b>887 people executed</b>', f: function () { return [G, .8]; } }; },
-    function () { return { l: 'A', leg: legend('887 people executed', o2, ['t'], pa, N), f: function (x) { return x[1] == 't' ? [C.t, 1] : [G, .35]; } }; },
-    function () { return { l: 'A', leg: legend('887 people executed', o2, ['q', 'h'], pa, N), f: function (x) { return x[1] == 'q' || x[1] == 'h' ? [C[x[1]], 1] : [G, .35]; } }; },
-    function () { return { l: 'B', leg: legend('439 foreign nationals', o2, null, pf, 439), f: col }; },
-    function () { return { l: 'B', leg: legend('439 foreign nationals', o2, ['t'], pf, 439), f: function (x) { return x[1] == 't' ? [C.t, 1] : [G, .35]; } }; }
+    function () { return { l: 'A', leg: legend('887 people executed', ka, ['t']), f: function (x) { return x[1] == 't' ? [C.t, 1] : [G, .35]; } }; },
+    function () { return { l: 'A', leg: legend('887 people executed', ka, ['q', 'h']), f: function (x) { return x[1] == 'q' || x[1] == 'h' ? [C[x[1]], 1] : [G, .35]; } }; },
+    function () { return { l: 'B', leg: legend('439 foreign nationals', kf), f: col }; },
+    function () { return { l: 'B', leg: legend('439 foreign nationals', kf, ['t']), f: function (x) { return x[1] == 't' ? [C.t, 1] : [G, .35]; } }; }
   ]);
 });
 
