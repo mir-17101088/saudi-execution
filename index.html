@@ -38,6 +38,7 @@
 /* An ‘extraordinary’ execution: story styles */
 @font-face{font-family:Merriweather;src:url(fonts/merriweather-400.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:Merriweather;src:url(fonts/merriweather-700.woff2) format("woff2");font-weight:600 700;font-style:normal;font-display:swap}
+@font-face{font-family:"Bebas Neue";src:url(fonts/bebas-neue.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:Merriweather;src:url(fonts/merriweather-400i.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
 
 :root{
@@ -99,7 +100,9 @@ h1,h2,h3{text-wrap:balance}
 .masthead a{display:block;color:#fff}
 .masthead .tds-logo{display:block;width:var(--logo-w);height:calc(var(--logo-w) * .1986);fill:currentColor}
 
-.hero__body{position:relative;z-index:2;width:100%;max-width:1000px;margin:0 auto;padding:max(14vh,104px) 6vw 5vh}
+.hero__body{position:relative;z-index:2;flex:1 0 auto;display:flex;flex-direction:column;justify-content:center;width:100%;max-width:1000px;margin:0 auto;padding:max(17vh,104px) 6vw 4vh}
+@supports (height:1svh){.hero__body{padding:max(17svh,104px) 6vw 4svh}}
+@media (max-width:699px){.hero__body{padding-left:var(--gutter);padding-right:var(--gutter)}}
 h1{font-size:clamp(2.6rem,8vw,6rem);line-height:1.02;margin:0 0 1.5rem;color:#fff;text-shadow:0 0 60px rgba(90,18,24,.4),0 2px 12px rgba(8,5,6,.6);font-weight:700}
 h1:focus{outline:0}
 /* ‘extraordinary’ is one long word: on narrow phones size the title to the screen so it never clips */
@@ -115,9 +118,9 @@ h2{font-size:clamp(1.6rem,1.2rem + 1.6vw,1.9rem);line-height:1.25;color:#fff;mar
 @media (hover:hover) and (pointer:fine){.txt a:hover{color:#fff}}
 mark.y{background:#ffd166;color:#111;padding:0 2px}
 mark.r{background:#b3141c;color:#fff;padding:0 2px}
-/* a number in a card wears its category's colour */
-mark.k{color:#141012;padding:0 3px;font-weight:700;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-.k-d,.k-t{background:var(--c-d)}.k-m,.k-q{background:var(--c-m)}.k-o,.k-h{background:var(--c-o)}.k-i{background:var(--c-i)}
+/* a number in a card wears its category's colour: the dot hue, deepened just enough to read on the white card */
+mark.k{background:none;padding:0;font-weight:700}
+.k-d,.k-t{color:#d1323b}.k-m,.k-q{color:#2f6fd0}.k-o,.k-h{color:#557596}.k-i{color:#0f7f57}
 
 figure{margin:2.2rem auto}
 figcaption{font:italic 14px/1.6 var(--serif);color:var(--dim);margin-top:.7rem}
@@ -137,15 +140,15 @@ figure.ch{margin:2.4rem 0}
    Phones and portrait screens: the chart holds in the top of the screen and the cards rise into the strip below it,
    sliding under the chart, so a card never covers a dot. Wide screens: cards in a column on the left, chart on the right. */
 .scrolly{position:relative;margin:4rem 0;--z:.4}
-.sticky{position:sticky;top:0;height:100vh;height:100svh;z-index:2;pointer-events:none}
+.sticky{position:sticky;top:0;height:100vh;height:100svh;z-index:0;pointer-events:none}
 .chart{position:absolute;top:0;left:0;right:0;bottom:calc(var(--z) * 100%);display:flex;flex-direction:column;padding:10px 10px 0;background:var(--bg) url(img/canvas.webp) 0 0/128px 128px}
-.chart:after{content:"";position:absolute;left:0;right:0;top:100%;height:18px;background:linear-gradient(var(--bg),rgba(8,5,6,0))}
 .legw{flex:none;display:flex;align-items:flex-start}
 .leg{max-width:100%;background:#fff;color:#1a1a1a;font:12.5px/1.45 var(--serif);padding:.55rem .75rem;box-shadow:0 4px 20px rgba(0,0,0,.4)}
 .leg b{display:block;color:#111;font-size:12.5px;margin-bottom:.15rem}
 .leg .rs{display:flex;flex-wrap:wrap;gap:.1rem 1rem}
 .leg .r{display:flex;align-items:baseline;transition:opacity .4s}
-.leg .r.off{opacity:.38}
+.leg .r.off{color:#6e6e6e}
+.leg .r.off i{opacity:.4}
 .leg i{flex:none;width:10px;height:10px;border-radius:50%;margin-right:7px;position:relative;top:1px}
 .leg em{font-style:normal;color:#555;margin-left:.5em;white-space:nowrap;font-variant-numeric:tabular-nums}
 .plot{position:relative;flex:1 1 auto;min-height:0;margin-top:10px}
@@ -153,15 +156,14 @@ figure.ch{margin:2.4rem 0}
 .lab{position:absolute;left:0;top:0;font:700 15px/1.2 var(--serif);color:var(--c-i);white-space:nowrap;text-shadow:0 0 4px #080506,0 0 10px #080506;opacity:0;transition:opacity .8s .5s;transform:translateX(-50%)}
 .lab.on{opacity:1}
 .steps{position:relative;z-index:1;margin-top:-100vh;margin-top:-100svh;padding-top:calc((1 - var(--z)) * 100vh + 14px);padding-top:calc((1 - var(--z)) * 100svh + 14px)}
-.step{min-height:85vh;min-height:85svh;display:flex;align-items:flex-start;justify-content:center;padding:0 var(--gutter)}
+.step{min-height:calc(var(--z) * 100vh + 16vh);min-height:calc(var(--z) * 100svh + 16svh);display:flex;align-items:flex-start;justify-content:center;padding:0 var(--gutter)}
 .step p{width:100%;max-width:560px;margin:0;background:#fff;color:#1a1a1a;padding:1rem 1.15rem;font-size:1.02rem;line-height:1.65;box-shadow:0 10px 40px rgba(0,0,0,.6)}
-.step:last-child{min-height:100vh;min-height:100svh}
-@media (max-width:359px){.step p{font-size:.95rem;padding:.85rem .95rem}.leg{font-size:11.5px}.leg b{font-size:11.5px}}
+.step:last-child{min-height:65vh;min-height:65svh}
+@media (max-width:359px){.step p{font-size:.95rem;padding:.85rem .95rem}}
 @media (min-width:760px) and (min-aspect-ratio:11/10){
   .scrolly{--col:clamp(280px,30vw,420px)}
   .sticky{z-index:0;background:var(--bg) url(img/canvas.webp) 0 0/128px 128px}
   .chart{top:var(--gutter);bottom:var(--gutter);left:calc(var(--col) + var(--gutter) * 2);right:var(--gutter);padding:0;background:none}
-  .chart:after{display:none}
   .steps{padding:0 0 30vh}
   .step,.step:last-child{min-height:100vh;min-height:100svh;align-items:center;justify-content:flex-start}
   .step p{width:var(--col);max-width:none;font-size:1.1rem;padding:1.4rem 1.6rem;opacity:.35;transition:opacity .5s}
@@ -178,25 +180,27 @@ html:not(.js) .step p,.nochart .step p{opacity:1}
 .exh{font-weight:700;font-size:clamp(1.2rem,3.6vw,1.9rem);line-height:1.2;color:#2b2b2b}
 .exh span{color:#c0262b}
 .exs{font-size:clamp(.88rem,2.2vw,1.15rem);line-height:1.45;color:#555;margin:.5rem 0 .8rem}
-.exl{font-size:clamp(11px,1.7vw,13.5px);line-height:1.9;color:#333;margin-bottom:.4rem}
+.exl{font-size:clamp(12px,1.7vw,13.5px);line-height:1.9;color:#333;margin-bottom:.4rem}
 .exl span{white-space:nowrap;margin-right:1.1em;display:inline-block}
 .exl i{display:inline-block;width:.8em;height:.8em;margin-right:.4em;vertical-align:-.05em}
 .exl .d{background:#8f2227}.exl .o{background:#232838}
-.exr{font-size:clamp(10.5px,1.6vw,12.5px);line-height:1.55;color:#555;border-top:1px solid #cfcac0;margin-top:.6rem;padding-top:.6rem}
+.exr{font-size:clamp(12px,1.6vw,12.5px);line-height:1.55;color:#555;border-top:1px solid #cfcac0;margin-top:.6rem;padding-top:.6rem}
 #exp{width:100%;min-height:250px}
 #exp svg{display:block;width:100%;height:auto}
 
 /* ---------- foreign nationals among drug-offence executions ---------- */
-.split{margin:2.2rem 0 2.4rem}
-.split__head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.2rem 1rem;margin-bottom:.65rem}
-.split .sk{font-size:clamp(10.5px,1.8vw,12.5px);letter-spacing:.1em;text-transform:uppercase;color:var(--dim);font-weight:700}
-.split__tot{font-size:.95rem;color:var(--ink)}
-.split b{font-weight:700;color:#fff;font-size:1.45em;margin-right:.25em;font-variant-numeric:tabular-nums}
-.split__bar{display:flex;height:clamp(36px,7vw,52px);gap:3px}
-.split__bar .f{background:#b8443f}.split__bar .s{background:#4a3a47}
-.split__lab{display:flex;justify-content:space-between;gap:1rem;margin-top:.55rem;font-size:.95rem;line-height:1.3}
-.split__lab .s{text-align:right}
-.split__lab .f b{color:#f0a49f}
+.stat{margin:2rem 0}
+.stat .sk{font-size:clamp(12px,1.8vw,12.5px);letter-spacing:.1em;text-transform:uppercase;color:var(--dim);font-weight:700;margin-bottom:.8rem}
+.stat .tg{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,2vw,14px)}
+.stat .tl{min-height:0;border-radius:18px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding:0 6px clamp(10px,2.4vw,18px);color:#fff;text-align:center;box-shadow:0 6px 22px rgba(0,0,0,.4)}
+@supports (aspect-ratio:1/1){.stat .tl{aspect-ratio:1/1}}
+@supports not (aspect-ratio:1/1){.stat .tl{padding-top:52%}}
+/* three hues: the whole (grey), the foreigners (red), the Saudis (blue) */
+.stat .tl.hi{background:radial-gradient(120% 90% at 30% 10%,#8d8589 0,#5e575b 50%,#363033 100%)}
+.stat .tl:not(.hi):not(.dk){background:radial-gradient(120% 90% at 30% 10%,#ec7a74 0,#c8363d 48%,#7d1a20 100%)}
+.stat .tl.dk{background:radial-gradient(120% 90% at 30% 10%,#7d9fd6 0,#3c66a8 50%,#1f3762 100%)}
+.stat .tn{font:400 clamp(2.8rem,12vw,4.6rem)/.95 "Bebas Neue",Impact,"Arial Narrow",sans-serif;letter-spacing:.02em;text-shadow:0 2px 10px rgba(0,0,0,.3)}
+.stat .tt{font:400 clamp(1rem,4.2vw,1.6rem)/1 "Bebas Neue",Impact,"Arial Narrow",sans-serif;letter-spacing:.03em;text-transform:uppercase;margin-top:.15em}
 
 /* ---------- names (light band) ---------- */
 .nband{position:relative;z-index:1;background:#fff;color:#1a1a1a;padding:4rem 0}
@@ -210,7 +214,7 @@ html:not(.js) .step p,.nochart .step p{opacity:1}
 .ctl p{color:#666;margin:.4rem 0 0;font-size:12.5px;min-height:1.2em}
 .nw{display:grid;grid-template-columns:270px 1fr;gap:2rem;align-items:start;margin-top:1rem;overflow-anchor:none}
 .cl{list-style:none;margin:.6rem 0 0;padding:0;font:13px var(--serif);position:sticky;top:16px}
-.cl h3{font:700 11px var(--serif);letter-spacing:.1em;text-transform:uppercase;color:#666;margin:0 0 .5rem}
+.cl h3{font:700 12px var(--serif);letter-spacing:.1em;text-transform:uppercase;color:#666;margin:0 0 .5rem}
 .cl li>button{position:relative;z-index:0;display:flex;justify-content:space-between;align-items:center;width:100%;min-height:34px;font:inherit;color:#222;text-align:left;cursor:pointer;border:0;border-bottom:1px solid rgba(0,0,0,.1);padding:.4rem .5rem;background:none}
 /* the row's bar: share of the largest country */
 .cl li>button:before{content:"";position:absolute;z-index:-1;left:0;top:0;bottom:0;width:var(--w);background:#ecc3bf}
@@ -219,12 +223,12 @@ html:not(.js) .step p,.nochart .step p{opacity:1}
 .cl li>button.bd:before{background:#bfe6d6}
 .cl li>button.bd.on{outline-color:#0b7f56}
 .cl li>button.bd b{color:#0b6b49}
-.cl .sm{font-size:11.5px;color:#666;margin-top:.6rem;display:block;line-height:1.5}
+.cl .sm{font-size:12px;color:#666;margin-top:.6rem;display:block;line-height:1.5}
 .nl{font:12.5px/1.55 var(--serif);color:#333;margin-top:1.2rem}
 .nl span{display:block;padding:5px 0;border-bottom:1px solid rgba(0,0,0,.1)}
 .nl span[hidden]{display:none}
 .nl b{display:block;color:#111}
-.nl small{display:block;color:#777;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase}
+.nl small{display:block;color:#6e6e6e;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase}
 .nl .hl{background:#fbe9e7;padding:6px 8px;margin:0 -8px}
 .pg{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:1.4rem;font:13px var(--serif);align-items:center}
 .pg button{padding:.4rem .7rem;min-width:2.4rem;min-height:2.2rem}
@@ -342,7 +346,7 @@ dialog.prm::backdrop{background:rgba(0,0,0,.8)}
 <h2>Killing foreign nationals</h2>
 <p>Saudi Arabia’s harsh crackdown on drugs is falling hardest on migrants, many of whom come from poorer, conflict-hit countries in Asia and Africa.</p>
 <p>The Daily Star’s analysis shows that nearly 76 percent of those executed for drug offences over the past three years were foreign nationals.</p>
-<figure class="split" role="img" aria-label="Of 477 people executed for drug offences between January 2024 and 20 October 2026, 362 (nearly 76 percent) were foreign nationals and 115 were Saudi nationals."><div class="split__head"><div class="sk">Executed for drug offences</div><div class="split__tot"><b>477</b> Total executed</div></div><div class="split__bar" aria-hidden="true"><span class="f" style="flex:362 1 0"></span><span class="s" style="flex:115 1 0"></span></div><div class="split__lab" aria-hidden="true"><div class="f"><b>362</b> Foreigners</div><div class="s"><b>115</b> Saudis</div></div></figure>
+<div class="stat" role="img" aria-label="Of 477 people executed for drug offences between January 2024 and 20 October 2026, 362 (nearly 76 percent) were foreign nationals and 115 were Saudi nationals."><div class="sk">Executed for drug offences</div><div class="tg"><div class="tl hi"><div class="tn">477</div><div class="tt">Total executed</div></div><div class="tl"><div class="tn">362</div><div class="tt">Foreigners</div></div><div class="tl dk"><div class="tn">115</div><div class="tt">Saudis</div></div></div></div>
 <p>These 362 individuals came from 17 different countries. Pakistanis (63), Ethiopians (63), Somalis (45), Egyptians (38) and Jordanians (32) together made up two-thirds of all executed foreigners.</p>
 <p>Reports from rights organisations reveal that most of those put to death for drug offenses are petty criminals and often, victims themselves of deception, trafficking and coercion.</p>
 <p>Amnesty International has documented the case of seven Ethiopian and one Somali man, whom Saudi authorities executed in August 2025 for carrying hashish from Yemen into the kingdom. They had been put on death row in 2020. None had a lawyer during detention or trial.</p>

@@ -149,7 +149,7 @@ function scene(id, L, S) {
     if (cur >= 0) leg.innerHTML = S[cur]().leg;
     if (!SIDE.matches) {
       var H = sticky.clientHeight || innerHeight;
-      root.style.setProperty('--z', Math.min(.5, (cards_h + 40) / H).toFixed(4));
+      root.style.setProperty('--z', Math.min(.55, (cards_h + 40 + Math.max(0, H - innerHeight)) / H).toFixed(4));
     } else root.style.removeProperty('--z');
   }
   function resize() {
@@ -205,15 +205,14 @@ guard(function () {
 guard(function () {
   var o2 = ['t', 'q', 'h', 'n'], A2 = rank(function () { return 1; }, o2), B2 = rank(function (x) { return x[2] == 'f'; }, o2),
     pa = cnt(function () { return 1; }, 1), pf = cnt(function (x) { return x[2] == 'f'; }, 1);
-  var col = function (x) { return [C[x[1]], 1]; };
   // colour keys only (the cards carry the numbers); a category with nobody in it gets no key
   var ka = o2.filter(function (k) { return pa[k]; }), kf = o2.filter(function (k) { return pf[k]; });
   scene('s2', { A: A2, B: B2 }, [
     function () { return { l: 'A', leg: '<b>887 people executed</b>', f: function () { return [G, .8]; } }; },
     function () { return { l: 'A', leg: legend('887 people executed', ka, ['t']), f: function (x) { return x[1] == 't' ? [C.t, 1] : [G, .35]; } }; },
     function () { return { l: 'A', leg: legend('887 people executed', ka, ['q', 'h']), f: function (x) { return x[1] == 'q' || x[1] == 'h' ? [C[x[1]], 1] : [G, .35]; } }; },
-    function () { return { l: 'B', leg: legend('439 foreign nationals', kf), f: col }; },
-    function () { return { l: 'B', leg: legend('439 foreign nationals', kf, ['t']), f: function (x) { return x[1] == 't' ? [C.t, 1] : [G, .35]; } }; }
+    function () { return { l: 'B', leg: '<b>439 foreign nationals</b>', f: function () { return [G, .8]; } }; },
+    function () { return { l: 'B', leg: legend('439 foreign nationals', kf), f: function (x) { return x[1] == 't' ? [C.t, 1] : [C[x[1]], .5]; } }; }
   ]);
 });
 
@@ -227,16 +226,16 @@ guard(function () {
     var W = Math.max(260, box.clientWidth || 700);
     if (W === lastW) return; lastW = W;
     var sm = W < 560, L = sm ? 30 : 38, R = sm ? 4 : 8, T = 14, sl0 = (W - L - R) / Y.length,
-      afs = sm ? 10.5 : 12,                                   // axis labels
+      afs = sm ? 11 : 12,                                   // axis labels
       rot = sl0 < afs * 2.6,                                  // years no longer fit side by side: stand them up
       B = rot ? Math.round(afs * 2.4 + 8) : 26,
-      fs = Math.max(8.5, Math.min(sm ? 10.5 : 13, sl0 * .5)),  // value labels shrink with the bars
+      fs = Math.max(10, Math.min(sm ? 11.5 : 13, sl0 * .5)),  // value labels shrink with the bars
       H = Math.round(Math.min(340, Math.max(250, W * .45))) + (rot ? B - 26 : 0),
       ph = H - T - B, pw = W - L - R, sl = pw / Y.length, bw = sl * .8;
     var y = function (v) { return T + ph - v / 400 * ph; }, svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, width: W, height: H, 'aria-hidden': 'true' });
     var bx = L + sl * 6, bwid = sl * 3;
     svg.appendChild(el('rect', { x: bx, y: T, width: bwid, height: ph, fill: '#c3d6c9' }));
-    var tl = el('text', { x: bx + bwid / 2, y: T + 22, 'text-anchor': 'middle', 'font-size': sm ? 10.5 : 13, 'font-weight': 700, fill: '#1e6b3a' });
+    var tl = el('text', { x: bx + bwid / 2, y: T + 22, 'text-anchor': 'middle', 'font-size': sm ? 11 : 13, 'font-weight': 700, fill: '#1e6b3a' });
     if (bwid > 150) tl.textContent = 'Moratorium in place';
     else { tl.appendChild(el('tspan', { x: bx + bwid / 2, dy: 0 }, 'Moratorium')); tl.appendChild(el('tspan', { x: bx + bwid / 2, dy: sm ? 13 : 16 }, 'in place')); }
     svg.appendChild(tl);
@@ -347,7 +346,7 @@ guard(function () {
 guard(function () {
   var b = $('.totop'), hero = $('.hero');
   if (!b || !hero) return;
-  var avoid = $$('.scrolly, figure, .split, #ctl, #pg, .site-footer'), on = false, tick = 0;
+  var avoid = $$('.scrolly, figure, .stat, #ctl, #pg, .site-footer'), on = false, tick = 0;
   function chk() {
     tick = 0;
     var H = innerHeight, show = hero.getBoundingClientRect().bottom < 0;

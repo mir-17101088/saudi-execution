@@ -12,6 +12,7 @@ Use the `daily-star-story` skill for house rules, QA scripts and the evaluator.
   the 887-name list as static HTML (SEO, works without JS).
 - `js/story.js`: canvas dot scenes `#s1` (offence) and `#s2` (punishment), war-on-drugs chart `#exp`,
   names filter/pager (phone: tapped country opens under its row), press-release dialog, back-to-top.
+- `fonts/bebas-neue.woff2`: tile numbers only (subset A-Z, a-z, 0-9).
 - `img/`: WebP + JPEG fallbacks, `share.jpg` 1200x630, `logo.png` (JSON-LD), `canvas.webp` texture tile.
 - `fonts/`: Merriweather 400/700/400i subset to the page's characters (Google Fonts `text=` subset).
   Re-subset if new characters appear in the copy. Arabic in the dialog uses system fonts.
@@ -19,7 +20,7 @@ Use the `daily-star-story` skill for house rules, QA scripts and the evaluator.
 
 ## Rules for this story
 - Reporter text is verbatim. Do not change any word or number without Mir's permission.
-- Card numbers wear their category colour (`mark.k k-*`), matching the dot colours in `C` in story.js.
+- Card numbers are set in their category colour (`mark.k k-*`, text only), matching the dots in `C` in story.js.
 - Both scene legends are colour-only; the cards carry the numbers.
 
 ## Checks
