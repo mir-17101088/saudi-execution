@@ -8,8 +8,9 @@
   then "Each dot"). "taz'ir" is spelled "ta'zir" everywhere (copy, names list, legend, meta). Essam Ahmed line now
   "He said so before the court but to no avail." Scene 2 card 1 also reads "Each icon represents one person…".
 - **Three categories (Mir, 2026-10-28):** after the "Unlike hudud" paragraph, a tap-to-open line ("Islamic criminal law
-  divides offences into three categories…") opens Hudud, Qisas and Ta'zir, each opening its own text (`details.cats`,
-  works without JS). Each wears its scene-2 dot colour. Closing quote added to the Qisas quotation.
+  divides offences into three categories…") opens Hudud, Qisas and Ta'zir as side-by-side tabs, Hudud shown each
+  time it opens (story.js; arrow keys move between tabs). The three texts share one grid cell so switching never
+  moves the page. Without JS the three read in order under their names. Each wears its scene-2 dot colour. Closing quote added to the Qisas quotation.
 - **"Indecency" highlight:** in scene 1 cards 4 and 5 the word is a green highlighter (`mark.g`, dot green, dark text).
 - **Phones: gap after dot charts closed:** `.scrolly` gets a negative bottom margin of the empty card strip, so the next
   text sits 2.5rem under the chart as it lets go (wide layout and no-JS unchanged).
@@ -19,7 +20,8 @@
 - **Categories panel jumped on tap (fixed):** the browser's scroll anchoring held a background splatter still; the
   splatters sit at a share of the page height, so the page scrolled ~76 px whenever the panel opened. `.page__canvas`
   now has `overflow-anchor:none`, and story.js pins the splatters in px once the page settles. Button text: "Read more
-  about these three categories of punishment: hudud, qisas and ta’zir."
+  about these three categories of punishment: hudud, qisas and ta’zir." The open panel ends with a source note:
+  "Taken from Amnesty International’s 2025 Report on Saudi Arabia’s Execution Crisis." (Mir; no link in the copy).
 - **Splatters redrawn (Mir, 2026-10-28):** the old symbol (a circle ringed by round dots) read as a cat's paw. Now three
   variants (`#spl`, `#spl2`, `#spl3`, spread across the 31 uses) drawn by `tools/splatter.py`: irregular pool, thorn
   spikes (some ending in a droplet), stretched satellite drops with tails outward, mist. +5.7 KB gzipped. Share

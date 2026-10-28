@@ -1,4 +1,4 @@
-/* Two extraordinary executions: dot-chart scenes, war-on-drugs chart, names list, press release, back to top. */
+/* Two extraordinary executions: dot-chart scenes, war-on-drugs chart, names list, press release, categories tabs, back to top. */
 (function () {
 'use strict';
 var RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -365,6 +365,34 @@ guard(function () {
     var h1 = $('h1'); if (h1 && h1.focus) h1.focus({ preventScroll: true });
   });
   chk();
+});
+
+/* ---------- three categories: side-by-side tabs in the "Read more" panel, Hudud first each time it opens ---------- */
+guard(function () {
+  var box = $('.cats'), list = box && $('.tabs', box);
+  if (!list) return;
+  var tabs = $$('[role="tab"]', list), panes = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
+  function pick(i, focus) {
+    tabs.forEach(function (t, k) {
+      t.setAttribute('aria-selected', k === i ? 'true' : 'false');
+      t.tabIndex = k === i ? 0 : -1;
+      panes[k].classList.toggle('off', k !== i);
+    });
+    if (focus) tabs[i].focus();
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { pick(i); });
+    t.addEventListener('keydown', function (e) {
+      var n = tabs.length, k = e.key,
+        j = k === 'ArrowRight' ? (i + 1) % n : k === 'ArrowLeft' ? (i + n - 1) % n : k === 'Home' ? 0 : k === 'End' ? n - 1 : -1;
+      if (j < 0) return;
+      e.preventDefault();
+      pick(j, true);
+    });
+  });
+  box.addEventListener('toggle', function () { if (box.open) pick(0); });
+  $('.cats__in', box).classList.add('tabbed');
+  pick(0);
 });
 
 /* ---------- canvas splatters: pinned in px where they first land ----------

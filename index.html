@@ -149,27 +149,37 @@ mark.g{background:var(--c-i);color:#08130e;font-weight:700;padding:1px 4px;-webk
 mark.k{background:none;padding:0;font-weight:700}
 .k-d,.k-t{color:#d1323b}.k-m,.k-q{color:#2f6fd0}.k-o,.k-h{color:#557596}.k-i{color:#0f7f57}
 
-/* ---------- three categories of Islamic criminal law: tap the line, then a category ---------- */
+/* ---------- three categories of Islamic criminal law: tap the line, then a tab ---------- */
 .cats{margin:0 0 1.15em;border:1px solid rgba(240,196,189,.32);background:rgba(8,5,6,.6)}
 .cats summary{display:flex;align-items:center;gap:.7rem;cursor:pointer;list-style:none;-webkit-tap-highlight-color:transparent}
 .cats summary::-webkit-details-marker{display:none}
 /* a plus that turns to a cross when open */
 .cats summary:after{content:"";flex:none;width:14px;height:14px;margin-left:auto;background:linear-gradient(currentColor,currentColor) 50%/100% 2px no-repeat,linear-gradient(currentColor,currentColor) 50%/2px 100% no-repeat;transition:transform .25s}
-.cats[open]>summary:after,.cat[open]>summary:after{transform:rotate(45deg)}
+.cats[open]>summary:after{transform:rotate(45deg)}
 .cats>summary{min-height:44px;padding:.8rem 1rem;font-size:1rem;line-height:1.55;font-weight:700;color:#f0c4bd}
 .cats__in{padding:0 1rem .3rem}
-.cat{border-top:1px solid rgba(255,255,255,.14)}
-.cat>summary{min-height:48px;padding:.6rem 0;font-weight:700;color:#fff}
 /* each category wears its colour from the punishment dot chart */
-.cat>summary i{flex:none;width:10px;height:10px;border-radius:50%}
-.cat .h{background:var(--c-o)}
-.cat .q{background:var(--c-m)}
-.cat .t{background:var(--c-d)}
+.cats .h{--tc:var(--c-o)}
+.cats .q{--tc:var(--c-m)}
+.cats .t{--tc:var(--c-d)}
+.cats i{flex:none;width:10px;height:10px;border-radius:50%;background:var(--tc)}
+/* side-by-side tabs (story.js turns them on); the chosen one is white, underlined in its colour */
+.tabs{display:none}
+.tabbed .tabs{display:flex;border-top:1px solid rgba(255,255,255,.14);border-bottom:1px solid rgba(255,255,255,.14);margin:0 0 1rem}
+.tab{flex:1 1 0;display:flex;align-items:center;justify-content:center;gap:.5rem;min-width:0;min-height:46px;padding:.5rem .3rem;font:700 1rem/1.3 var(--serif);color:var(--dim);background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tab[aria-selected="true"]{color:#fff;box-shadow:inset 0 -3px 0 var(--tc)}
+.cat__h{display:flex;align-items:center;gap:.5rem;color:#fff;padding:.7rem 0 .3rem;border-top:1px solid rgba(255,255,255,.14)}
+/* all three texts share one cell, so the box keeps the height of the longest and nothing below it jumps */
+.tabbed .cats__panes{display:grid}
+.tabbed .cat{grid-area:1/1}
+.tabbed .cat.off{visibility:hidden}
+.tabbed .cat__h{display:none}
 .txt .cat p{margin:0 0 1.1rem;font-size:.95rem;line-height:1.7}
-.cats[open]>.cats__in,.cat[open]>p{animation:open .3s ease-out}
+.txt .cats__src{margin:0;padding:.7rem 0 .8rem;border-top:1px solid rgba(255,255,255,.14);font:italic .8rem/1.55 var(--serif);color:var(--dim)}
+.cats[open]>.cats__in,.tabbed .cat:not(.off) p{animation:open .3s ease-out}
 @keyframes open{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
-@media (hover:hover) and (pointer:fine){.cats>summary:hover,.cat>summary:hover{color:#fff;text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:3px}}
-@media (prefers-reduced-motion:reduce){.cats summary:after{transition:none}.cats[open]>.cats__in,.cat[open]>p{animation:none}}
+@media (hover:hover) and (pointer:fine){.cats>summary:hover{color:#fff;text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:3px}.tab:hover{color:#fff}}
+@media (prefers-reduced-motion:reduce){.cats summary:after{transition:none}.cats[open]>.cats__in,.tabbed .cat:not(.off) p{animation:none}}
 
 figure{margin:2.2rem auto}
 figcaption{font:italic 14px/1.6 var(--serif);color:var(--dim);margin-top:.7rem}
@@ -389,9 +399,13 @@ dialog.prm::backdrop{background:rgba(0,0,0,.8)}
 <details class="cats">
 <summary>Read more about these three categories of punishment: hudud, qisas and ta’zir.</summary>
 <div class="cats__in">
-<details class="cat"><summary><i class="h" aria-hidden="true"></i>Hudud</summary><p>Hudud are considered to be offences against God and have divinely ordained and fixed punishments, including the death penalty in some cases, including adultery, apostasy, and highway robbery when it results in loss of life. For a crime to be considered a hadd crime, however, very high evidentiary thresholds must be met. If the evidentiary requirements as dictated by sharia are not met, the crime is not considered a hadd crime, so the fixed punishment does not apply and the crime is instead prosecuted as a ta’zir, or discretionary, crime.</p></details>
-<details class="cat"><summary><i class="q" aria-hidden="true"></i>Qisas</summary><p>Qisas are offences against an individual or family. Punishments are equivalent to the crime committed (retribution-in-kind), including the death penalty for murder. For example, “If a person willfully cuts off the hand of another, his hand is to be cut off in retaliation, and if a person strikes out the tooth of another, he is also liable to retaliation.”</p></details>
-<details class="cat"><summary><i class="t" aria-hidden="true"></i>Ta’zir</summary><p>Ta’zir covers all offences for which Islamic law sets no fixed punishment, including acts seen as harmful to public order. Judges decide the penalty themselves, using their own interpretation of Islamic principles. The punishments range from warnings, fines, and lashes to jail time, deportation, and the death penalty for crimes such as drug trafficking, harassment, “indecent acts”, fraud and terrorism, as well as conduct deemed harmful to society or public order.</p></details>
+<div class="tabs" role="tablist" aria-label="Three categories of punishment"><button type="button" class="tab h" role="tab" id="tab-h" aria-controls="cat-h"><i aria-hidden="true"></i>Hudud</button><button type="button" class="tab q" role="tab" id="tab-q" aria-controls="cat-q"><i aria-hidden="true"></i>Qisas</button><button type="button" class="tab t" role="tab" id="tab-t" aria-controls="cat-t"><i aria-hidden="true"></i>Ta’zir</button></div>
+<div class="cats__panes">
+<div class="cat" role="tabpanel" id="cat-h" aria-labelledby="tab-h" tabindex="0"><b class="cat__h h"><i aria-hidden="true"></i>Hudud</b><p>Hudud are considered to be offences against God and have divinely ordained and fixed punishments, including the death penalty in some cases, including adultery, apostasy, and highway robbery when it results in loss of life. For a crime to be considered a hadd crime, however, very high evidentiary thresholds must be met. If the evidentiary requirements as dictated by sharia are not met, the crime is not considered a hadd crime, so the fixed punishment does not apply and the crime is instead prosecuted as a ta’zir, or discretionary, crime.</p></div>
+<div class="cat" role="tabpanel" id="cat-q" aria-labelledby="tab-q" tabindex="0"><b class="cat__h q"><i aria-hidden="true"></i>Qisas</b><p>Qisas are offences against an individual or family. Punishments are equivalent to the crime committed (retribution-in-kind), including the death penalty for murder. For example, “If a person willfully cuts off the hand of another, his hand is to be cut off in retaliation, and if a person strikes out the tooth of another, he is also liable to retaliation.”</p></div>
+<div class="cat" role="tabpanel" id="cat-t" aria-labelledby="tab-t" tabindex="0"><b class="cat__h t"><i aria-hidden="true"></i>Ta’zir</b><p>Ta’zir covers all offences for which Islamic law sets no fixed punishment, including acts seen as harmful to public order. Judges decide the penalty themselves, using their own interpretation of Islamic principles. The punishments range from warnings, fines, and lashes to jail time, deportation, and the death penalty for crimes such as drug trafficking, harassment, “indecent acts”, fraud and terrorism, as well as conduct deemed harmful to society or public order.</p></div>
+</div>
+<p class="cats__src">Taken from Amnesty International’s 2025 Report on Saudi Arabia’s Execution Crisis.</p>
 </div>
 </details>
 <p>They range from warnings, fines, and lashes to jail time, deportation, and the death penalty for crimes such as drug trafficking, harassment, “indecent acts”, fraud and terrorism, as well as conduct deemed harmful to society or public order.</p>
