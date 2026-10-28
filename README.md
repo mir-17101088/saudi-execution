@@ -1,4 +1,4 @@
-# An ‘extraordinary’ execution · The Daily Star
+# Two extraordinary executions · The Daily Star
 
 Live URL: **https://campaign.thedailystar.net/saudi-execution/** · Published 29 October 2026
 

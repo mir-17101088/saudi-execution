@@ -1,4 +1,4 @@
-# An ‘extraordinary’ execution (The Daily Star)
+# Two extraordinary executions (The Daily Star)
 
 Scroll-driven visual story on Saudi Arabia's execution of Nazrul Islam Abdul Basir and Sweety Akhtar, with
 an analysis of 887 executions (Jan 2024 to 20 Oct 2026). Reporting: Abdullah Hel Bubun, Tarek Hosen.

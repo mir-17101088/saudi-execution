@@ -1,4 +1,4 @@
-/* An ‘extraordinary’ execution: dot-chart scenes, war-on-drugs chart, names list, press release, back to top. */
+/* Two extraordinary executions: dot-chart scenes, war-on-drugs chart, names list, press release, back to top. */
 (function () {
 'use strict';
 var RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -7,12 +7,12 @@ var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll
 function guard(fn) { try { fn(); } catch (e) { if (window.console) console.error(e); } }
 
 /* ---------- data: one entry per person executed, Jan 2024 to 20 Oct 2026 ----------
-   [0] offence group D drug, M murder, O other, I "indecency"; [1] punishment t taz'ir, q qisas, h hudud, n not stated;
+   [0] offence group D drug, M murder, O other, I "indecency"; [1] punishment t ta'zir, q qisas, h hudud, n not stated;
    [2] nationality l Saudi, f foreign, u not stated */
 var D = ["Mhl","Mhl","Mqf","Dtf","Dtf","Dtf","Mhl","Dtf","Mqf","Otl","Dtf","Mtl","Mtl","Dtf","Dtf","Dtf","Dtf","Itf","Mtl","Mhl","Mql","Mql","Mqf","Mql","Mql","Onl","Mhf","Mhf","Mhf","Mhf","Mql","Onl","Mhl","Mhl","Mhl","Mql","Mql","Onl","Onl","Mql","Mql","Onu","Onu","Onu","Onu","Onu","Onu","Onu","Mhf","Mhf","Mhf","Mhf","Mhf","Mql","Mql","Mhf","Mhf","Mtf","Mtf","Mhf","Mql","Mql","Mqf","Onl","Mql","Mql","Onl","Mql","Mqf","Mql","Mql","Mql","Mql","Onl","Onl","Mql","Mql","Otl","Mqf","Dtf","Dtf","Mhl","Onl","Mqf","Mql","Onl","Mql","Mql","Mql","Mnl","Mql","Mql","Dtf","Onl","Mql","Mql","Mql","Mql","Mql","Mql","Ohl","Mql","Mql","Otl","Mql","Mqf","Mql","Mhl","Mql","Dtf","Mqu","Mql","Otl","Dtf","Mql","Mql","Dtf","Dtf","Mql","Otl","Dtl","Dtf","Mqf","Dtf","Dtf","Dtf","Mql","Mtl","Dtl","Mql","Dtf","Mql","Dtl","Dtf","Dtf","Mql","Dtf","Mhl","Mhl","Mhl","Mhl","Mhf","Dtf","Mql","Dtl","Mql","Dtf","Mqf","Dtl","Mql","Mqf","Dtf","Mql","Onl","Mqf","Mql","Dtf","Dtf","Mql","Dtf","Mqf","Onl","Dtf","Mql","Dtf","Mql","Mql","Dtl","Mql","Dtl","Onl","Dtf","Mql","Dtl","Dtl","Mql","Mql","Dtl","Dtf","Mql","Dtl","Mqf","Dtf","Onl","Mqf","Dtf","Mql","Dtf","Mql","Onl","Onl","Onl","Dtf","Mql","Dtf","Mql","Dtf","Mql","Dtf","Dtf","Onl","Dtl","Dtl","Mql","Mql","Dtf","Mtl","Dtf","Dtf","Mql","Dtf","Dtf","Mql","Dtf","Dtf","Mql","Mql","Dtf","Mql","Dtf","Mql","Dtf","Mqf","Dtf","Mql","Mql","Mql","Mhf","Dtl","Mql","Mql","Dtf","Dtf","Dtf","Mql","Dtf","Dtf","Mql","Dtf","Mql","Mql","Mnl","Mnl","Dtf","Dtf","Dtf","Dtf","Mql","Dtf","Mql","Dtf","Dtf","Mql","Mql","Dtf","Dtl","Mql","Dtl","Mqf","Dtf","Dtf","Mql","Onl","Onl","Dtf","Dtf","Dtl","Dtl","Dtl","Dtl","Mql","Mql","Dtf","Mql","Dtf","Mqf","Otl","Otl","Otl","Dtf","Mql","Dtl","Dtl","Dtf","Dtf","Mnl","Mnl","Dtf","Mql","Dtf","Dtf","Ohl","Mql","Mtl","Dtl","Dtf","Otl","Otf","Otf","Otl","Mtl","Mql","Mhf","Dtl","Dtf","Mhf","Dtf","Mqf","Onl","Onl","Mql","Dtl","Dtf","Dtf","Dtf","Mql","Dtf","Mqf","Mtl","Dtf","Mtl","Mql","Dtf","Mql","Mql","Mql","Mqf","Dtl","Mql","Dtf","Mql","Dtf","Mql","Dtf","Mhf","Dtf","Dtf","Dtf","Dtf","Onl","Onl","Dtl","Dtf","Ohf","Ohf","Dtl","Onl","Onl","Ohl","Dtl","Mhl","Dtf","Mql","Mhf","Dtl","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Mql","Dtf","Mql","Dtl","Mql","Dtf","Mql","Mql","Mql","Mql","Dtf","Dtf","Mqf","Dtl","Mqf","Otl","Mql","Mql","Mql","Dtf","Mql","Mql","Mhl","Dtl","Dtl","Dtl","Dtl","Dtl","Dtl","Dtl","Mql","Mql","Otl","Mql","Mql","Dtf","Dtf","Dtf","Dtl","Mql","Onl","Onl","Dtf","Dtl","Mhl","Mhf","Dtf","Dtl","Dtf","Dtf","Mql","Dtl","Otl","Dtl","Dtf","Mql","Onl","Onl","Mql","Dtf","Dtf","Dtf","Mql","Otl","Mql","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtl","Dtf","Dtf","Dtl","Dtl","Mqf","Dtf","Otl","Dtl","Dtl","Dtl","Dtl","Mqf","Dtf","Dtf","Mqf","Dtl","Otl","Otl","Dtf","Dtf","Dtl","Otl","Mql","Dtf","Dtl","Dtl","Dtl","Otl","Dtf","Dtf","Dtf","Dtf","Dtf","Mql","Dtf","Dtf","Otf","Dtf","Dtf","Dtf","Mql","Dtf","Otl","Mql","Dtl","Mql","Dtf","Dtf","Dtf","Otl","Mql","Dtf","Dtf","Mhf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtl","Dtf","Dtf","Dtf","Otl","Otl","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Mql","Dtl","Dtf","Dtf","Dtf","Dtf","Otl","Otl","Dtf","Dtf","Dtf","Dtf","Dtf","Mql","Dtf","Dtf","Dtf","Dtf","Dtf","Dtl","Otl","Otl","Dtf","Mhl","Dtf","Dtl","Otl","Mtl","Dtf","Dtf","Dtf","Dtf","Mql","Dtf","Dtf","Dtl","Dtf","Dtf","Dtf","Otl","Dtf","Mtf","Mhf","Dtf","Dtl","Mhf","Dtf","Dtl","Mql","Dtf","Dtf","Dtf","Dtf","Dtf","Mtl","Mtl","Mtl","Dtf","Dtf","Dtf","Dtf","Dtl","Otl","Dtl","Dtf","Ohl","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Mtl","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Otl","Otl","Dtf","Dtf","Dtf","Mql","Mtl","Dtl","Mtl","Dtf","Dtf","Dtl","Dtf","Mql","Dtf","Dtf","Dtf","Dtf","Dtl","Mtl","Dtf","Dtf","Mql","Dtf","Dtf","Dtf","Dtf","Dtf","Mhl","Dtf","Dtf","Mql","Mtl","Dtl","Dtl","Dtl","Dtl","Otl","Dtf","Dtf","Dtf","Dtf","Onu","Mql","Dtf","Otl","Otl","Dtf","Dtf","Mql","Mhl","Dtl","Dtl","Dtf","Dtf","Dtf","Dtf","Dtf","Otl","Dtf","Dtf","Dtf","Dtf","Dtf","Mtl","Dtf","Dtf","Dtf","Dtf","Dtf","Mtl","Dtl","Dtl","Dtf","Dtf","Dtf","Dtf","Dtf","Otl","Otl","Dtf","Dtf","Mql","Dtf","Dtf","Dtf","Dtf","Mql","Dtf","Dtl","Dtl","Dtl","Mql","Dtf","Dtf","Mhl","Mhl","Mhl","Dtf","Dtf","Dtf","Mtf","Dtf","Dtf","Dtf","Mtl","Mtl","Mtl","Dtl","Mql","Dtl","Otl","Otl","Otl","Mtl","Dtf","Dtf","Dtf","Otl","Otl","Otl","Dtf","Dtf","Dtf","Dtf","Ohf","Dtf","Dtf","Dtf","Mqf","Dtl","Otl","Otl","Otl","Mhl","Mql","Dtl","Dtf","Dtf","Mql","Dtl","Dtl","Dtl","Mql","Dtl","Dtf","Dtf","Dtf","Dtf","Mql","Mhl","Dtl","Dtl","Mqf","Dtf","Mhf","Mqf","Dtf","Dtf","Otl","Dtf","Dtf","Dtf","Mhf","Dtf","Dtf","Mtl","Mtl","Mhl","Mhf","Dtl","Dtl","Dtl","Dtl","Dtl","Dtf","Dtf","Mtl","Dtl","Mhl","Dtf","Otf","Dtf","Dtf","Dtf","Dtf","Mql","Dtl","Dtf","Dtf","Dtf","Dtl","Mtl","Dtl","Dtl","Mhf","Mql","Dtl","Dtl","Dtf","Dtf","Mhl","Mql","Dtf","Dtf","Mql","Mqf","Dtl","Dtl","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Mql","Mql","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Mhl","Mql","Dtl","Mql","Dtf","Dtf","Dtl","Mqf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Mhf","Dtf","Ohl","Dtf","Dtf","Dtf","Mql","Dtf","Dtl","Mql","Mql","Dtl","Dtl","Mtl","Dtl","Dtf","Mqf","Dtl","Dtf","Mqf","Dtl","Mhl","Dhl","Dhl","Dtf","Dtf","Dtl","Mql","Dtf","Dtf","Dtf","Dtf","Dtf","Mqf","Mtf","Mql","Mhl","Dtf","Mql","Mql","Mql","Mqf","Mhl","Dtf","Mql","Dtf","Dtf","Dtf","Mhl","Mqf","Dtf","Itf","Otl","Otl","Otl","Otl","Otl","Dtf"];
 var N = D.length;
 var C = { D: '#e0434b', M: '#3b7ddd', O: '#7f9cbb', I: '#34c38f', t: '#e0434b', q: '#3b7ddd', h: '#7f9cbb', n: '#8a837c' }, G = '#5f5857';
-var GN = { D: 'Drug-related', M: 'Murder', O: 'Armed robbery, terrorism, rape, kidnapping, treason', I: '“Indecency” (Bangladeshis)', t: 'Taz’ir', q: 'Qisas', h: 'Hudud', n: 'Not stated' };
+var GN = { D: 'Drug-related', M: 'Murder', O: 'Armed robbery, terrorism, rape, kidnapping, treason', I: '“Indecency” (Bangladeshis)', t: 'Ta’zir', q: 'Qisas', h: 'Hudud', n: 'Not stated' };
 function cnt(f, k) { var a = {}; D.forEach(function (x) { if (f(x)) a[x[k]] = (a[x[k]] || 0) + 1; }); return a; }
 function rank(s, o) { var r = []; for (var i = 0; i < N; i++) if (s(D[i])) r.push(i); return r.sort(function (a, b) { return o.indexOf(D[a][1]) - o.indexOf(D[b][1]) || o.indexOf(D[a][0]) - o.indexOf(D[b][0]) || a - b; }); }
 function pc(p) { return p.toFixed(2); }
@@ -365,5 +365,24 @@ guard(function () {
     var h1 = $('h1'); if (h1 && h1.focus) h1.focus({ preventScroll: true });
   });
   chk();
+});
+
+/* ---------- canvas splatters: pinned in px where they first land ----------
+   They sit at a share of the page height, so a category or a page of names opening would slide them all down the
+   screen. Pin them once the page has settled; place them again only when the screen really changes size. */
+guard(function () {
+  var spl = $$('.page__canvas .spl'), w = 0, h = 0;
+  if (!spl.length || !window.getComputedStyle) return;
+  function pin(force) {
+    if (!force && innerWidth === w && Math.abs(innerHeight - h) < 150) return;
+    w = innerWidth; h = innerHeight;
+    spl.forEach(function (s) { s.style.top = ''; });
+    var t = spl.map(function (s) { return getComputedStyle(s).top; });
+    spl.forEach(function (s, i) { s.style.top = t[i]; });
+  }
+  pin(true);
+  addEventListener('load', function () { pin(true); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { pin(true); });
+  addEventListener('resize', function () { pin(false); });
 });
 })();
