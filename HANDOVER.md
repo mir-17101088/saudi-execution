@@ -33,8 +33,12 @@
   which Safari lacks before 26 (and Firefox), so there they sat still at full length. story.js now moves them the
   same way on scroll where that CSS is missing (checked: offsets match Chrome's CSS to the pixel, in WebKit too).
 - **Names list, picking a country (Mir, 2026-10-28):** wide screens scroll up to the top of the names column when
-  it is above the screen (Uganda's one name used to sit ~430 px out of view). Phones: a row tapped low on the screen
-  scrolls its names into view without losing the row; paging keeps the country row at the top.
+  it is above the screen (Uganda's one name used to sit ~430 px out of view).
+- **Phones, country tap jumped (fixed):** the one names panel moved from above the country list to under the tapped
+  row, so ~830 px vanished above it and the page had to scroll to make up for it (plus a small auto-scroll for low
+  rows); on real phones that showed as a jump. Now each tapped country opens its own panel under its row (clones
+  of its names, 10 a page; several can be open), and nothing above the row changes: 0 px of movement in Chrome and
+  WebKit. The list at the top follows only All/Saudi/Foreign. Paging a panel brings its country row back on screen.
 - **Hero:** original hero kept (headline, byline, sword, top drip band); title block sits a little below
   the middle of the hero (Mir). Added the real Daily Star logo top-left.
   Removed the stub line above the byline (house rule). The fixed splatter background became one long

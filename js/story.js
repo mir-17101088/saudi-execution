@@ -273,7 +273,7 @@ guard(function () {
 guard(function () {
   var ct = $('#ctl'), cl = $('#cl'), pg = $('#pg'), nr = $('.nr'), sp = $$('.nl span');
   if (!ct || !cl || !pg || !nr) return;
-  var home = nr.parentNode, st = { g: '', c: '', p: 1 }, cn = {}, PS = 10, MOB = window.matchMedia ? matchMedia('(max-width: 800px)') : { matches: false };
+  var st = { g: '', c: '', p: 1 }, cn = {}, PS = 10, MOB = window.matchMedia ? matchMedia('(max-width: 800px)') : { matches: false };
   sp.forEach(function (x) { if (x.dataset.c) cn[x.dataset.c] = (cn[x.dataset.c] || 0) + 1; });
   var cs = Object.keys(cn).map(function (k) { return [k, cn[k]]; }).sort(function (a, b) { return b[1] - a[1] || a[0].localeCompare(b[0]); }), mx = cs[0][1];
   var n = function (g) { return sp.filter(function (x) { return !g || x.dataset.g == g; }).length; };
@@ -287,17 +287,11 @@ guard(function () {
     return '<li><button type="button" data-c="' + a[0] + '" aria-pressed="false" class="' + (a[0] == 'Bangladesh' ? 'bd' : '') + '" style="--w:' + (a[1] / mx * 100) + '%"><span>' + flag(a[0]) + a[0] + '</span><b>' + a[1] + '</b></button></li>';
   }).join('') + '<span class="sm">Countries as stated in the Interior Ministry statements. One person whose nationality was not stated is not assigned to a country. Click a country to filter the names.</span>';
   var note = $('p', ct);
-  function pages(np) {
+  function pages(np, p) {
     var a = [], h = '', l = 0;
-    for (var i = 1; i <= np; i++) if (i == 1 || i == np || Math.abs(i - st.p) <= 1 || (st.p <= 3 && i <= 4) || (st.p >= np - 2 && i >= np - 3)) a.push(i);
-    a.forEach(function (i) { if (i - l > 1) h += '<span class="el">…</span>'; h += '<button type="button" data-p="' + i + '" class="' + (i == st.p ? 'on' : '') + '"' + (i == st.p ? ' aria-current="page"' : '') + '>' + i + '</button>'; l = i; });
-    return '<button type="button" data-p="' + (st.p - 1) + '" ' + (st.p == 1 ? 'disabled' : '') + '>‹ Prev</button>' + h + '<button type="button" data-p="' + (st.p + 1) + '" ' + (st.p == np ? 'disabled' : '') + '>Next ›</button>';
-  }
-  // on phones a chosen country's names open directly under its row; otherwise they sit in their own column
-  function place() {
-    var b = st.c && MOB.matches && cl.querySelector('button[data-c="' + esc(st.c) + '"]');
-    var to = b ? b.parentNode : home;
-    if (nr.parentNode !== to) to.appendChild(nr);
+    for (var i = 1; i <= np; i++) if (i == 1 || i == np || Math.abs(i - p) <= 1 || (p <= 3 && i <= 4) || (p >= np - 2 && i >= np - 3)) a.push(i);
+    a.forEach(function (i) { if (i - l > 1) h += '<span class="el">…</span>'; h += '<button type="button" data-p="' + i + '" class="' + (i == p ? 'on' : '') + '"' + (i == p ? ' aria-current="page"' : '') + '>' + i + '</button>'; l = i; });
+    return '<button type="button" data-p="' + (p - 1) + '" ' + (p == 1 ? 'disabled' : '') + '>‹ Prev</button>' + h + '<button type="button" data-p="' + (p + 1) + '" ' + (p == np ? 'disabled' : '') + '>Next ›</button>';
   }
   function r() {
     var mt = sp.filter(function (x) { return (!st.g || x.dataset.g == st.g) && (!st.c || x.dataset.c == st.c); }), v = mt.length, np = Math.max(1, Math.ceil(v / PS));
@@ -305,13 +299,35 @@ guard(function () {
     var s0 = (st.p - 1) * PS;
     sp.forEach(function (x) { x.hidden = true; });
     mt.slice(s0, s0 + PS).forEach(function (x) { x.hidden = false; });
-    pg.innerHTML = np > 1 ? pages(np) : '';
+    pg.innerHTML = np > 1 ? pages(np, st.p) : '';
     $$('button', ct).forEach(function (b) { var o = b.dataset.g == st.g; b.classList.toggle('on', o); b.setAttribute('aria-pressed', o); });
     note.textContent = (v ? '' : 'No one matches. ') + (st.g ? '' : '9 people whose nationality was not stated appear only under “All”.');
-    $$('button[data-c]', cl).forEach(function (b) { var o = b.dataset.c == st.c; b.classList.toggle('on', o); b.setAttribute('aria-pressed', o); });
-    place();
+    $$('button[data-c]', cl).forEach(function (b) { var o = MOB.matches ? !!$('.nr', b.parentNode) : b.dataset.c == st.c; b.classList.toggle('on', o); b.setAttribute('aria-pressed', o); });
   }
-  // keep the tapped row where the finger is when the list above it changes height
+  // phones: a tapped country opens its own panel of names under its row (several can be open). Nothing above the row
+  // changes, so the page never has to scroll to make up for it, and the row stays exactly under the finger.
+  function fill(box, c, p) {
+    var mt = sp.filter(function (x) { return x.dataset.c == c; }), np = Math.max(1, Math.ceil(mt.length / PS)), nl = box.firstChild;
+    p = Math.min(p, np);
+    nl.innerHTML = '';
+    mt.slice((p - 1) * PS, p * PS).forEach(function (x) { var y = x.cloneNode(true); y.hidden = false; nl.appendChild(y); });
+    box.lastChild.innerHTML = np > 1 ? pages(np, p) : '';
+  }
+  function fold(b) {
+    var li = b.parentNode, box = $('.nr', li);
+    if (box) li.removeChild(box);
+    else {
+      box = document.createElement('div');
+      box.className = 'nr';
+      box.innerHTML = '<div class="nl"></div><div class="pg"></div>';
+      li.appendChild(box);
+      fill(box, b.dataset.c, 1);
+    }
+    var open = !!box.parentNode;
+    b.classList.toggle('on', open);
+    b.setAttribute('aria-pressed', open);
+  }
+  // keep the clicked control where it is when the list above it changes height
   function keep(sel, fn) {
     var b = $(sel), y0 = b && b.getBoundingClientRect().top;
     fn();
@@ -319,34 +335,38 @@ guard(function () {
     if (b2 && y0 != null) { var d = b2.getBoundingClientRect().top - y0; if (Math.abs(d) > 1) window.scrollBy({ top: d, left: 0, behavior: 'instant' }); }
   }
   function go(d) { if (Math.abs(d) > 1) window.scrollBy({ top: d, left: 0, behavior: RM ? 'instant' : 'smooth' }); }
-  // where the names start: on phones a chosen country's row (its names open under it), otherwise the names column
-  function top() { return (MOB.matches && st.c ? nr.parentNode : nr).getBoundingClientRect().top; }
-  // after a country is picked, bring its names into view. Wide screens: they start at the top of the right-hand column,
-  // which can be far above a country low in the list. Phones: they open under the row; when that is low on the screen
-  // they run off the bottom, so scroll them up, but never so far that the row itself leaves the top.
-  function show() {
-    if (!MOB.matches) { var t = nr.getBoundingClientRect().top; if (t < 0) go(t - 16); return; }
-    if (!st.c) return;
-    var n = nr.getBoundingClientRect(), H = innerHeight;
-    if (n.top > H * .6 && n.bottom > H) go(Math.min(n.bottom - H + 16, top() - 8));
-  }
   ct.addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b) return;
     keep('#ctl button[data-g="' + b.dataset.g + '"]', function () { st.g = b.dataset.g; st.c = ''; st.p = 1; r(); });
   });
   cl.addEventListener('click', function (e) {
+    var q = e.target.closest('.nr .pg button');
+    if (q) {   // a page of one country's names (phones): show it, and bring its country back if it has scrolled off the top
+      if (q.disabled) return;
+      var box = q.closest('.nr'), li = box.parentNode;
+      fill(box, $('button[data-c]', li).dataset.c, +q.dataset.p);
+      var t = li.getBoundingClientRect().top;
+      if (t < 0) go(t - 8);
+      return;
+    }
     var b = e.target.closest('button[data-c]'); if (!b) return;
+    if (MOB.matches) { fold(b); return; }
+    // wide screens: the country filters the names column; if its top is above the screen (a country low in the
+    // list, such as Uganda), scroll up to it
     var c = b.dataset.c;
     keep('#cl button[data-c="' + esc(c) + '"]', function () { st.c = st.c == c ? '' : c; st.g = st.c ? 'f' : st.g; st.p = 1; r(); });
-    show();
+    var n = nr.getBoundingClientRect().top;
+    if (n < 0) go(n - 16);
   });
   pg.addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b || b.disabled) return;
     st.p = +b.dataset.p; r();
-    var t = top();
-    if (t < 0) go(t - (MOB.matches && st.c ? 8 : 16));
+    var t = nr.getBoundingClientRect().top;
+    if (t < 0) go(t - 16);
   });
-  if (MOB.addEventListener) MOB.addEventListener('change', place); else if (MOB.addListener) MOB.addListener(place);
+  // crossing the phone/wide line: close the phone panels and drop the wide-screen country filter
+  function reset() { $$('.nr', cl).forEach(function (x) { x.parentNode.removeChild(x); }); st.c = ''; r(); }
+  if (MOB.addEventListener) MOB.addEventListener('change', reset); else if (MOB.addListener) MOB.addListener(reset);
   r();
 });
 
@@ -364,12 +384,12 @@ guard(function () {
 guard(function () {
   var b = $('.totop'), hero = $('.hero');
   if (!b || !hero) return;
-  var avoid = $$('.scrolly, figure, .stat, #ctl, #pg, .site-footer'), on = false, tick = 0;
+  var AV = '.scrolly, figure, .stat, #ctl, .pg, .site-footer', on = false, tick = 0;
   function chk() {
     tick = 0;
     var H = innerHeight, show = hero.getBoundingClientRect().bottom < 0;
     if (show) {
-      var top = H - 84;
+      var top = H - 84, avoid = $$(AV);
       for (var i = 0; i < avoid.length; i++) { var r = avoid[i].getBoundingClientRect(); if (r.bottom > top && r.top < H) { show = false; break; } }
     }
     if (show !== on) { on = show; b.classList.toggle('on', on); }
