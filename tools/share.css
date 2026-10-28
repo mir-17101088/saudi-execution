@@ -1,0 +1,243 @@
+/* An ‘extraordinary’ execution: story styles */
+@font-face{font-family:Merriweather;src:url(../fonts/merriweather-400.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Merriweather;src:url(../fonts/merriweather-700.woff2) format("woff2");font-weight:600 700;font-style:normal;font-display:swap}
+@font-face{font-family:Merriweather;src:url(../fonts/merriweather-400i.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
+
+:root{
+  --bg:#080506;--ink:#ece4dc;--dim:#b79a96;--red:#d0343b;--blood:#5b0a10;--blood-hi:#a3151c;
+  --gutter:clamp(16px,4vw,32px);--serif:Merriweather,Georgia,"Times New Roman",serif;
+  /* chart categories: the dots, the legend swatches and the numbers in the cards share these */
+  --c-d:#e0434b;--c-m:#3b7ddd;--c-o:#7f9cbb;--c-i:#34c38f;
+  --hero-h:112vh;
+}
+@supports (height:1svh){:root{--hero-h:112svh}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;color:var(--ink);font:19px/1.7 var(--serif);background:var(--bg);overflow-x:hidden}
+img{max-width:100%}
+h1,h2,h3{text-wrap:balance}
+:focus-visible{outline:2px solid #f0c4bd;outline-offset:3px}
+.skip{position:absolute;left:var(--gutter);top:-60px;z-index:30;background:#fff;color:#111;padding:.5rem .9rem;font-size:.9rem}
+.skip:focus{top:12px}
+
+/* ---------- the long canvas: one textured ground under the hero and the whole story ---------- */
+.page{position:relative;z-index:0}
+.page__canvas{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:url(../img/canvas.webp) 0 0/128px 128px}
+.spl{position:absolute;width:var(--s);height:var(--s);margin:calc(var(--s)/-2) 0 0 calc(var(--s)/-2);fill:#7a0c12;opacity:.3;transform:rotate(var(--r,0deg))}
+.page__canvas .spl{top:calc(var(--hero-h) + (100% - var(--hero-h)) * var(--p));opacity:.22}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:var(--hero-h);display:flex;flex-direction:column;overflow:hidden}
+.hero__art{position:absolute;inset:0;pointer-events:none}
+.hero__glow{position:absolute;inset:0;background:radial-gradient(ellipse 90% 60% at 50% 0,#2a0b10 0,rgba(42,11,16,0) 72%)}
+.sword{position:absolute;right:-4%;top:10%;width:min(80vw,780px);opacity:.3;transform:rotate(-14deg);fill:#8f1119}
+.sword .dr{fill:#d0343b}
+.band,.pool{position:absolute;left:0;right:0;background:var(--blood);box-shadow:0 0 18px rgba(122,12,16,.6)}
+.band{top:0;height:12px}
+.pool{bottom:0;height:14px}
+/* drips hang from the band, right of the logo; the long runs reach the pool */
+.drips{position:absolute;top:0;bottom:12px;right:0;left:calc(var(--gutter) + var(--logo-w) + 20px)}
+.drips>i{position:absolute;top:0;background:linear-gradient(#5b0a10,#a3151c);border-radius:0 0 40% 40%;transform-origin:top;animation:drip ease-in-out infinite;box-shadow:0 0 14px rgba(122,12,16,.53)}
+.drips>i:after{content:"";position:absolute;bottom:-4px;left:50%;width:150%;height:0;padding-top:150%;transform:translateX(-50%);border-radius:50%;background:#a3151c}
+@keyframes drip{0%,100%{transform:scaleY(.82)}50%{transform:scaleY(1.12)}}
+/* long runs: paint that kept running down the canvas; two reach the pool at the foot of the hero */
+.run{position:absolute;top:0;height:var(--len);width:calc(var(--w) * 3);margin-left:calc(var(--w) * -1.5);overflow:hidden}
+.run i{position:absolute;top:0;left:50%;bottom:calc(var(--w) * 1.1);width:var(--w);margin-left:calc(var(--w) / -2);background:linear-gradient(#5b0a10,#7d0f15 60%,#9c141b);border-radius:0 0 40% 40%}
+.run i:after{content:"";position:absolute;left:50%;bottom:calc(var(--w) * -.9);width:180%;height:0;padding-top:180%;transform:translateX(-50%);border-radius:50% 50% 50% 50% / 42% 42% 58% 58%;background:#9c141b}
+@media (max-width:599px){.drips>i:nth-child(2n),.run.w{display:none}}
+/* where the browser can tie animation to scroll, the runs creep down the canvas as the reader descends */
+@supports (animation-timeline:view()){
+  .hero{view-timeline:--hero block}
+  .run i{animation:run linear both;animation-timeline:--hero;animation-range:contain 0% exit 45%}
+  @keyframes run{from{transform:translateY(calc((var(--from) - 1) * 100%))}to{transform:none}}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .drips>i,.run i{animation:none}
+}
+
+.masthead{position:absolute;top:28px;left:var(--gutter);z-index:3}
+:root{--logo-w:clamp(124px,7vw + 96px,176px)}
+.masthead a{display:block;color:#fff}
+.masthead .tds-logo{display:block;width:var(--logo-w);height:calc(var(--logo-w) * .1986);fill:currentColor}
+
+.hero__body{position:relative;z-index:2;width:100%;max-width:1000px;margin:0 auto;padding:max(14vh,104px) 6vw 5vh}
+h1{font-size:clamp(2.6rem,8vw,6rem);line-height:1.02;margin:0 0 1.5rem;color:#fff;text-shadow:0 0 60px rgba(90,18,24,.4),0 2px 12px rgba(8,5,6,.6);font-weight:700}
+h1:focus{outline:0}
+/* ‘extraordinary’ is one long word: on narrow phones size the title to the screen so it never clips */
+@media (max-width:420px){h1{font-size:10.2vw}}
+.by{font:700 .85rem/1.8 var(--serif);letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin:0}
+
+/* ---------- story ---------- */
+main{display:block;padding:clamp(64px,10vh,120px) 0 clamp(48px,8vh,96px)}
+.txt{max-width:680px;margin:0 auto;padding:0 var(--gutter)}
+.txt p{margin:0 0 1.15em}
+h2{font-size:clamp(1.6rem,1.2rem + 1.6vw,1.9rem);line-height:1.25;color:#fff;margin:3.2rem 0 .9rem}
+.txt a{color:#f0c4bd;text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:3px}
+@media (hover:hover) and (pointer:fine){.txt a:hover{color:#fff}}
+mark.y{background:#ffd166;color:#111;padding:0 2px}
+mark.r{background:#b3141c;color:#fff;padding:0 2px}
+/* a number in a card wears its category's colour */
+mark.k{color:#141012;padding:0 3px;font-weight:700;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.k-d,.k-t{background:var(--c-d)}.k-m,.k-q{background:var(--c-m)}.k-o,.k-h{background:var(--c-o)}.k-i{background:var(--c-i)}
+
+figure{margin:2.2rem auto}
+figcaption{font:italic 14px/1.6 var(--serif);color:var(--dim);margin-top:.7rem}
+figure img{display:block;width:100%;height:auto}
+figure.fb{max-width:380px}
+figure.fb img{border:1px solid #5a1015}
+@media (min-width:700px){figure.fb{max-width:520px}figure.fb img{aspect-ratio:606/763}}
+figure.ch,figure.wide{width:min(900px,94vw);max-width:none;position:relative;left:50%;transform:translateX(-50%)}
+figure.wide{margin:2.4rem 0 1rem}
+figure.ch{margin:2.4rem 0}
+
+/* press release pop-up trigger */
+.prl{font:inherit;color:#f0c4bd;background:none;border:0;border-bottom:1px dashed var(--red);padding:0;cursor:pointer}
+@media (hover:hover) and (pointer:fine){.prl:hover{color:#fff}}
+
+/* ---------- dot-chart scenes ----------
+   Phones and portrait screens: the chart holds in the top of the screen and the cards rise into the strip below it,
+   sliding under the chart, so a card never covers a dot. Wide screens: cards in a column on the left, chart on the right. */
+.scrolly{position:relative;margin:4rem 0;--z:.4}
+.sticky{position:sticky;top:0;height:100vh;height:100svh;z-index:2;pointer-events:none}
+.chart{position:absolute;top:0;left:0;right:0;bottom:calc(var(--z) * 100%);display:flex;flex-direction:column;padding:10px 10px 0;background:var(--bg) url(../img/canvas.webp) 0 0/128px 128px}
+.chart:after{content:"";position:absolute;left:0;right:0;top:100%;height:18px;background:linear-gradient(var(--bg),rgba(8,5,6,0))}
+.legw{flex:none;display:flex;align-items:flex-start}
+.leg{max-width:100%;background:#fff;color:#1a1a1a;font:12.5px/1.45 var(--serif);padding:.55rem .75rem;box-shadow:0 4px 20px rgba(0,0,0,.4)}
+.leg b{display:block;color:#111;font-size:12.5px;margin-bottom:.15rem}
+.leg .rs{display:flex;flex-wrap:wrap;gap:.1rem 1rem}
+.leg .r{display:flex;align-items:baseline;transition:opacity .4s}
+.leg .r.off{opacity:.38}
+.leg i{flex:none;width:10px;height:10px;border-radius:50%;margin-right:7px;position:relative;top:1px}
+.leg em{font-style:normal;color:#555;margin-left:.5em;white-space:nowrap;font-variant-numeric:tabular-nums}
+.plot{position:relative;flex:1 1 auto;min-height:0;margin-top:10px}
+.plot canvas{position:absolute;left:0;top:0;width:100%;height:100%}
+.lab{position:absolute;left:0;top:0;font:700 15px/1.2 var(--serif);color:var(--c-i);white-space:nowrap;text-shadow:0 0 4px #080506,0 0 10px #080506;opacity:0;transition:opacity .8s .5s;transform:translateX(-50%)}
+.lab.on{opacity:1}
+.steps{position:relative;z-index:1;margin-top:-100vh;margin-top:-100svh;padding-top:calc((1 - var(--z)) * 100vh + 14px);padding-top:calc((1 - var(--z)) * 100svh + 14px)}
+.step{min-height:85vh;min-height:85svh;display:flex;align-items:flex-start;justify-content:center;padding:0 var(--gutter)}
+.step p{width:100%;max-width:560px;margin:0;background:#fff;color:#1a1a1a;padding:1rem 1.15rem;font-size:1.02rem;line-height:1.65;box-shadow:0 10px 40px rgba(0,0,0,.6)}
+.step:last-child{min-height:100vh;min-height:100svh}
+@media (max-width:359px){.step p{font-size:.95rem;padding:.85rem .95rem}.leg{font-size:11.5px}.leg b{font-size:11.5px}}
+@media (min-width:760px) and (min-aspect-ratio:11/10){
+  .scrolly{--col:clamp(280px,30vw,420px)}
+  .sticky{z-index:0;background:var(--bg) url(../img/canvas.webp) 0 0/128px 128px}
+  .chart{top:var(--gutter);bottom:var(--gutter);left:calc(var(--col) + var(--gutter) * 2);right:var(--gutter);padding:0;background:none}
+  .chart:after{display:none}
+  .steps{padding:0 0 30vh}
+  .step,.step:last-child{min-height:100vh;min-height:100svh;align-items:center;justify-content:flex-start}
+  .step p{width:var(--col);max-width:none;font-size:1.1rem;padding:1.4rem 1.6rem;opacity:.35;transition:opacity .5s}
+  .step.on p{opacity:1}
+}
+/* without canvas the cards simply read as prose */
+.nochart .sticky{display:none}
+.nochart .steps{margin:0;padding:0}
+.nochart .step{min-height:0;margin:1rem 0}
+
+/* ---------- war on drugs chart ---------- */
+.exc{background:#faf9f6;color:#2b2b2b;font-family:var(--serif);padding:clamp(14px,3vw,26px) clamp(12px,3vw,26px) 14px;border-radius:2px}
+.exh{font-weight:700;font-size:clamp(1.2rem,3.6vw,1.9rem);line-height:1.2;color:#2b2b2b}
+.exh span{color:#c0262b}
+.exs{font-size:clamp(.88rem,2.2vw,1.15rem);line-height:1.45;color:#555;margin:.5rem 0 .8rem}
+.exl{font-size:clamp(11px,1.7vw,13.5px);line-height:1.9;color:#333;margin-bottom:.4rem}
+.exl span{white-space:nowrap;margin-right:1.1em;display:inline-block}
+.exl i{display:inline-block;width:.8em;height:.8em;margin-right:.4em;vertical-align:-.05em}
+.exl .d{background:#8f2227}.exl .o{background:#232838}
+.exr{font-size:clamp(10.5px,1.6vw,12.5px);line-height:1.55;color:#555;border-top:1px solid #cfcac0;margin-top:.6rem;padding-top:.6rem}
+#exp{width:100%;min-height:250px}
+#exp svg{display:block;width:100%;height:auto}
+
+/* ---------- foreign nationals among drug-offence executions ---------- */
+.split{margin:2.2rem 0 2.4rem}
+.split__head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.2rem 1rem;margin-bottom:.65rem}
+.split .sk{font-size:clamp(10.5px,1.8vw,12.5px);letter-spacing:.1em;text-transform:uppercase;color:var(--dim);font-weight:700}
+.split__tot{font-size:.95rem;color:var(--ink)}
+.split b{font-weight:700;color:#fff;font-size:1.45em;margin-right:.25em;font-variant-numeric:tabular-nums}
+.split__bar{display:flex;height:clamp(36px,7vw,52px);gap:3px}
+.split__bar .f{background:#b8443f}.split__bar .s{background:#4a3a47}
+.split__lab{display:flex;justify-content:space-between;gap:1rem;margin-top:.55rem;font-size:.95rem;line-height:1.3}
+.split__lab .s{text-align:right}
+.split__lab .f b{color:#f0a49f}
+
+/* ---------- names (light band) ---------- */
+.nband{position:relative;z-index:1;background:#fff;color:#1a1a1a;padding:4rem 0}
+.names{max-width:1000px;margin:0 auto;padding:0 var(--gutter)}
+.names h2{color:#111;margin-top:0}
+.names>p{font:14px/1.6 var(--serif);color:#555;max-width:720px}
+.ctl{margin-top:1.2rem;font:13px var(--serif)}
+.ctl button,.pg button{font:inherit;background:#fff;color:#333;border:1px solid #ccc;cursor:pointer}
+.ctl button{padding:.5rem .9rem;margin:0 .4rem .5rem 0}
+.ctl button.on,.pg button.on{background:#b3202a;color:#fff;border-color:#b3202a}
+.ctl p{color:#666;margin:.4rem 0 0;font-size:12.5px;min-height:1.2em}
+.nw{display:grid;grid-template-columns:270px 1fr;gap:2rem;align-items:start;margin-top:1rem;overflow-anchor:none}
+.cl{list-style:none;margin:.6rem 0 0;padding:0;font:13px var(--serif);position:sticky;top:16px}
+.cl h3{font:700 11px var(--serif);letter-spacing:.1em;text-transform:uppercase;color:#666;margin:0 0 .5rem}
+.cl li>button{position:relative;z-index:0;display:flex;justify-content:space-between;align-items:center;width:100%;min-height:34px;font:inherit;color:#222;text-align:left;cursor:pointer;border:0;border-bottom:1px solid rgba(0,0,0,.1);padding:.4rem .5rem;background:none}
+/* the row's bar: share of the largest country */
+.cl li>button:before{content:"";position:absolute;z-index:-1;left:0;top:0;bottom:0;width:var(--w);background:#ecc3bf}
+.cl li>button.on{outline:1px solid #b3202a;outline-offset:-1px}
+.cl li>button.bd{color:#0b6b49;font-weight:700}
+.cl li>button.bd:before{background:#bfe6d6}
+.cl li>button.bd.on{outline-color:#0b7f56}
+.cl li>button.bd b{color:#0b6b49}
+.cl .sm{font-size:11.5px;color:#666;margin-top:.6rem;display:block;line-height:1.5}
+.nl{font:12.5px/1.55 var(--serif);color:#333;margin-top:1.2rem}
+.nl span{display:block;padding:5px 0;border-bottom:1px solid rgba(0,0,0,.1)}
+.nl span[hidden]{display:none}
+.nl b{display:block;color:#111}
+.nl small{display:block;color:#777;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase}
+.nl .hl{background:#fbe9e7;padding:6px 8px;margin:0 -8px}
+.pg{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:1.4rem;font:13px var(--serif);align-items:center}
+.pg button{padding:.4rem .7rem;min-width:2.4rem;min-height:2.2rem}
+.pg button:disabled{opacity:.35;cursor:default}
+.pg .el{color:#666;padding:0 .2rem}
+/* phones: names first, countries after; a tapped country opens its names right under it */
+@media (max-width:800px){
+  .nw{display:flex;flex-direction:column;align-items:stretch;gap:1.5rem}
+  .nw>.nr{order:-1}
+  .cl{position:static}
+  .cl li .nr{background:#f7f3f1;padding:.1rem .7rem 1rem;margin:0 0 .7rem}
+  .cl li .nr .nl{margin-top:.2rem}
+  .cl li .nr .pg{margin-top:1rem}
+}
+
+/* ---------- press release dialog ---------- */
+dialog.prm{border:0;padding:0;width:min(1000px,94vw);max-height:88vh;background:#fff;color:#1a1a1a;box-shadow:0 20px 80px #000;font-family:var(--serif)}
+dialog.prm[open]{display:flex;flex-direction:column}
+dialog.prm::backdrop{background:rgba(0,0,0,.8)}
+.prm .ph{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;padding:1rem 1.3rem;border-bottom:1px solid #ddd}
+.prm .ph b{display:block;font-size:1rem;line-height:1.4}
+.prm .ph small{display:block;color:#666;font-size:.75rem;line-height:1.5;margin-top:.2rem}
+.prm .px{flex:none;font:400 1.6rem/1 var(--serif);background:none;border:0;cursor:pointer;color:#333;padding:0 .2rem;min-width:44px;min-height:44px}
+.prm .pc{display:grid;grid-template-columns:1fr 1fr;overflow:auto}
+.prm .pc>div{padding:1.1rem 1.3rem}
+.prm .pc p{margin:0 0 1rem}
+.prm .en{font-size:.92rem;line-height:1.75;border-right:1px solid #ddd}
+.prm .ar{direction:rtl;text-align:right;font:400 1.15rem/2 "Noto Naskh Arabic","Geeza Pro","Arabic Typesetting","Traditional Arabic","Times New Roman",serif}
+.prm .lb{font:700 .68rem/1 var(--serif);letter-spacing:.1em;text-transform:uppercase;color:#888;margin-bottom:.7rem;direction:ltr;text-align:left}
+.prm .pf{padding:.7rem 1.3rem;border-top:1px solid #ddd;font-size:.75rem;line-height:1.5;color:#666}
+.prm .pf a{color:#b3202a}
+@media (max-width:700px){.prm .pc{grid-template-columns:1fr}.prm .en{border-right:0;border-bottom:1px solid #ddd}}
+
+/* ---------- footer ---------- */
+.site-footer{background:#0e0a0b;color:#fff;padding:clamp(2.2rem,4vw,3.2rem) var(--gutter) clamp(2.4rem,4vw,3.4rem)}
+.site-footer__inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr auto;align-items:center;gap:1.1rem 1.5rem}
+.site-footer__logo{display:block;color:#fff;--fw:clamp(120px,6vw + 100px,184px);width:var(--fw)}
+.site-footer__logo .tds-logo{display:block;width:var(--fw);height:calc(var(--fw) * .1986);fill:currentColor}
+.social{display:flex;margin-right:-10px}
+.social a{width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#d6cbc9;border-radius:50%;transition:color .2s,background-color .2s}
+@media (hover:hover) and (pointer:fine){.social a:hover{color:#fff;background:rgba(255,255,255,.08)}}
+.social svg{width:19px;height:19px;fill:currentColor}
+.site-footer__credits{grid-column:1/-1;font-size:clamp(.82rem,2.6vw,.92rem);line-height:1.5}
+.site-footer__credits p{margin:.3rem 0}
+.site-footer__credits span{color:#c9a9a5}
+.site-footer__credits .site-footer__copy{color:#9b8a88;font-size:.8rem;margin-top:1.1rem}
+@media (max-width:399px){.site-footer__inner{column-gap:.75rem}.social a{width:32px;height:40px}.social svg{width:17px;height:17px}.social{margin-right:-6px}.site-footer__logo{--fw:112px}}
+
+/* ---------- back to top ---------- */
+.totop{position:fixed;right:16px;bottom:16px;z-index:20;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#1c1214;color:#fff;border:1px solid rgba(255,255,255,.28);box-shadow:0 4px 16px rgba(0,0,0,.5);opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .25s,transform .25s,visibility 0s .25s}
+.totop.on{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .25s}
+.totop svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+@media (hover:hover) and (pointer:fine){.totop:hover{background:#8f1119}}
+@supports (bottom:max(1px,env(safe-area-inset-bottom))){.totop{right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom))}}
+@media (prefers-reduced-motion:reduce){.totop,.totop.on{transform:none}}
