@@ -170,7 +170,8 @@ function scene(id, L, S) {
     tick = 0;
     var r = root.getBoundingClientRect(), H = innerHeight;
     if (r.bottom < 0 || r.top > H) return;
-    var thr = (SIDE.matches ? .72 : .9) * H, n = 0;
+    // phones: a card's change starts the moment the card appears; wide screens: once it nears the middle
+    var thr = (SIDE.matches ? .72 : .97) * H, n = 0;
     for (var k = 0; k < cards.length; k++) if (cards[k].getBoundingClientRect().top < thr) n = k;
     if (n !== on) {
       on = n;

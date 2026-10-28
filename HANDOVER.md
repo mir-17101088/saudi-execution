@@ -14,7 +14,9 @@
 - **Scene 2 (punishment):** legend colour-only too (Mir, 2026-10-28); card numbers coloured (64/85 percent taz'ir red, 23 qisas blue,
   8 hudud grey-blue).
 - **Both scenes:** redrawn on one canvas with cached sprites instead of 887 transitioning SVG paths.
-  Phones/portrait: chart holds at the top; cards rise into the strip below it, then scroll on over it (Mir).
+  Phones/portrait: chart holds at the top; one card at a time rises into the strip below it, then scrolls on
+  over it and fully leaves before the next card (and its chart change) appears; each change starts as its card
+  appears and has over a screen of scroll to finish (Mir). Checked at 320, 360, 390, 768 wide.
   Wide landscape: cards in a left column, chart right. Legend never overlaps dots.
 - **War-on-drugs chart:** "Total reported executions" legend removed. Years stand vertical when they no longer
   fit (fixes overlapping years on phones); value labels shrink with bar width. Screen-reader data table added.

@@ -156,23 +156,26 @@ figure.ch{margin:2.4rem 0}
 .lab{position:absolute;left:0;top:0;font:700 15px/1.2 var(--serif);color:var(--c-i);white-space:nowrap;text-shadow:0 0 4px #080506,0 0 10px #080506;opacity:0;transition:opacity .8s .5s;transform:translateX(-50%)}
 .lab.on{opacity:1}
 .steps{position:relative;z-index:1;margin-top:-100vh;margin-top:-100svh;padding-top:calc((1 - var(--z)) * 100vh + 14px);padding-top:calc((1 - var(--z)) * 100svh + 14px)}
-.step{min-height:calc(var(--z) * 100vh + 16vh);min-height:calc(var(--z) * 100svh + 16svh);display:flex;align-items:flex-start;justify-content:center;padding:0 var(--gutter)}
+.step{display:flex;align-items:flex-start;justify-content:center;padding:0 var(--gutter)}
+/* phones: one card at a time. Each card is followed by a full screen plus a short pause, so it has left the screen
+   (its chart change long finished) before the next card and its change arrive. The last pause holds the final state. */
+.step{padding-bottom:110vh;padding-bottom:110svh}
+.step:last-child{padding-bottom:135vh;padding-bottom:135svh}
 .step p{width:100%;max-width:560px;margin:0;background:#fff;color:#1a1a1a;padding:1rem 1.15rem;font-size:1.02rem;line-height:1.65;box-shadow:0 10px 40px rgba(0,0,0,.6)}
-.step:last-child{min-height:65vh;min-height:65svh}
 @media (max-width:359px){.step p{font-size:.95rem;padding:.85rem .95rem}}
 @media (min-width:760px) and (min-aspect-ratio:11/10){
   .scrolly{--col:clamp(280px,30vw,420px)}
   .sticky{z-index:0;background:var(--bg) url(img/canvas.webp) 0 0/128px 128px}
   .chart{top:var(--gutter);bottom:var(--gutter);left:calc(var(--col) + var(--gutter) * 2);right:var(--gutter);padding:0;background:none}
   .steps{padding:0 0 30vh}
-  .step,.step:last-child{min-height:100vh;min-height:100svh;align-items:center;justify-content:flex-start}
+  .step,.step:last-child{min-height:100vh;min-height:100svh;padding-bottom:0;align-items:center;justify-content:flex-start}
   .step p{width:var(--col);max-width:none;font-size:1.1rem;padding:1.4rem 1.6rem;opacity:.35;transition:opacity .5s}
   .step.on p{opacity:1}
 }
 /* without JS or canvas the cards simply read as prose */
 html:not(.js) .sticky,.nochart .sticky{display:none}
 html:not(.js) .steps,.nochart .steps{margin:0;padding:0}
-html:not(.js) .step,.nochart .step{min-height:0;margin:1rem 0}
+html:not(.js) .step,.nochart .step{min-height:0;margin:1rem 0;padding-bottom:0}
 html:not(.js) .step p,.nochart .step p{opacity:1}
 
 /* ---------- war on drugs chart ---------- */
