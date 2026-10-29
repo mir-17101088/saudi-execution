@@ -1,6 +1,19 @@
 # Handover: Two extraordinary executions (2026-10-28)
 
 ## What changed and why
+- **Copy round (Mir, 2026-10-29):** new intro paragraphs 2–3 (red marks on "‘fahisha’ or gross sexual indecency"
+  and "sanctity of the time and place"; the press-release dialog now opens from the word "statement"). Dek drops
+  "ever". Scene 1 now has 7 cards: card 4 reads "gross sexual misconduct or al-fahisha" (green), two new cards (15
+  al-fahisha or sexual-offence cases; 13 of them rape or sexual assault) hold card 4's chart, last card rewritten
+  ("fahisha" green). Legend green row is "Al-fahisha (Bangladeshis)". Duaa Dhainy's two paragraphs now follow
+  scene 1. "hadd/ hudud" → "hudud"; "hadd (singular of hudud) crime"; "according to this analysis." A
+  "Methodology Note" disclosure (`details.meth`, no JS) sits between the names band and the footer.
+  JSON-LD wordCount updated; story.js cache key `?v=20261029b`.
+- **Sweety's icon (fixed):** on the last scene-1 card the dimmed figures drawn after her index painted over her
+  large icon; the named figures (`L.C`) now paint last.
+- **Share description (Mir, 2026-10-29):** meta/OG/Twitter/JSON-LD description and llms.txt now read "A Daily Star
+  analysis of 665 Saudi government execution statements between January 2024 and 20 October 2026 reveals that the
+  execution of Nazrul and Sweety was extremely unusual." (the old sentence no longer matched the copy).
 - **Production (2026-10-28):** OG/share images are screenshots of the hero; published 2026-10-29; keywords,
   news_keywords, article tags, fuller JSON-LD; robots.txt (AI crawlers allowed), sitemap.xml (news + image),
   llms.txt, .htaccess, nginx/Vercel steps in README.md.
