@@ -79,5 +79,5 @@ ever becomes the live host on our domain, nothing needs changing.
 - Share images: `python tools/share_images.py` (needs Python, Playwright and Chrome) re-shoots the hero.
 - If new characters appear in the text, re-subset the fonts (see `CLAUDE.md`).
 
-Credits: reporting Abdullah Hel Bubun and Tarek Hosen; additional reporting Keero Adnan Ahmed;
+Credits: reporting Abdullah Hel Bubun, Tarek Hosen and Keero Adnan Ahmed; data collection Mir Rownak;
 planning & design Abdullah Hel Bubun; development Mir Rownak and Abdullah Hel Bubun.

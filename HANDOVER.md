@@ -3,11 +3,17 @@
 ## What changed and why
 - **Copy round (Mir, 2026-10-29):** new intro paragraphs 2–3 (red marks on "‘fahisha’ or gross sexual indecency"
   and "sanctity of the time and place"; the press-release dialog now opens from the word "statement"). Dek drops
-  "ever". Scene 1 now has 7 cards: card 4 reads "gross sexual misconduct or al-fahisha" (green), two new cards (15
+  "ever". Scene 1 now has 7 cards: card 4 reads "gross sexual misconduct or al-fahisha" (plain text, Mir; its two dots stay green), two new cards (15
   al-fahisha or sexual-offence cases; 13 of them rape or sexual assault), last card rewritten ("fahisha" green).
   The 15 card lights only those 15 figures in amber (`C.S` #f4b740; card text `k-s` #946400, 5.1:1), the 13 card
   dims Nazrul and Sweety. The 15 are the names-list rows whose offences say rape, sexual assault or "indecency"
-  (D and the names list share one order); each sorts last in its group (`SX` in story.js).
+  (D and the names list share one order). They form one run where the murder block meets the other block (2 murder,
+  11 other, then Sweety and Nazrul; `slot()` in story.js), and the grid only takes a column count that keeps that run
+  on one row (`run` in `grid()`; checked 320 to 1920 wide).
+- **Credits (Mir, 2026-10-29):** byline "Reporting: Abdullah Hel Bubun, Tarek Hosen & Keero Adnan Ahmed", smaller
+  (.72rem); Keero moved from JSON-LD contributor to author, added to meta author and article:author. Footer
+  "Additional reporting" replaced by "Data Collection: Mir Rownak"; llms.txt and README credits match. Share images
+  re-shot. Scene 2 card 2 lost its trailing comma.
 - **Sweety is drawn as a woman:** `WOMAN` path (narrow shoulders, flared dress) for index `SWEETY` in both scenes. Legend green row is "Al-fahisha (Bangladeshis)". Duaa Dhainy's two paragraphs now follow
   scene 1. "hadd/ hudud" → "hudud"; "hadd (singular of hudud) crime"; "according to this analysis." A
   "Methodology Note" disclosure (`details.meth`, no JS) sits between the names band and the footer.

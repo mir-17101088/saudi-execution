@@ -53,7 +53,7 @@ function mix(a, b, t) {
 }
 var SIDE = window.matchMedia ? matchMedia('(min-width: 760px) and (min-aspect-ratio: 11/10)') : { matches: false };
 
-function scene(id, L, S) {
+function scene(id, L, S, run) {
   var root = document.getElementById(id); if (!root) return;
   var cv = $('canvas', root), cx = cv.getContext && cv.getContext('2d');
   if (!cx || !window.Path2D || !window.Float32Array) { root.classList.add('nochart'); return; }
@@ -81,12 +81,15 @@ function scene(id, L, S) {
     return (SPR[key] = { c: c, k: kd, ox: ox, oy: oy, w: c.width, h: c.height });
   }
 
-  function grid(list, gw, gh) {
-    var n = list.length, ar = 1.5, c0 = Math.max(1, Math.round(Math.sqrt(n * ar * gw / gh))), best = null;
+  function grid(list, gw, gh, run) {
+    var n = list.length, ar = 1.5, c0 = Math.max(1, Math.round(Math.sqrt(n * ar * gw / gh))), best = null, fit = null;
     for (var c = Math.max(1, c0 - 3); c <= c0 + 3; c++) {
-      var r = Math.ceil(n / c), cw = Math.min(gw / c, gh / r / ar);
-      if (!best || cw > best.cw) best = { c: c, r: r, cw: cw };
+      var r = Math.ceil(n / c), cw = Math.min(gw / c, gh / r / ar), b = { c: c, r: r, cw: cw };
+      if (!best || cw > best.cw) best = b;
+      // a run that must read as one group (scene 1's 15) only takes a column count that keeps it on one row
+      if (run && run.s % c + run.n <= c && (!fit || cw > fit.cw)) fit = b;
     }
+    if (fit) best = fit;
     var ch = best.cw * ar, ox = (gw - best.cw * best.c) / 2, oy = (gh - ch * best.r) / 2, p = { s: ch, x: A().fill(NaN), y: A() };
     list.forEach(function (j, m) { p.x[j] = ox + (m % best.c) * best.cw + best.cw / 2; p.y[j] = oy + Math.floor(m / best.c) * ch + ch / 2; });
     return p;
@@ -98,7 +101,7 @@ function scene(id, L, S) {
         var p = { s: Math.min(100, h * .46), x: A().fill(NaN), y: A() }, dx = Math.min(130, w * .22);
         L.C.forEach(function (j, n) { p.x[j] = w / 2 + (n ? 1 : -1) * dx; p.y[j] = h * .4; });
         pos.C = p;
-      } else pos[k] = grid(L[k], w, h);
+      } else pos[k] = grid(L[k], w, h, k === 'A' ? run : null);
     }
   }
   function targets(n) {
@@ -197,10 +200,13 @@ function scene(id, L, S) {
 guard(function () {
   var cc = cnt(function () { return 1; }, 0), o1 = ['D', 'M', 'O', 'I'];
   // the 15 executed for al-fahisha or sexual offences: offence lists in the names list with rape, sexual assault or
-  // "indecency" (13 + Nazrul and Sweety); each sits last in its group, so they gather at the ends of the murder and other blocks
+  // "indecency" (13 + Nazrul and Sweety). They sit in one run where the murder block meets the other block: murder ones,
+  // then other ones, then Nazrul and Sweety, then the rest of other. Each colour block stays whole on its own card.
   var SX = {};
   [77, 291, 299, 343, 344, 348, 458, 486, 502, 773, 829, 831, 871, SWEETY, NAZRUL].forEach(function (i) { SX[i] = 1; });
-  var A1 = rank(function () { return 1; }, []).sort(function (a, b) { return o1.indexOf(D[a][0]) - o1.indexOf(D[b][0]) || (SX[a] || 0) - (SX[b] || 0) || a - b; });
+  var slot = function (i) { var g = D[i][0]; return g == 'D' ? 0 : g == 'M' ? (SX[i] ? 2 : 1) : g == 'I' ? 4 : SX[i] ? 3 : 5; };
+  var A1 = rank(function () { return 1; }, []).sort(function (a, b) { return slot(a) - slot(b) || a - b; }), r0 = 0;
+  while (!SX[A1[r0]]) r0++;
   var l1 = function (ak) { return legend('887 people executed, 2024–26', ak == null ? [] : o1, ak); };
   var lx = function (k) { return legend('887 people executed, 2024–26', [k], [k]); };
   var f1 = function (show, hi) { return function (x) { var g = x[0] == 'I' && !hi && show.indexOf('I') < 0 ? 'O' : x[0]; return g == 'I' ? [C.I, 1, 1] : show.indexOf(g) >= 0 && !hi ? [C[g], 1] : [G, .35]; }; };
@@ -214,7 +220,7 @@ guard(function () {
     function () { return { l: 'A', leg: lx('S'), f: function (x, i) { return SX[i] ? [C.S, 1] : [G, .35]; } }; },
     function () { return { l: 'A', leg: lx('R'), f: function (x, i) { return SX[i] && x[0] != 'I' ? [C.R, 1] : [G, .35]; } }; },
     function () { return { l: 'C', keep: 1, lab: 1, leg: l1(['I']), f: f1(['D', 'M', 'O', 'I'], 1) }; }
-  ]);
+  ], { s: r0, n: 15 });
 });
 
 // Scene 2: punishment
