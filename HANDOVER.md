@@ -57,7 +57,7 @@
 - **Share description (Mir, 2026-10-29):** meta/OG/Twitter/JSON-LD description and llms.txt now read "A Daily Star
   analysis of 665 Saudi government execution statements between January 2024 and 20 October 2026 reveals that the
   execution of Nazrul and Sweety was extremely unusual." (the old sentence no longer matched the copy).
-- **Production (2026-10-28):** OG/share images are screenshots of the hero; published 2026-10-29; keywords,
+- **Production (2026-10-28):** OG/share images are screenshots of the hero; published 2026-10-31; keywords,
   news_keywords, article tags, fuller JSON-LD; robots.txt (AI crawlers allowed), sitemap.xml (news + image),
   llms.txt, .htaccess, nginx/Vercel steps in README.md.
 - **Copy (Mir, 2026-10-28):** scene 1 card 1 now reads "Each icon represents one of the 887 people" (was "887 people",

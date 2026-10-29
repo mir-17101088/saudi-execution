@@ -1,6 +1,6 @@
 # Two extraordinary executions · The Daily Star
 
-Live URL: **https://campaign.thedailystar.net/saudi-execution/** · Published 29 October 2026
+Live URL: **https://campaign.thedailystar.net/saudi-execution/** · Published 31 October 2026
 
 A static site: plain HTML, one JavaScript file, images and fonts. No build step, no server code,
 no database, no calls to outside services. Every path is relative, so the same files work inside the

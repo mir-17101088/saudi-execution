@@ -2,7 +2,7 @@
 
 Scroll-driven visual story on Saudi Arabia's execution of Nazrul Islam Abdul Basir and Sweety Akhtar, with
 an analysis of 887 executions (Jan 2024 to 20 Oct 2026). Reporting: Abdullah Hel Bubun, Tarek Hosen.
-Development: Mir Rownak. Live URL: https://campaign.thedailystar.net/saudi-execution/ (published 2026-10-29).
+Development: Mir Rownak. Live URL: https://campaign.thedailystar.net/saudi-execution/ (published 2026-10-31).
 
 Not built on the house kit: it is a polish of a hand-built single page whose look the desk asked to keep.
 Use the `daily-star-story` skill for house rules, QA scripts and the evaluator.
