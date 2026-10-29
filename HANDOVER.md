@@ -1,6 +1,14 @@
 # Handover: Two extraordinary executions (2026-10-28)
 
 ## What changed and why
+- **Hero fits every screen (Mir, 2026-10-29):** with the four-line dek the byline fell below the fold on short
+  screens (1280x600, 1366x625, phones held sideways, 320x480). Title is now capped at 12.5vh, the dek at
+  2.7px + 2.8vh (floor .9rem), the gaps by vh; the top padding floor is 76px (was 104); under ~560px tall the bottom
+  padding grows (max(4vh, 90px - 12vh)), as the hero's extra 12vh is below the fold. Each has an svh twin. Checked
+  27 sizes from 320x460 to 2560x1300: byline on screen in all, no overlap with the logo; phones in portrait and
+  tall desktops are unchanged. Share images re-shot (the 630px card now has a smaller title).
+- **Copy (Mir, 2026-10-29):** scene 1 last card "no victims" → "no victim"; scene 2 card 2 gets a full stop; the
+  SPA archive paragraph ends at "comparable offence." (the "an act of fahisha…" clause is cut). wordCount 2415.
 - **Dek and credit (Mir, 2026-10-29):** dek (hero + JSON-LD alternativeHeadline) now "The execution of two
   Bangladeshis in Saudi Arabia raises legal and human rights concerns; no other official Saudi execution statement
   since 2005 appears to cite an act of “indecency” that involved no force, no victim and no other crime". It claims
