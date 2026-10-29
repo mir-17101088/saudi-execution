@@ -1,6 +1,15 @@
 # Handover: Two extraordinary executions (2026-10-28)
 
 ## What changed and why
+- **SPA archive paragraphs (Mir, 2026-10-29):** two new paragraphs after the 2015 Kaabah case, before "Confusions
+  over allegations": no earlier execution for victimless fahisha appears in SPA statements back to 2005, and the
+  "sanctity of the time and place" / "sanctity of mosques" wording appears to be new. Hedged ("appears to") because
+  the archive was keyword-searched, not read in full; worded so it doesn't read as a second analysis. The Methodology
+  Note gained the search terms (Arabic in `lang="ar"` spans), eight linked comparison statements and the limits. Every
+  linked SPA statement was read in the original Arabic. Left out of the source audit as wrong or unverified: the
+  2014 "man and woman" case (SPA 1272080 was two men), "ينتهك الأعراض" as unique, the joint man-woman point, and
+  its keyword filter (it lists قتل, which every death-sentence statement contains). `.meth__in` links now use the
+  story's link style; list styles added. wordCount 1944 → 2564. No new glyphs (font subsets unchanged).
 - **Copy round (Mir, 2026-10-29):** new intro paragraphs 2–3 (red marks on "‘fahisha’ or gross sexual indecency"
   and "sanctity of the time and place"; the press-release dialog now opens from the word "statement"). Dek drops
   "ever". Scene 1 now has 7 cards: card 4 reads "gross sexual misconduct or al-fahisha" (plain text, Mir; its two dots stay green), two new cards (15
