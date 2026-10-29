@@ -10,9 +10,10 @@ function guard(fn) { try { fn(); } catch (e) { if (window.console) console.error
    [0] offence group D drug, M murder, O other, I al-fahisha alone (Nazrul and Sweety); [1] punishment t ta'zir, q qisas, h hudud, n not stated;
    [2] nationality l Saudi, f foreign, u not stated */
 var D = ["Mhl","Mhl","Mqf","Dtf","Dtf","Dtf","Mhl","Dtf","Mqf","Otl","Dtf","Mtl","Mtl","Dtf","Dtf","Dtf","Dtf","Itf","Mtl","Mhl","Mql","Mql","Mqf","Mql","Mql","Onl","Mhf","Mhf","Mhf","Mhf","Mql","Onl","Mhl","Mhl","Mhl","Mql","Mql","Onl","Onl","Mql","Mql","Onu","Onu","Onu","Onu","Onu","Onu","Onu","Mhf","Mhf","Mhf","Mhf","Mhf","Mql","Mql","Mhf","Mhf","Mtf","Mtf","Mhf","Mql","Mql","Mqf","Onl","Mql","Mql","Onl","Mql","Mqf","Mql","Mql","Mql","Mql","Onl","Onl","Mql","Mql","Otl","Mqf","Dtf","Dtf","Mhl","Onl","Mqf","Mql","Onl","Mql","Mql","Mql","Mnl","Mql","Mql","Dtf","Onl","Mql","Mql","Mql","Mql","Mql","Mql","Ohl","Mql","Mql","Otl","Mql","Mqf","Mql","Mhl","Mql","Dtf","Mqu","Mql","Otl","Dtf","Mql","Mql","Dtf","Dtf","Mql","Otl","Dtl","Dtf","Mqf","Dtf","Dtf","Dtf","Mql","Mtl","Dtl","Mql","Dtf","Mql","Dtl","Dtf","Dtf","Mql","Dtf","Mhl","Mhl","Mhl","Mhl","Mhf","Dtf","Mql","Dtl","Mql","Dtf","Mqf","Dtl","Mql","Mqf","Dtf","Mql","Onl","Mqf","Mql","Dtf","Dtf","Mql","Dtf","Mqf","Onl","Dtf","Mql","Dtf","Mql","Mql","Dtl","Mql","Dtl","Onl","Dtf","Mql","Dtl","Dtl","Mql","Mql","Dtl","Dtf","Mql","Dtl","Mqf","Dtf","Onl","Mqf","Dtf","Mql","Dtf","Mql","Onl","Onl","Onl","Dtf","Mql","Dtf","Mql","Dtf","Mql","Dtf","Dtf","Onl","Dtl","Dtl","Mql","Mql","Dtf","Mtl","Dtf","Dtf","Mql","Dtf","Dtf","Mql","Dtf","Dtf","Mql","Mql","Dtf","Mql","Dtf","Mql","Dtf","Mqf","Dtf","Mql","Mql","Mql","Mhf","Dtl","Mql","Mql","Dtf","Dtf","Dtf","Mql","Dtf","Dtf","Mql","Dtf","Mql","Mql","Mnl","Mnl","Dtf","Dtf","Dtf","Dtf","Mql","Dtf","Mql","Dtf","Dtf","Mql","Mql","Dtf","Dtl","Mql","Dtl","Mqf","Dtf","Dtf","Mql","Onl","Onl","Dtf","Dtf","Dtl","Dtl","Dtl","Dtl","Mql","Mql","Dtf","Mql","Dtf","Mqf","Otl","Otl","Otl","Dtf","Mql","Dtl","Dtl","Dtf","Dtf","Mnl","Mnl","Dtf","Mql","Dtf","Dtf","Ohl","Mql","Mtl","Dtl","Dtf","Otl","Otf","Otf","Otl","Mtl","Mql","Mhf","Dtl","Dtf","Mhf","Dtf","Mqf","Onl","Onl","Mql","Dtl","Dtf","Dtf","Dtf","Mql","Dtf","Mqf","Mtl","Dtf","Mtl","Mql","Dtf","Mql","Mql","Mql","Mqf","Dtl","Mql","Dtf","Mql","Dtf","Mql","Dtf","Mhf","Dtf","Dtf","Dtf","Dtf","Onl","Onl","Dtl","Dtf","Ohf","Ohf","Dtl","Onl","Onl","Ohl","Dtl","Mhl","Dtf","Mql","Mhf","Dtl","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Mql","Dtf","Mql","Dtl","Mql","Dtf","Mql","Mql","Mql","Mql","Dtf","Dtf","Mqf","Dtl","Mqf","Otl","Mql","Mql","Mql","Dtf","Mql","Mql","Mhl","Dtl","Dtl","Dtl","Dtl","Dtl","Dtl","Dtl","Mql","Mql","Otl","Mql","Mql","Dtf","Dtf","Dtf","Dtl","Mql","Onl","Onl","Dtf","Dtl","Mhl","Mhf","Dtf","Dtl","Dtf","Dtf","Mql","Dtl","Otl","Dtl","Dtf","Mql","Onl","Onl","Mql","Dtf","Dtf","Dtf","Mql","Otl","Mql","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtl","Dtf","Dtf","Dtl","Dtl","Mqf","Dtf","Otl","Dtl","Dtl","Dtl","Dtl","Mqf","Dtf","Dtf","Mqf","Dtl","Otl","Otl","Dtf","Dtf","Dtl","Otl","Mql","Dtf","Dtl","Dtl","Dtl","Otl","Dtf","Dtf","Dtf","Dtf","Dtf","Mql","Dtf","Dtf","Otf","Dtf","Dtf","Dtf","Mql","Dtf","Otl","Mql","Dtl","Mql","Dtf","Dtf","Dtf","Otl","Mql","Dtf","Dtf","Mhf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtl","Dtf","Dtf","Dtf","Otl","Otl","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Mql","Dtl","Dtf","Dtf","Dtf","Dtf","Otl","Otl","Dtf","Dtf","Dtf","Dtf","Dtf","Mql","Dtf","Dtf","Dtf","Dtf","Dtf","Dtl","Otl","Otl","Dtf","Mhl","Dtf","Dtl","Otl","Mtl","Dtf","Dtf","Dtf","Dtf","Mql","Dtf","Dtf","Dtl","Dtf","Dtf","Dtf","Otl","Dtf","Mtf","Mhf","Dtf","Dtl","Mhf","Dtf","Dtl","Mql","Dtf","Dtf","Dtf","Dtf","Dtf","Mtl","Mtl","Mtl","Dtf","Dtf","Dtf","Dtf","Dtl","Otl","Dtl","Dtf","Ohl","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Mtl","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Otl","Otl","Dtf","Dtf","Dtf","Mql","Mtl","Dtl","Mtl","Dtf","Dtf","Dtl","Dtf","Mql","Dtf","Dtf","Dtf","Dtf","Dtl","Mtl","Dtf","Dtf","Mql","Dtf","Dtf","Dtf","Dtf","Dtf","Mhl","Dtf","Dtf","Mql","Mtl","Dtl","Dtl","Dtl","Dtl","Otl","Dtf","Dtf","Dtf","Dtf","Onu","Mql","Dtf","Otl","Otl","Dtf","Dtf","Mql","Mhl","Dtl","Dtl","Dtf","Dtf","Dtf","Dtf","Dtf","Otl","Dtf","Dtf","Dtf","Dtf","Dtf","Mtl","Dtf","Dtf","Dtf","Dtf","Dtf","Mtl","Dtl","Dtl","Dtf","Dtf","Dtf","Dtf","Dtf","Otl","Otl","Dtf","Dtf","Mql","Dtf","Dtf","Dtf","Dtf","Mql","Dtf","Dtl","Dtl","Dtl","Mql","Dtf","Dtf","Mhl","Mhl","Mhl","Dtf","Dtf","Dtf","Mtf","Dtf","Dtf","Dtf","Mtl","Mtl","Mtl","Dtl","Mql","Dtl","Otl","Otl","Otl","Mtl","Dtf","Dtf","Dtf","Otl","Otl","Otl","Dtf","Dtf","Dtf","Dtf","Ohf","Dtf","Dtf","Dtf","Mqf","Dtl","Otl","Otl","Otl","Mhl","Mql","Dtl","Dtf","Dtf","Mql","Dtl","Dtl","Dtl","Mql","Dtl","Dtf","Dtf","Dtf","Dtf","Mql","Mhl","Dtl","Dtl","Mqf","Dtf","Mhf","Mqf","Dtf","Dtf","Otl","Dtf","Dtf","Dtf","Mhf","Dtf","Dtf","Mtl","Mtl","Mhl","Mhf","Dtl","Dtl","Dtl","Dtl","Dtl","Dtf","Dtf","Mtl","Dtl","Mhl","Dtf","Otf","Dtf","Dtf","Dtf","Dtf","Mql","Dtl","Dtf","Dtf","Dtf","Dtl","Mtl","Dtl","Dtl","Mhf","Mql","Dtl","Dtl","Dtf","Dtf","Mhl","Mql","Dtf","Dtf","Mql","Mqf","Dtl","Dtl","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Mql","Mql","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Mhl","Mql","Dtl","Mql","Dtf","Dtf","Dtl","Mqf","Dtf","Dtf","Dtf","Dtf","Dtf","Dtf","Mhf","Dtf","Ohl","Dtf","Dtf","Dtf","Mql","Dtf","Dtl","Mql","Mql","Dtl","Dtl","Mtl","Dtl","Dtf","Mqf","Dtl","Dtf","Mqf","Dtl","Mhl","Dhl","Dhl","Dtf","Dtf","Dtl","Mql","Dtf","Dtf","Dtf","Dtf","Dtf","Mqf","Mtf","Mql","Mhl","Dtf","Mql","Mql","Mql","Mqf","Mhl","Dtf","Mql","Dtf","Dtf","Dtf","Mhl","Mqf","Dtf","Itf","Otl","Otl","Otl","Otl","Otl","Dtf"];
-var N = D.length;
-var C = { D: '#e0434b', M: '#3b7ddd', O: '#7f9cbb', I: '#34c38f', t: '#e0434b', q: '#3b7ddd', h: '#7f9cbb', n: '#8a837c' }, G = '#5f5857';
-var GN = { D: 'Drug-related', M: 'Murder', O: 'Armed robbery, terrorism, rape, kidnapping, treason', I: 'Al-fahisha (Bangladeshis)', t: 'Ta’zir', q: 'Qisas', h: 'Hudud', n: 'Not stated' };
+var N = D.length, SWEETY = 17, NAZRUL = 880;
+// S, R: scene 1's al-fahisha or sexual-offence cases and the rape or sexual-assault ones among them (one hue, a subset across groups)
+var C = { D: '#e0434b', M: '#3b7ddd', O: '#7f9cbb', I: '#34c38f', S: '#f4b740', R: '#f4b740', t: '#e0434b', q: '#3b7ddd', h: '#7f9cbb', n: '#8a837c' }, G = '#5f5857';
+var GN = { D: 'Drug-related', M: 'Murder', O: 'Armed robbery, terrorism, rape, kidnapping, treason', I: 'Al-fahisha (Bangladeshis)', S: 'Al-fahisha or sexual offenses', R: 'Rape or sexual assault', t: 'Ta’zir', q: 'Qisas', h: 'Hudud', n: 'Not stated' };
 function cnt(f, k) { var a = {}; D.forEach(function (x) { if (f(x)) a[x[k]] = (a[x[k]] || 0) + 1; }); return a; }
 function rank(s, o) { var r = []; for (var i = 0; i < N; i++) if (s(D[i])) r.push(i); return r.sort(function (a, b) { return o.indexOf(D[a][1]) - o.indexOf(D[b][1]) || o.indexOf(D[a][0]) - o.indexOf(D[b][0]) || a - b; }); }
 function pc(p) { return p.toFixed(2); }
@@ -29,6 +30,8 @@ function legend(title, keys, ak, counts, tot) {
    Each scene is a held chart and a column of cards; card n sets state S[n]. The 887 figures are drawn on one canvas
    and tweened in JS, so a state change repaints one bitmap instead of restyling 887 SVG nodes. */
 var PERSON = 'M-.26-.88a.26.26 0 1 0 .52 0a.26.26 0 1 0-.52 0zM-.36-.55h.72a.1.1 0 0 1 .1.1v.7h-.2v.75h-.24v-.75h-.04v.75h-.24v-.75h-.2v-.7a.1.1 0 0 1 .1-.1z';
+// Sweety's figure: same head and box, narrow shoulders and a flared dress over thinner legs
+var WOMAN = 'M-.26-.88a.26.26 0 1 0 .52 0a.26.26 0 1 0-.52 0zM-.2-.55h.4q.1 0 .1.1l-.06.3.22.65h-.26v.5h-.16v-.5h-.08v.5h-.16v-.5h-.26l.22-.65-.06-.3q0-.1.1-.1z';
 function bezier(x1, y1, x2, y2) {
   var cx = 3 * x1, bx = 3 * (x2 - x1) - cx, ax = 1 - cx - bx, cy = 3 * y1, by = 3 * (y2 - y1) - cy, ay = 1 - cy - by;
   return function (x) {
@@ -55,7 +58,7 @@ function scene(id, L, S) {
   var cv = $('canvas', root), cx = cv.getContext && cv.getContext('2d');
   if (!cx || !window.Path2D || !window.Float32Array) { root.classList.add('nochart'); return; }
   var plot = $('.plot', root), leg = $('.leg', root), sticky = $('.sticky', root), labs = $$('.lab', root), steps = $$('.step', root), cards = steps.map(function (s) { return s.firstElementChild; });
-  var path = new Path2D(PERSON);
+  var path = new Path2D(PERSON), pathW = new Path2D(WOMAN);
   // per figure: from (f*), to (t*), now (c*)
   var A = function () { return new Float32Array(N); };
   var fx = A(), fy = A(), fk = A(), fa = A(), fcol = new Array(N);
@@ -68,13 +71,13 @@ function scene(id, L, S) {
   if (L.C) ord = ord.concat(L.C);
 
   // one small bitmap per colour and size; the frame loop only blits them
-  function sprite(col, kd) {
+  function sprite(col, kd, wf) {
     kd = Math.max(1, Math.round(kd * 4) / 4);
-    var key = col + kd, s = SPR[key];
+    var key = col + kd + (wf ? 'w' : ''), s = SPR[key];
     if (s) return s;
     var c = document.createElement('canvas'), ox = 1 + .46 * kd, oy = 1 + 1.14 * kd, g;
     c.width = Math.ceil(.92 * kd) + 2; c.height = Math.ceil(2.14 * kd) + 2;
-    g = c.getContext('2d'); g.setTransform(kd, 0, 0, kd, ox, oy); g.fillStyle = col; g.fill(path);
+    g = c.getContext('2d'); g.setTransform(kd, 0, 0, kd, ox, oy); g.fillStyle = col; g.fill(wf ? pathW : path);
     return (SPR[key] = { c: c, k: kd, ox: ox, oy: oy, w: c.width, h: c.height });
   }
 
@@ -110,7 +113,7 @@ function scene(id, L, S) {
       var j = (L.C || [])[m];
       if (st.lab && j != null) {
         var k = pos.C.s * .86 / 2.14;
-        e.textContent = j == 880 ? 'Nazrul Islam' : 'Sweety Akhtar';
+        e.textContent = j == NAZRUL ? 'Nazrul Islam' : 'Sweety Akhtar';
         e.style.left = pos.C.x[j] + 'px'; e.style.top = (pos.C.y[j] + 1.12 * k + 10) + 'px';
         e.classList.add('on');
       } else e.classList.remove('on');
@@ -127,7 +130,7 @@ function scene(id, L, S) {
         col = ec >= 1 || fcol[i] === tcol[i] ? tcol[i] : mix(fcol[i], tcol[i], ec);
       cX[i] = x; cY[i] = y; cK[i] = k; cA[i] = a; ccol[i] = col;
       if (a < .004) continue;
-      var s = sprite(col, tk[i] * dpr), sc = k * dpr / s.k, dx = x * dpr - s.ox * sc, dy = y * dpr - s.oy * sc;
+      var s = sprite(col, tk[i] * dpr, i === SWEETY), sc = k * dpr / s.k, dx = x * dpr - s.ox * sc, dy = y * dpr - s.oy * sc;
       cx.globalAlpha = a;
       if (Math.abs(sc - 1) < .01) cx.drawImage(s.c, Math.round(dx), Math.round(dy));
       else cx.drawImage(s.c, dx, dy, s.w * sc, s.h * sc);
@@ -193,8 +196,13 @@ function scene(id, L, S) {
 // Scene 1: offence
 guard(function () {
   var cc = cnt(function () { return 1; }, 0), o1 = ['D', 'M', 'O', 'I'];
-  var A1 = rank(function () { return 1; }, []).sort(function (a, b) { return o1.indexOf(D[a][0]) - o1.indexOf(D[b][0]) || a - b; });
+  // the 15 executed for al-fahisha or sexual offences: offence lists in the names list with rape, sexual assault or
+  // "indecency" (13 + Nazrul and Sweety); each sits last in its group, so they gather at the ends of the murder and other blocks
+  var SX = {};
+  [77, 291, 299, 343, 344, 348, 458, 486, 502, 773, 829, 831, 871, SWEETY, NAZRUL].forEach(function (i) { SX[i] = 1; });
+  var A1 = rank(function () { return 1; }, []).sort(function (a, b) { return o1.indexOf(D[a][0]) - o1.indexOf(D[b][0]) || (SX[a] || 0) - (SX[b] || 0) || a - b; });
   var l1 = function (ak) { return legend('887 people executed, 2024–26', ak == null ? [] : o1, ak); };
+  var lx = function (k) { return legend('887 people executed, 2024–26', [k], [k]); };
   var f1 = function (show, hi) { return function (x) { var g = x[0] == 'I' && !hi && show.indexOf('I') < 0 ? 'O' : x[0]; return g == 'I' ? [C.I, 1, 1] : show.indexOf(g) >= 0 && !hi ? [C[g], 1] : [G, .35]; }; };
   void cc;
   scene('s1', { A: A1, C: A1.filter(function (i) { return D[i][0] == 'I'; }) }, [
@@ -202,9 +210,9 @@ guard(function () {
     function () { return { l: 'A', leg: l1(['D']), f: f1(['D']) }; },
     function () { return { l: 'A', leg: l1(['M']), f: f1(['M']) }; },
     function () { return { l: 'A', leg: l1(['O', 'I']), f: f1(['O', 'I']) }; },
-    // the 15 al-fahisha or sexual-offence cases, then the 13 of them with rape or sexual assault: same chart held (Mir)
-    function () { return { l: 'A', leg: l1(['O', 'I']), f: f1(['O', 'I']) }; },
-    function () { return { l: 'A', leg: l1(['O', 'I']), f: f1(['O', 'I']) }; },
+    // the 15 al-fahisha or sexual-offence cases, then the 13 of them with rape or sexual assault (Nazrul and Sweety drop out)
+    function () { return { l: 'A', leg: lx('S'), f: function (x, i) { return SX[i] ? [C.S, 1] : [G, .35]; } }; },
+    function () { return { l: 'A', leg: lx('R'), f: function (x, i) { return SX[i] && x[0] != 'I' ? [C.R, 1] : [G, .35]; } }; },
     function () { return { l: 'C', keep: 1, lab: 1, leg: l1(['I']), f: f1(['D', 'M', 'O', 'I'], 1) }; }
   ]);
 });
