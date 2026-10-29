@@ -33,6 +33,8 @@ async def main():
         for name, (w, h) in SIZES.items():
             pg = await b.new_page(viewport={'width': w, 'height': h}, device_scale_factor=1)
             await pg.goto(url, wait_until='networkidle')
+            # the hero is 112% of the screen with its text centred, so a short card would cut off the byline
+            await pg.add_style_tag(content='.hero{min-height:100vh!important}')
             await pg.evaluate('document.fonts.ready')
             await pg.wait_for_timeout(800)
             out = os.path.join(ROOT, 'img', name)

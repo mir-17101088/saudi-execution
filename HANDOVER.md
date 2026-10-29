@@ -2,11 +2,15 @@
 
 ## What changed and why
 - **Dek and credit (Mir, 2026-10-29):** dek (hero + JSON-LD alternativeHeadline) now "The execution of two
-  Bangladeshis in Saudi Arabia raises legal and human rights concerns; a search of official statements since 2005
-  found no one else put to death solely for a victimless act of “indecency”". The old one ("no Saudi or foreign
-  nationals faced execution for … ‘indecency’ in the last 3 years") was wrong on its face: Nazrul and Sweety are
-  foreign nationals, and 13 others were executed for rape or sexual assault. Footer credit "Data Collection &
-  Processing: Mir Rownak" (llms.txt, README match). Share images re-shot (dek is in the hero).
+  Bangladeshis in Saudi Arabia raises legal and human rights concerns; no other official Saudi execution statement
+  since 2005 appears to cite an act of “indecency” that involved no force, no victim and no other crime". It claims
+  only what the statements say (not "no one else was executed"), hedged, in the story's own three conditions; an
+  interim "a search … found no one … victimless" version was dropped (Mir: no "search"; "victimless" and "solely"
+  were our labels). The old dek ("no Saudi or foreign nationals faced execution for … ‘indecency’ in the last 3
+  years") was wrong on its face: Nazrul and Sweety are foreign nationals, and 13 others were executed for rape or
+  sexual assault. Footer credits "Data Collection & Processing: Mir Rownak" and "Development: Mir Rownak, Abdullah
+  Hel Bubun" (llms.txt matches). Share images re-shot; `tools/share_images.py` now sets the hero to one screen tall
+  for the shot, since the four-line dek pushed the byline off the 1200x630 card.
 - **SPA archive line (Mir, 2026-10-29):** one paragraph right after scene 1, before Duaa Dhainy: the three-year
   analysis vs a separate keyword search of SPA statements back to 2005, which found no other execution for fahisha
   with no force, victim or other crime. It replaced two longer paragraphs (after the 2015 Kaabah case) that also
