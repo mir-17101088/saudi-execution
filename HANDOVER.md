@@ -1,15 +1,26 @@
 # Handover: Two extraordinary executions (2026-10-28)
 
 ## What changed and why
-- **SPA archive paragraphs (Mir, 2026-10-29):** two new paragraphs after the 2015 Kaabah case, before "Confusions
-  over allegations": no earlier execution for victimless fahisha appears in SPA statements back to 2005, and the
-  "sanctity of the time and place" / "sanctity of mosques" wording appears to be new. Hedged ("appears to") because
-  the archive was keyword-searched, not read in full; worded so it doesn't read as a second analysis. The Methodology
-  Note gained the search terms (Arabic in `lang="ar"` spans), eight linked comparison statements and the limits. Every
+- **Dek and credit (Mir, 2026-10-29):** dek (hero + JSON-LD alternativeHeadline) now "The execution of two
+  Bangladeshis in Saudi Arabia raises legal and human rights concerns; a search of official statements since 2005
+  found no one else put to death solely for a victimless act of “indecency”". The old one ("no Saudi or foreign
+  nationals faced execution for … ‘indecency’ in the last 3 years") was wrong on its face: Nazrul and Sweety are
+  foreign nationals, and 13 others were executed for rape or sexual assault. Footer credit "Data Collection &
+  Processing: Mir Rownak" (llms.txt, README match). Share images re-shot (dek is in the hero).
+- **SPA archive line (Mir, 2026-10-29):** one paragraph right after scene 1, before Duaa Dhainy: the three-year
+  analysis vs a separate keyword search of SPA statements back to 2005, which found no other execution for fahisha
+  with no force, victim or other crime. It replaced two longer paragraphs (after the 2015 Kaabah case) that also
+  covered the "sanctity" wording; Mir cut those. Methodology's last line now says the story reports what the search
+  found, not that no such case exists. Reworded from Mir's draft: "since at least 2005" (the ministry's archive
+  is only known to reach 2005), "combinations of Arabic keywords" in the story, "Boolean search ... combining
+  Arabic keywords and exact phrases" in the note. "see Methodology Note" links to `#methodology`: story.js opens the
+  `<details>` and jumps there instantly (Chrome 87 won't open it on a hash; the page's smooth scroll took >1 s over
+  ~20,000 px), pushes a history entry so Back returns to the paragraph, and opens it on a shared `#methodology` URL.
+  story.js `?v=20261029e`. The Methodology Note gained the search terms (Arabic in `lang="ar"` spans), eight linked comparison statements and the limits. Every
   linked SPA statement was read in the original Arabic. Left out of the source audit as wrong or unverified: the
   2014 "man and woman" case (SPA 1272080 was two men), "ينتهك الأعراض" as unique, the joint man-woman point, and
   its keyword filter (it lists قتل, which every death-sentence statement contains). `.meth__in` links now use the
-  story's link style; list styles added. wordCount 1944 → 2564. No new glyphs (font subsets unchanged).
+  story's link style; list styles added. wordCount 1944 → 2415. No new glyphs (font subsets unchanged).
 - **Copy round (Mir, 2026-10-29):** new intro paragraphs 2–3 (red marks on "‘fahisha’ or gross sexual indecency"
   and "sanctity of the time and place"; the press-release dialog now opens from the word "statement"). Dek drops
   "ever". Scene 1 now has 7 cards: card 4 reads "gross sexual misconduct or al-fahisha" (plain text, Mir; its two dots stay green), two new cards (15

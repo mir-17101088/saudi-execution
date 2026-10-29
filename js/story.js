@@ -1,4 +1,4 @@
-/* Two extraordinary executions: dot-chart scenes, war-on-drugs chart, hero runs, names list (with flags), press release, categories tabs, back to top. */
+/* Two extraordinary executions: dot-chart scenes, war-on-drugs chart, hero runs, names list (with flags), press release, categories tabs, back to top, methodology links. */
 (function () {
 'use strict';
 var RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -492,5 +492,24 @@ guard(function () {
   addEventListener('load', function () { pin(true); });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { pin(true); });
   addEventListener('resize', function () { pin(false); });
+});
+
+/* ---------- "see Methodology Note" links ----------
+   Before Chrome 97 a hash link does not open a closed <details>, so open the note, then jump to it: instantly, as
+   gliding past both scenes and the names list is slow on old phones. The pushed history entry lets the back button
+   return the reader to the paragraph they left. */
+guard(function () {
+  var m = $('#methodology'), s = m && $('summary', m);
+  if (!m) return;
+  function show() { m.open = true; m.scrollIntoView({ block: 'start', behavior: 'instant' }); }
+  $$('a[href="#methodology"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (location.hash !== '#methodology' && history.pushState) history.pushState(null, '', '#methodology');
+      show();
+      if (s) s.focus({ preventScroll: true });
+    });
+  });
+  if (location.hash === '#methodology') show();
 });
 })();
