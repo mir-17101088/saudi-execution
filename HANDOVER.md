@@ -14,8 +14,10 @@
 - **SPA archive line (Mir, 2026-10-29):** one paragraph right after scene 1, before Duaa Dhainy: the three-year
   analysis vs a separate keyword search of SPA statements back to 2005, which found no other execution for fahisha
   with no force, victim or other crime. It replaced two longer paragraphs (after the 2015 Kaabah case) that also
-  covered the "sanctity" wording; Mir cut those. Methodology's last line now says the story reports what the search
-  found, not that no such case exists. Reworded from Mir's draft: "since at least 2005" (the ministry's archive
+  covered the "sanctity" wording; Mir cut those. Methodology's last paragraph leads with why a keyword search fits
+  (fixed template, standard legal terms; every statement read, 2005 to 2026, followed one), then the one limit,
+  tied to the dek's "appears to" (Mir: the earlier "may have been missed … not that no such case exists" read as
+  undercutting the work). wordCount 2430. Reworded from Mir's draft: "since at least 2005" (the ministry's archive
   is only known to reach 2005), "combinations of Arabic keywords" in the story, "Boolean search ... combining
   Arabic keywords and exact phrases" in the note. "see Methodology Note" links to `#methodology`: story.js opens the
   `<details>` and jumps there instantly (Chrome 87 won't open it on a hash; the page's smooth scroll took >1 s over
