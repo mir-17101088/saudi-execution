@@ -1,6 +1,12 @@
 # Handover: Two extraordinary executions (2026-10-28)
 
 ## What changed and why
+- **Dek (Mir, 2026-10-31):** now "Saudi Arabia executed Nazrul and Sweety for a sexual offence which involved no
+  force, no victim and no additional crime. Its official execution record appears to have no precedent for this since
+  at least 2005." (hero + JSON-LD alternativeHeadline). Shorter than the old dek, so the hero fit still holds.
+- **Scene 1 key (Mir, 2026-10-31):** "Al-fahisha (Bangladeshis)" left the key on cards 2–4 (Nazrul and Sweety take
+  the "other" colour there); on the 15 card they turn green beside the 13 amber; the last card's key shows both rows,
+  amber dimmed. Methodology: "which is why this analysis says" (was "the story says").
 - **Copy, type size, tap fix (Mir, 2026-10-31):** the intro's "However, a Daily Star analysis…" line is now three
   paragraphs ("However, the executions were highly unusual." / the 665-statement analysis / "Nazrul and Sweety are
   the only people…"); the 2012 case now reads "inside Medina’s Masjid al-Nabawī, considered to be the second-holiest
