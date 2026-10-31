@@ -1,7 +1,8 @@
 # Handover: Two extraordinary executions (2026-10-28)
 
 ## What changed and why
-- **Dek (Mir, 2026-10-31):** now "Saudi Arabia executed Nazrul and Sweety for a sexual offence which involved no
+- **Share images (Mir, 2026-10-31):** hero art only (logo, drips, sword); `tools/share_images.py` hides `.hero__body`.
+- **Dek (Mir, 2026-10-31):** now "Saudi Arabia executed Nazrul and Sweety—two Bangladeshi migrant workers—for a sexual offence which involved no
   force, no victim and no additional crime. Its official execution record appears to have no precedent for this since
   at least 2005." (hero + JSON-LD alternativeHeadline). Shorter than the old dek, so the hero fit still holds.
 - **Scene 1 key (Mir, 2026-10-31):** "Al-fahisha (Bangladeshis)" left the key on cards 2–4 (Nazrul and Sweety take

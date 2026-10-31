@@ -1,7 +1,7 @@
 """Make the share images from the real hero: python tools/share_images.py  (from the repo root)
 
 Serves the repo on a local port, opens the page in Chrome at four sizes and saves the top screen
-(the hero: logo, headline, byline over the drips and sword) as JPEGs in img/:
+(the hero art: logo, drips and sword, with the headline, dek and byline hidden) as JPEGs in img/:
   share.jpg        1200x630   og:image, twitter:image
   share-16x9.jpg   1200x675   JSON-LD image (Google Discover / Top stories crops)
   share-4x3.jpg    1200x900
@@ -34,7 +34,8 @@ async def main():
             pg = await b.new_page(viewport={'width': w, 'height': h}, device_scale_factor=1)
             await pg.goto(url, wait_until='networkidle')
             # the hero is 112% of the screen with its text centred, so a short card would cut off the byline
-            await pg.add_style_tag(content='.hero{min-height:100vh!important}')
+            # art only: logo, drips and sword; the title, dek and byline are left out (Mir, 2026-10-31)
+            await pg.add_style_tag(content='.hero{min-height:100vh!important}.hero__body{visibility:hidden!important}')
             await pg.evaluate('document.fonts.ready')
             await pg.wait_for_timeout(800)
             out = os.path.join(ROOT, 'img', name)
