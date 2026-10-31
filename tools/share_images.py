@@ -12,7 +12,9 @@ import asyncio, functools, http.server, os, threading
 from playwright.async_api import async_playwright
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SIZES = {'share.jpg': (1200, 630), 'share-16x9.jpg': (1200, 675), 'share-4x3.jpg': (1200, 900), 'share-1x1.jpg': (1200, 1200)}
+# (output width, height, CSS layout width): the taller cards lay the hero out at 630 px tall and scale it up, so the
+# art fills them instead of leaving an empty lower half (Mir, 2026-10-31)
+SIZES = {'share.jpg': (1200, 630, 1200), 'share-16x9.jpg': (1200, 675, 1200), 'share-4x3.jpg': (1200, 900, 840), 'share-1x1.jpg': (1200, 1200, 630)}
 
 
 def serve():
@@ -30,8 +32,9 @@ async def main():
     url = f'http://127.0.0.1:{srv.server_address[1]}/'
     async with async_playwright() as p:
         b = await p.chromium.launch(channel='chrome')
-        for name, (w, h) in SIZES.items():
-            pg = await b.new_page(viewport={'width': w, 'height': h}, device_scale_factor=1)
+        for name, (w, h, cw) in SIZES.items():
+            k = w / cw
+            pg = await b.new_page(viewport={'width': cw, 'height': round(h / k)}, device_scale_factor=k)
             await pg.goto(url, wait_until='networkidle')
             # the hero is 112% of the screen with its text centred, so a short card would cut off the byline
             # art only: logo, drips and sword; the title, dek and byline are left out (Mir, 2026-10-31)
