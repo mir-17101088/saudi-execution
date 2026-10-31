@@ -1,6 +1,14 @@
 # Handover: Two extraordinary executions (2026-10-28)
 
 ## What changed and why
+- **Methodology: incest cases (Mir, 2026-10-31):** fact-check of "no precedent since at least 2005" found two SPA
+  statements for zina with a mahram, no force/other crime/named victim: 1177064 (2013-12-10 Jazan, hadd) and
+  1321206 (2015-01-27 Mahayil, ta'zir), both read in Arabic. Added as a paragraph + list after the fahisha examples;
+  story copy unchanged (Mir). Mir kept "No other statement found described an execution for fahisha without force,
+  a victim or another crime" (incest is itself a crime). Two more edits (Mir approved): the fahisha-examples lead-in
+  now excepts the incest cases and names sorcery (SPA 6d81b1da29, 2012 Najran); the search paragraph lists the wider
+  Arabic/English terms actually searched. Re-run: every 2021–2026 Arabic SPA item read (959 execution statements),
+  2005–2020 by SPA's exact-phrase search (~80 AR/EN terms, 562 hits); no other case found. wordCount 2678.
 - **Share images (Mir, 2026-10-31):** now crops of Amnesty International's illustration (the hero's blood could get the link
   flagged); `tools/share_images.py` uses Pillow only. The wide cards (share, 16x9) show the whole height, so the shirt
   on the floor with its faint red stain is in them; the 4x3 and 1x1 crop it out. og/twitter alt text matches the figure's alt.
