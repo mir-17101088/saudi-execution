@@ -1,52 +1,28 @@
-"""Make the share images from the real hero: python tools/share_images.py  (from the repo root)
+"""Make the share images from Amnesty International's illustration: python tools/share_images.py  (from the repo root)
 
-Serves the repo on a local port, opens the page in Chrome at four sizes and saves the top screen
-(the hero art: logo, drips and sword, with the headline, dek and byline hidden) as JPEGs in img/:
-  share.jpg        1200x630   og:image, twitter:image
-  share-16x9.jpg   1200x675   JSON-LD image (Google Discover / Top stories crops)
-  share-4x3.jpg    1200x900
-  share-1x1.jpg    1200x1200
-Needs: pip install playwright pillow, and Google Chrome installed.
+The hero (blood drips, sword) risked being flagged by social platforms, so the share cards use the story's Amnesty
+illustration instead (Mir, 2026-10-31). Crops from img/amnesty-illustration-1468.jpg (1468x710), saved in img/:
+  share.jpg        1200x630   og:image, twitter:image   whole height, right-aligned
+  share-16x9.jpg   1200x675   JSON-LD image             whole height, right-aligned
+  share-4x3.jpg    1200x900                             the two men, shirt on the floor left out
+  share-1x1.jpg    1200x1200                            the two men, shirt on the floor left out
+Needs: pip install pillow.
 """
-import asyncio, functools, http.server, os, threading
-from playwright.async_api import async_playwright
+import os
+from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# (output width, height, CSS layout width): the taller cards lay the hero out at 630 px tall and scale it up, so the
-# art fills them instead of leaving an empty lower half (Mir, 2026-10-31)
-SIZES = {'share.jpg': (1200, 630, 1200), 'share-16x9.jpg': (1200, 675, 1200), 'share-4x3.jpg': (1200, 900, 840), 'share-1x1.jpg': (1200, 1200, 630)}
+SRC = os.path.join(ROOT, 'img', 'amnesty-illustration-1468.jpg')
+# name: (output size, crop box in the 1468x710 source); x >= 670 keeps out the shirt on the floor (to x 665) and its stain
+CROPS = {
+    'share.jpg': ((1200, 630), (116, 0, 1468, 710)),
+    'share-16x9.jpg': ((1200, 675), (206, 0, 1468, 710)),
+    'share-4x3.jpg': ((1200, 900), (670, 102, 1468, 700)),
+    'share-1x1.jpg': ((1200, 1200), (680, 0, 1390, 710)),
+}
 
-
-def serve():
-    class Quiet(http.server.SimpleHTTPRequestHandler):
-        def log_message(self, *a):
-            pass
-    h = functools.partial(Quiet, directory=ROOT)
-    s = http.server.ThreadingHTTPServer(('127.0.0.1', 0), h)
-    threading.Thread(target=s.serve_forever, daemon=True).start()
-    return s
-
-
-async def main():
-    srv = serve()
-    url = f'http://127.0.0.1:{srv.server_address[1]}/'
-    async with async_playwright() as p:
-        b = await p.chromium.launch(channel='chrome')
-        for name, (w, h, cw) in SIZES.items():
-            k = w / cw
-            pg = await b.new_page(viewport={'width': cw, 'height': round(h / k)}, device_scale_factor=k)
-            await pg.goto(url, wait_until='networkidle')
-            # the hero is 112% of the screen with its text centred, so a short card would cut off the byline
-            # art only: logo, drips and sword; the title, dek and byline are left out (Mir, 2026-10-31)
-            await pg.add_style_tag(content='.hero{min-height:100vh!important}.hero__body{visibility:hidden!important}')
-            await pg.evaluate('document.fonts.ready')
-            await pg.wait_for_timeout(800)
-            out = os.path.join(ROOT, 'img', name)
-            await pg.screenshot(path=out, type='jpeg', quality=86)
-            print(name, w, h, os.path.getsize(out) // 1024, 'KB')
-            await pg.close()
-        await b.close()
-    srv.shutdown()
-
-
-asyncio.run(main())
+im = Image.open(SRC).convert('RGB')
+for name, (size, box) in CROPS.items():
+    out = os.path.join(ROOT, 'img', name)
+    im.crop(box).resize(size, Image.LANCZOS).save(out, quality=86, optimize=True, progressive=True)
+    print(name, size, box, os.path.getsize(out) // 1024, 'KB')

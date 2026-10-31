@@ -1,7 +1,9 @@
 # Handover: Two extraordinary executions (2026-10-28)
 
 ## What changed and why
-- **Share images (Mir, 2026-10-31):** hero art only (logo, drips, sword); `tools/share_images.py` hides `.hero__body`.
+- **Share images (Mir, 2026-10-31):** now crops of Amnesty International's illustration (the hero's blood could get the link
+  flagged); `tools/share_images.py` uses Pillow only. The wide cards (share, 16x9) show the whole height, so the shirt
+  on the floor with its faint red stain is in them; the 4x3 and 1x1 crop it out. og/twitter alt text matches the figure's alt.
 - **Dek (Mir, 2026-10-31):** now "Saudi Arabia executed Nazrul and Sweety—two Bangladeshi migrant workers—for a sexual offence which involved no
   force, no victim and no additional crime. Its official execution record appears to have no precedent for this since
   at least 2005." (hero + JSON-LD alternativeHeadline). Shorter than the old dek, so the hero fit still holds.

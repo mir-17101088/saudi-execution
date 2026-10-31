@@ -16,7 +16,7 @@ Use the `daily-star-story` skill for house rules, QA scripts and the evaluator.
 - `img/`: WebP + JPEG fallbacks, `share.jpg` 1200x630, `logo.png` (JSON-LD), `canvas.webp` texture tile.
 - `fonts/`: Merriweather 400/700/400i subset to the page's characters (Google Fonts `text=` subset).
   Re-subset if new characters appear in the copy. Arabic in the dialog uses system fonts.
-- `tools/share_images.py`: re-shoots the hero as `img/share.jpg` (OG) and the 16x9/4x3/1x1 JSON-LD crops.
+- `tools/share_images.py`: crops Amnesty's illustration into `img/share.jpg` (OG) and the 16x9/4x3/1x1 JSON-LD images (not the hero: its blood could get the link flagged).
 - `tools/splatter.py`: draws the `#spl` blood-splatter symbols. `tools/flags.py`: builds `img/flags.png` (country list).
 - `robots.txt`, `sitemap.xml` (news + image), `llms.txt`, `.htaccess`: SEO and server config; see README.md.
 
