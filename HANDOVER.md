@@ -1,6 +1,18 @@
 # Handover: Two extraordinary executions (2026-10-28)
 
 ## What changed and why
+- **Copy, type size, tap fix (Mir, 2026-10-31):** the intro's "However, a Daily Star analysis…" line is now three
+  paragraphs ("However, the executions were highly unusual." / the 665-statement analysis / "Nazrul and Sweety are
+  the only people…"); the 2012 case now reads "inside Medina’s Masjid al-Nabawī, considered to be the second-holiest
+  site in Islam" (Mir's "Inside" lower-cased mid-sentence); two paragraphs from Seif Magango (OHCHR), name linked to
+  his LinkedIn, after Abdul Bashar's quote. Body text (`.txt`) 19px → 18px; hero and scene cards unchanged (rem/vw).
+  wordCount 2542. Meta/OG description still says "extremely unusual" (not asked to change). Fixed (pre-existing): on
+  phones the empty strip under the last scene card (`.steps`, z-index 1, pulled up by the negative bottom margin)
+  sat over the first ~40% of a screen of the next text and swallowed taps, e.g. "see Methodology Note" at 412 wide;
+  `.steps,.step` now `pointer-events:none` (cards keep it) and `.txt` is `position:relative` so it paints above the
+  section. Checked Chrome 6x CPU @320/360, 1x @412, reduced motion, 1440 desktop, WebKit @390: no overflow, both
+  scenes step through, dialog/categories/methodology open, no console errors. perf.py 6x @360: worst frame 67 ms,
+  0 long tasks, LCP 0.76 s; gates fail only doc_css_kb/dom (names list, as before).
 - **Hero fits every screen (Mir, 2026-10-29):** with the four-line dek the byline fell below the fold on short
   screens (1280x600, 1366x625, phones held sideways, 320x480). Title is now capped at 12.5vh, the dek at
   2.7px + 2.8vh (floor .9rem), the gaps by vh; the top padding floor is 76px (was 104); under ~560px tall the bottom
