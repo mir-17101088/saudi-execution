@@ -240,55 +240,66 @@ guard(function () {
   ]);
 });
 
-/* ---------- executions per year, drug-related and other ---------- */
+/* ---------- executions per year, foreign and Saudi nationals ---------- */
 guard(function () {
-  var Y = [[2014, 90, 42], [2015, 158, 63], [2016, 154, 23], [2017, 146, 58], [2018, 149, 60], [2019, 184, 85], [2020, 25, 4], [2021, 65, 0], [2022, 148, 21], [2023, 172, 2], [2024, 345, 121], [2025, 356, 240], [2026, 186, 115]];
-  var NS = 'http://www.w3.org/2000/svg', box = document.getElementById('exp'), NAVY = '#232838', RED = '#8f2227', lastW = 0;
-  if (!box) return;
-  function el(n, a, t) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); if (t != null) e.textContent = t; return e; }
+  var Y = [[2014, 90, 37], [2015, 161, 73], [2016, 154, 36], [2017, 146, 58], [2018, 147, 75], [2019, 187, 94], [2020, 27, 9], [2021, 67, 16], [2022, 196, 34], [2023, 172, 34], [2024, 345, 137], [2025, 356, 200], [2026, 186, 102]].map(function (a) {
+    var y = a[0], t = a[1], f = a[2], s = t - f;
+    return { y: y, t: t, f: f, s: s, fp: f / t * 100, sp: s / t * 100 };
+  });
+  var NS = 'http://www.w3.org/2000/svg', host = document.getElementById('exp'), tip = document.getElementById('tip'), svg, lastW = 0;
+  if (!host || !tip) return;
+  function el(n, a, p, txt) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); if (txt != null) e.textContent = txt; (p || svg).appendChild(e); return e; }
   function draw() {
-    var W = Math.max(260, box.clientWidth || 700);
-    if (W === lastW) return; lastW = W;
-    var sm = W < 560, L = sm ? 30 : 38, R = sm ? 4 : 8, T = 14, sl0 = (W - L - R) / Y.length,
-      afs = sm ? 11 : 12,                                   // axis labels
-      rot = sl0 < afs * 2.6,                                  // years no longer fit side by side: stand them up
-      B = rot ? Math.round(afs * 2.4 + 8) : 26,
-      fs = Math.max(10, Math.min(sm ? 11.5 : 13, sl0 * .5)),  // value labels shrink with the bars
-      H = Math.round(Math.min(340, Math.max(250, W * .45))) + (rot ? B - 26 : 0),
-      ph = H - T - B, pw = W - L - R, sl = pw / Y.length, bw = sl * .8;
-    var y = function (v) { return T + ph - v / 400 * ph; }, svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, width: W, height: H, 'aria-hidden': 'true' });
-    var bx = L + sl * 6, bwid = sl * 3;
-    svg.appendChild(el('rect', { x: bx, y: T, width: bwid, height: ph, fill: '#c3d6c9' }));
-    var tl = el('text', { x: bx + bwid / 2, y: T + 22, 'text-anchor': 'middle', 'font-size': sm ? 11 : 13, 'font-weight': 700, fill: '#1e6b3a' });
-    if (bwid > 150) tl.textContent = 'Moratorium in place';
-    else { tl.appendChild(el('tspan', { x: bx + bwid / 2, dy: 0 }, 'Moratorium')); tl.appendChild(el('tspan', { x: bx + bwid / 2, dy: sm ? 13 : 16 }, 'in place')); }
-    svg.appendChild(tl);
+    var W = Math.max(260, host.clientWidth || 700);
+    if (W === lastW) return;
+    lastW = W;
+    if (svg && svg.parentNode) svg.parentNode.removeChild(svg);
+    tip.style.opacity = 0;
+    var narrow = W < 560, H = narrow ? 400 : 470;
+    var m = { t: 26, r: 6, b: 30, l: narrow ? 30 : 38 }, pw = W - m.l - m.r, ph = H - m.t - m.b, max = 400, n = Y.length, band = pw / n, bw = band * (narrow ? .8 : .74);
+    var y = function (v) { return m.t + ph - v / max * ph; };
+    svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.setAttribute('aria-hidden', 'true');
+    host.appendChild(svg);
     [0, 100, 200, 300, 400].forEach(function (v) {
-      svg.appendChild(el('line', { x1: L, x2: W - R, y1: y(v), y2: y(v), stroke: v ? '#d9d4ca' : '#8a857c', 'stroke-width': v ? 1 : 1.2 }));
-      svg.appendChild(el('text', { x: L - 6, y: y(v) + 4, 'text-anchor': 'end', 'font-size': afs, fill: '#777' }, v));
+      el('line', { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: 'var(--grid)', 'stroke-width': 1 });
+      el('text', { x: m.l - 6, y: y(v) + 4, 'text-anchor': 'end', 'font-size': 12, fill: 'var(--muted)' }, null, v);
     });
-    var X = function (i) { return L + sl * i + (sl - bw) / 2; };
+    var path = '';
     Y.forEach(function (d, i) {
-      var t = d[1], dr = d[2], x = X(i), cxm = x + bw / 2;
-      if (dr > 0) svg.appendChild(el('rect', { x: x, y: y(dr), width: bw, height: y(0) - y(dr), fill: RED }));
-      svg.appendChild(el('rect', { x: x, y: y(t), width: bw, height: y(dr) - y(t), fill: NAVY }));
-      if (dr > 0 && dr < t) svg.appendChild(el('line', { x1: x, x2: x + bw, y1: y(dr), y2: y(dr), stroke: '#faf9f6', 'stroke-width': 1.5 }));
-      if (rot) svg.appendChild(el('text', { x: cxm + afs * .36, y: T + ph + 6, 'text-anchor': 'end', 'font-size': afs, fill: '#555', transform: 'rotate(-90 ' + (cxm + afs * .36) + ' ' + (T + ph + 6) + ')' }, d[0]));
-      else svg.appendChild(el('text', { x: cxm, y: H - 8, 'text-anchor': 'middle', 'font-size': afs, fill: '#555' }, d[0]));
+      var x = m.l + i * band + (band - bw) / 2, fh = d.f / max * ph, sh = d.s / max * ph;
+      el('rect', { x: x, y: y(d.f), width: bw, height: fh, fill: 'var(--red)' });
+      el('rect', { x: x, y: y(d.t), width: bw, height: sh, fill: 'var(--dark)' });
+      el('line', { x1: x, x2: x + bw, y1: y(d.f), y2: y(d.f), stroke: 'var(--card)', 'stroke-width': 1.5 });
+      var dec = narrow ? 0 : 2, lab = function (h, v, cy) {
+        if (h >= 16) el('text', { x: x + bw / 2, y: cy + 4, 'text-anchor': 'middle', 'font-size': narrow ? 10 : 12, 'font-weight': 700, fill: 'var(--seg-text)', stroke: 'var(--seg-stroke)', 'stroke-width': 3, 'paint-order': 'stroke', 'stroke-linejoin': 'round' }, null, v.toFixed(dec) + '%');
+      };
+      lab(fh, d.fp, y(d.f) + fh / 2);
+      lab(sh, d.sp, y(d.t) + sh / 2);
+      el('text', { x: x + bw / 2, y: y(d.t) - 7, 'text-anchor': 'middle', 'font-size': narrow ? 11 : 13, 'font-weight': 700, fill: 'var(--ink)' }, null, d.t);
+      el('text', { x: x + bw / 2, y: H - 10, 'text-anchor': 'middle', 'font-size': narrow ? 10 : 13, fill: 'var(--muted)' }, null, narrow ? '’' + String(d.y).slice(2) : d.y);
+      var x0 = x, x1 = x + bw, gl = x0 - (band - bw) / 2;
+      path += (i ? 'L' + gl + ',' + y(Y[i - 1].t) + ' L' + gl + ',' + y(d.t) + ' ' : 'M' + x0 + ',' + y(0) + ' L' + x0 + ',' + y(d.t) + ' ') + 'L' + x1 + ',' + y(d.t) + ' ';
+      var hit = el('rect', { x: m.l + i * band, y: m.t, width: band, height: ph, fill: 'transparent', style: 'cursor:pointer' });
+      var show = function () {
+        tip.innerHTML = '<b>' + d.y + (d.y === 2026 ? ' (to Oct 20)' : '') + '</b><br>Total: ' + d.t + '<br>Foreign nationals: ' + d.f + ' (' + d.fp.toFixed(2) + '%)<br>Saudi nationals: ' + d.s + ' (' + d.sp.toFixed(2) + '%)';
+        tip.style.opacity = 1;
+        var tw = tip.offsetWidth, left = m.l + i * band + band / 2 - tw / 2;
+        left = Math.max(0, Math.min(W - tw, left));
+        tip.style.left = left + 'px';
+        tip.style.top = Math.max(0, y(d.t) - tip.offsetHeight - 26) + 'px';
+      };
+      hit.addEventListener('pointerenter', show);
+      hit.addEventListener('click', show);
+      hit.addEventListener('pointerleave', function () { tip.style.opacity = 0; });
     });
-    var pd = 'M' + X(0) + ',' + y(0) + 'V' + y(Y[0][1]);
-    Y.forEach(function (d, i) { var x1 = X(i) + bw, gm = i < Y.length - 1 ? (x1 + X(i + 1)) / 2 : x1; pd += 'H' + gm; pd += i < Y.length - 1 ? 'V' + y(Y[i + 1][1]) : 'V' + y(0); });
-    svg.appendChild(el('path', { d: pd, fill: 'none', stroke: '#3d3d3d', 'stroke-width': 2.4, 'stroke-linejoin': 'miter' }));
-    var lab = function (x, yy, v) { svg.appendChild(el('text', { x: x, y: yy, 'text-anchor': 'middle', 'font-size': fs, 'font-weight': 700, fill: '#fff', stroke: '#1b1b1b', 'stroke-width': 3, 'paint-order': 'stroke', 'stroke-linejoin': 'round' }, v)); };
-    Y.forEach(function (d, i) {
-      var yr = d[0], t = d[1], dr = d[2], cxm = X(i) + bw / 2, o = t - dr;
-      lab(cxm, y(t) + 4, t);
-      if (yr != 2020) { if (dr >= 20) lab(cxm, y(dr / 2) + 4, dr); if (o >= 20) lab(cxm, y(dr + o / 2) + 4, o); }
-    });
-    box.replaceChildren ? box.replaceChildren(svg) : (box.textContent = '', box.appendChild(svg));
+    var last = Y.length - 1, xe = m.l + last * band + (band + bw) / 2;
+    path += 'L' + xe + ',' + y(0);
+    el('path', { d: path, fill: 'none', stroke: 'var(--ink)', 'stroke-width': 2.5, 'stroke-linejoin': 'miter', 'pointer-events': 'none' });
   }
   draw();
-  if (window.ResizeObserver) new ResizeObserver(draw).observe(box); else addEventListener('resize', draw);
+  if (window.ResizeObserver) new ResizeObserver(draw).observe(host); else addEventListener('resize', draw);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { lastW = 0; draw(); });
 });
 
@@ -407,7 +418,7 @@ guard(function () {
 guard(function () {
   var b = $('.totop'), hero = $('.hero');
   if (!b || !hero) return;
-  var AV = '.scrolly, figure, .stat, #ctl, .pg, .site-footer', on = false, tick = 0;
+  var AV = '.scrolly, figure, #ctl, .pg, .site-footer', on = false, tick = 0;
   function chk() {
     tick = 0;
     var H = innerHeight, show = hero.getBoundingClientRect().bottom < 0;

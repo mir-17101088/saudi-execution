@@ -1,6 +1,17 @@
 # Handover: Two extraordinary executions (2026-10-28)
 
 ## What changed and why
+- **Sections, chart, dek & scene 1 card 6 (Mir, 2026-11-01):** replaced "Confusions over allegations" with "Confusion
+  over charges" and new copy (keeping Nazrul's Facebook figure in place); replaced "Saudi’s ‘war on drugs’" and "Killing
+  foreign nationals" with "Was the trial fair?" and "Who gets executed in Saudi Arabia?" from `changes.docx` (all
+  hyperlinks preserved; Amnesty International illustration kept at the end of "Who gets executed in Saudi Arabia?").
+  Built the foreign vs. Saudi executions chart ("Foreign nationals make up over half of Saudi executions", from
+  `chart_draft_for_reference.html`) natively in `#exc`/`#exp` (`js/story.js`, light card `#faf8f4`, interactive tooltip
+  `#tip` and `.sr` table). Updated dek (`.dek` + JSON-LD `alternativeHeadline`) to "Saudi Arabia executed Nazrul and
+  Sweety for a sexual offence which involved no force, no victim and no additional crime; its official execution record
+  appears to have no precedent since at least 2005." Updated scene 1 card 6 to "Out of those, 13 cases involved rape
+  (11) or sexual assault (2). In 7 of them, the accused also faced charges of murder, kidnapping or robbery." Removed
+  unused `.stat` CSS and `Bebas Neue` `@font-face`.
 - **Methodology: incest cases (Mir, 2026-10-31):** fact-check of "no precedent since at least 2005" found two SPA
   statements for zina with a mahram, no force/other crime/named victim: 1177064 (2013-12-10 Jazan, hadd) and
   1321206 (2015-01-27 Mahayil, ta'zir), both read in Arabic. Added as a paragraph + list after the fahisha examples;
