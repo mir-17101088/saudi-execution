@@ -382,15 +382,39 @@
          }
       }
 
+      /* the logo is fixed: over the hero it sits where it always did; once the reader scrolls it shrinks and rises
+   (.sm), and blends by difference so it reads on the white cards and names band; hidden over the footer (.off),
+   which has its own logo. --mast is the room the pinned charts and country list leave for it */
       .masthead {
-         position: absolute;
+         position: fixed;
          top: 28px;
          left: var(--gutter);
-         z-index: 3
+         z-index: 15;
+         transform-origin: 0 0;
+         transition: transform .3s, opacity .3s, visibility 0s
+      }
+
+      .masthead.sm {
+         transform: translateY(-16px) scale(.72);
+         mix-blend-mode: difference
+      }
+
+      .masthead.off {
+         opacity: 0;
+         visibility: hidden;
+         transition: transform .3s, opacity .3s, visibility 0s .3s
+      }
+
+      @media (prefers-reduced-motion:reduce) {
+         .masthead,
+         .masthead.off {
+            transition: none
+         }
       }
 
       :root {
-         --logo-w: clamp(124px, 7vw + 96px, 176px)
+         --logo-w: clamp(124px, 7vw + 96px, 176px);
+         --mast: calc(var(--logo-w) * .143 + 22px)
       }
 
       .masthead a {
@@ -912,7 +936,7 @@
          bottom: calc(var(--z) * 100%);
          display: flex;
          flex-direction: column;
-         padding: 10px 10px 0;
+         padding: calc(10px + var(--mast)) 10px 0;
          background: var(--bg) url(img/canvas.webp) 0 0/128px 128px
       }
 
@@ -1334,7 +1358,7 @@
          padding: 0;
          font: 13px var(--serif);
          position: sticky;
-         top: 16px
+         top: calc(16px + var(--mast))
       }
 
       .cl h3 {
@@ -1837,6 +1861,12 @@
       </symbol>
    </svg>
    <a class="skip" href="#story">Skip to story</a>
+   <!-- fixed: sits over the hero as before, then shrinks and stays top-left; outside .page so it stays above the names band -->
+   <div class="masthead"><a href="https://www.thedailystar.net" target="_blank" rel="noopener"
+         aria-label="The Daily Star home (opens in a new tab)"><svg class="tds-logo" viewBox="0 0 321.41 63.84"
+            aria-hidden="true">
+            <use href="#tds-logo" />
+         </svg></a></div>
    <div class="page">
       <div class="page__canvas" aria-hidden="true"><svg class="spl" style="left:6%;--p:0.017;--s:260px;--r:247deg">
             <use href="#spl" />
@@ -1941,11 +1971,6 @@
             <div class="band"></div>
             <div class="pool"></div>
          </div>
-         <div class="masthead"><a href="https://www.thedailystar.net" target="_blank" rel="noopener"
-               aria-label="The Daily Star home (opens in a new tab)"><svg class="tds-logo" viewBox="0 0 321.41 63.84"
-                  aria-hidden="true">
-                  <use href="#tds-logo" />
-               </svg></a></div>
          <div class="hero__body">
             <h1 tabindex="-1">Two extraordinary executions</h1>
             <p class="dek">Saudi Arabia executed Nazrul and Sweety for a sexual offence which involved no force, no

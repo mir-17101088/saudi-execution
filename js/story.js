@@ -414,6 +414,22 @@
     d.addEventListener('close', function () { document.body.style.overflow = ''; o.focus(); });
   });
 
+  /* ---------- logo: shrinks once the reader scrolls, hides over the footer (which has its own) ---------- */
+  guard(function () {
+    var m = $('.masthead'), f = $('.site-footer');
+    if (!m) return;
+    var sm = false, off = false, tick = 0;
+    function chk() {
+      tick = 0;
+      var s = (window.pageYOffset || 0) > 40, o = !!f && f.getBoundingClientRect().top < innerHeight - 80;
+      if (s !== sm) { sm = s; m.classList.toggle('sm', sm); }
+      if (o !== off) { off = o; m.classList.toggle('off', off); }
+    }
+    addEventListener('scroll', function () { if (!tick) tick = requestAnimationFrame(chk); }, { passive: true });
+    addEventListener('resize', chk);
+    chk();
+  });
+
   /* ---------- back to top: after the hero, never over a chart, a control or the footer ---------- */
   guard(function () {
     var b = $('.totop'), hero = $('.hero');
