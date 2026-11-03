@@ -405,9 +405,41 @@
          transition: transform .3s, opacity .3s, visibility 0s .3s
       }
 
+      /* phones: once the logo shrinks, a bar of the page ground sits behind it so text scrolls under a clear edge
+   instead of running into the logo; it ends where the pinned charts' room (--mast) ends */
+      .mbar {
+         display: none
+      }
+
+      @media (max-width:759px) {
+         .mbar {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--mast);
+            z-index: 14;
+            background: var(--bg) url(img/canvas.webp) 0 0/128px 128px;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 2px 14px rgba(0, 0, 0, .55);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity .3s, visibility 0s .3s
+         }
+
+         .masthead.sm:not(.off)+.mbar {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity .3s, visibility 0s
+         }
+      }
+
       @media (prefers-reduced-motion:reduce) {
          .masthead,
-         .masthead.off {
+         .masthead.off,
+         .mbar,
+         .masthead.sm:not(.off)+.mbar {
             transition: none
          }
       }
@@ -1867,6 +1899,7 @@
             aria-hidden="true">
             <use href="#tds-logo" />
          </svg></a></div>
+   <div class="mbar" aria-hidden="true"></div>
    <div class="page">
       <div class="page__canvas" aria-hidden="true"><svg class="spl" style="left:6%;--p:0.017;--s:260px;--r:247deg">
             <use href="#spl" />
