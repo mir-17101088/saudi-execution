@@ -13,7 +13,7 @@
   var N = D.length, SWEETY = 17, NAZRUL = 880;
   // S, R: scene 1's al-fahisha or sexual-offence cases and the rape or sexual-assault ones among them (one hue, a subset across groups)
   var C = { D: '#e0434b', M: '#3b7ddd', O: '#7f9cbb', I: '#34c38f', S: '#f4b740', R: '#f4b740', t: '#e0434b', q: '#3b7ddd', h: '#7f9cbb', n: '#8a837c' }, G = '#5f5857';
-  var GN = { D: 'Drug-related', M: 'Murder', O: 'Armed robbery, terrorism, rape, kidnapping, treason', I: 'Al-fahisha (Bangladeshis)', S: 'Al-fahisha or sexual offences', R: 'Rape or sexual assault', t: 'Ta’zir', q: 'Qisas', h: 'Hudud', n: 'Not stated' };
+  var GN = { D: 'Drug-related', M: 'Murder', O: 'Armed robbery, terrorism, al-fahisha, kidnapping, treason', I: 'Al-fahisha (Bangladeshis)', S: 'Al-fahisha or sexual offences', R: 'Rape or sexual assault', t: 'Ta’zir', q: 'Qisas', h: 'Hudud', n: 'Not stated' };
   function cnt(f, k) { var a = {}; D.forEach(function (x) { if (f(x)) a[x[k]] = (a[x[k]] || 0) + 1; }); return a; }
   function rank(s, o) { var r = []; for (var i = 0; i < N; i++) if (s(D[i])) r.push(i); return r.sort(function (a, b) { return o.indexOf(D[a][1]) - o.indexOf(D[b][1]) || o.indexOf(D[a][0]) - o.indexOf(D[b][0]) || a - b; }); }
   function pc(p) { return p.toFixed(2); }
@@ -319,7 +319,7 @@
     var flag = function (c) { var i = FLAGS.indexOf(c); return i < 0 ? '' : '<i class="fl' + (c == 'Nepal' ? ' np' : '') + '" style="background-position:0 ' + (-16 * i) + 'px" aria-hidden="true"></i>'; };
     cl.innerHTML = '<h3>Where the foreign nationals came from</h3>' + cs.map(function (a) {
       return '<li><button type="button" data-c="' + a[0] + '" aria-pressed="false" class="' + (a[0] == 'Bangladesh' ? 'bd' : '') + '" style="--w:' + (a[1] / mx * 100) + '%"><span>' + flag(a[0]) + a[0] + '</span><b>' + a[1] + '</b></button></li>';
-    }).join('') + '<span class="sm">Countries as stated in the Interior Ministry statements. One person whose nationality was not stated is not assigned to a country. Click a country to filter the names.</span>';
+    }).join('');
     var note = $('p', ct);
     function pages(np, p) {
       var a = [], h = '', l = 0;
