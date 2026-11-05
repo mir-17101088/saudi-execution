@@ -1082,9 +1082,11 @@
          opacity: 1
       }
 
-      /* #s1 only: Anwar Sohel's feature illustration as a faint greyscale backdrop (img/s1-bg.webp, tools/share_images.py).
-   Phones: inside the opaque chart panel; wide screens: across the held screen, under the cards and the chart.
-   story.js sets .bg as the scene nears, so the image loads late; without JS it is always on. */
+      /* #s1 only: Anwar Sohel's feature illustration as a faint greyscale backdrop (img/s1-bg.webp, tools/share_images.py)
+   across the whole held screen, under the cards and the chart. Phones: it hangs from the chart panel, which keeps its own
+   background (so the page's splatters stay hidden behind the dots), and runs a full screen tall into the strip below.
+   Wide screens: on the held screen itself. story.js sets .bg as the scene nears, so the image loads late; without JS
+   it is always on. */
       #s1 .chart {
          isolation: isolate
       }
@@ -1098,15 +1100,15 @@
          bottom: 0;
          left: 0;
          z-index: -1;
-         background: 50% 40%/cover no-repeat;
-         opacity: .09;
+         background: 45% 40%/cover no-repeat;
+         opacity: .12;
          pointer-events: none
       }
 
-      /* phones: fade out at the foot of the chart panel rather than end on a hard line above the cards */
       #s1 .chart::before {
-         -webkit-mask-image: linear-gradient(#000 60%, transparent);
-         mask-image: linear-gradient(#000 60%, transparent)
+         bottom: auto;
+         height: 100vh;
+         height: 100svh
       }
 
       #s1 .sticky::before {
@@ -1193,7 +1195,9 @@
          }
 
          #s1 .sticky::before {
-            display: block
+            display: block;
+            background-position: 50% 40%;
+            opacity: .09
          }
 
          .sticky {
@@ -4625,7 +4629,7 @@
    <a class="totop" href="#top" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true">
          <path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" />
       </svg></a>
-   <script src="js/story.js?v=20261105d" defer></script>
+   <script src="js/story.js?v=20261105e" defer></script>
 </body>
 
 </html>
