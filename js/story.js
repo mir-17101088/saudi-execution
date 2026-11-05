@@ -240,6 +240,17 @@
     ]);
   });
 
+  // Scene 1's faint backdrop (CSS #s1.bg): loaded a screen and a half before the scene arrives
+  guard(function () {
+    var el = $('#s1');
+    if (!el) return;
+    if (!window.IntersectionObserver) { el.classList.add('bg'); return; }
+    var io = new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting) { el.classList.add('bg'); io.disconnect(); }
+    }, { rootMargin: '150% 0px' });
+    io.observe(el);
+  });
+
   /* ---------- executions per year, foreign and Saudi nationals ---------- */
   guard(function () {
     var Y = [[2014, 90, 37], [2015, 161, 73], [2016, 154, 36], [2017, 146, 58], [2018, 147, 75], [2019, 187, 94], [2020, 27, 9], [2021, 67, 16], [2022, 196, 34], [2023, 172, 34], [2024, 345, 137], [2025, 356, 200], [2026, 186, 102]].map(function (a) {
