@@ -1402,16 +1402,21 @@
          overflow-anchor: none
       }
 
-      .cl {
-         list-style: none;
+      /* heading sits beside the list, not inside the <ol>, so the list holds only <li> */
+      .clw {
          margin: .6rem 0 0;
-         padding: 0;
-         font: 13px var(--serif);
          position: sticky;
          top: calc(16px + var(--mast))
       }
 
-      .cl h3 {
+      .cl {
+         list-style: none;
+         margin: 0;
+         padding: 0;
+         font: 13px var(--serif)
+      }
+
+      .clw h3 {
          font: 700 12px var(--serif);
          letter-spacing: .1em;
          text-transform: uppercase;
@@ -1571,7 +1576,7 @@
             order: -1
          }
 
-         .cl {
+         .clw {
             position: static
          }
 
@@ -2460,7 +2465,10 @@
          <div class="ctl" id="ctl"></div>
          <div class="nw">
             <div>
-               <ol class="cl" id="cl"></ol>
+               <div class="clw">
+                  <h3>Where the foreign nationals came from</h3>
+                  <ol class="cl" id="cl"></ol>
+               </div>
             </div>
             <div class="nr">
                <div class="nl"><span data-g="l" data-c=""
@@ -4570,7 +4578,7 @@
    <a class="totop" href="#top" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true">
          <path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" />
       </svg></a>
-   <script src="js/story.js?v=20261105a" defer></script>
+   <script src="js/story.js?v=20261105b" defer></script>
 </body>
 
 </html>

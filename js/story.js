@@ -317,7 +317,7 @@
     var FLAGS = ['Afghanistan', 'Bangladesh', 'Benin', 'Chad', 'Egypt', 'Eritrea', 'Ethiopia', 'India', 'Iran', 'Iraq', 'Jordan', 'Kenya', 'Kuwait', 'Myanmar',
       'Nepal', 'Nigeria', 'Oman', 'Pakistan', 'Philippines', 'Somalia', 'Sri Lanka', 'Sudan', 'Syria', 'Uganda', 'Yemen'];
     var flag = function (c) { var i = FLAGS.indexOf(c); return i < 0 ? '' : '<i class="fl' + (c == 'Nepal' ? ' np' : '') + '" style="background-position:0 ' + (-16 * i) + 'px" aria-hidden="true"></i>'; };
-    cl.innerHTML = '<h3>Where the foreign nationals came from</h3>' + cs.map(function (a) {
+    cl.innerHTML = cs.map(function (a) {
       return '<li><button type="button" data-c="' + a[0] + '" aria-pressed="false" class="' + (a[0] == 'Bangladesh' ? 'bd' : '') + '" style="--w:' + (a[1] / mx * 100) + '%"><span>' + flag(a[0]) + a[0] + '</span><b>' + a[1] + '</b></button></li>';
     }).join('');
     var note = $('p', ct);
