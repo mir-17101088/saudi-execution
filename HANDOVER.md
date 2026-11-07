@@ -1,6 +1,13 @@
 # Handover: Two extraordinary executions (2026-11-07)
 
 ## What changed and why
+- **Sweety's parents photo (Mir, 2026-11-07):** after "...did not know there had been a trial." in "Confusion over
+  charges", `figure.ph` with Mir's caption verbatim ("Sweety’s parents broke down in tears as they held her photograph.
+  Photo: The Daily Star.", credit in `.credit`). Edge to edge on phones, 900px from 760px like the charts. Built by
+  `tools/photos.py` from `tools/src/sweety-parents.jpg` (Mir's 3264x1836 file; no GPS or other metadata): WebP
+  640/960/1280/1600 (28-135 KB) + 960 JPEG fallback, `loading="lazy"` with width/height. Checked in Chrome and WebKit
+  at 320/390/768/1440: not requested at load, fetched when it is 0.5-1.2k px below the screen, no layout shift, no
+  overflow, no console errors. Image sitemap entry added; wordCount 2805 → 2820. Lint 0 errors.
 - **Related coverage as a swipeable row; publish date 10 November 2026 (Mir, 2026-11-07):** "Related coverage" left
   the end of the story and now sits after the Methodology Note, before the footer. The seven cards are one row that
   swipes (`.rel__list`: flex, scroll-snap to each card's left edge; phones run it to the screen edges and size cards
