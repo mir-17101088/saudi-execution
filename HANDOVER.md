@@ -1,6 +1,19 @@
 # Handover: Two extraordinary executions (2026-11-07)
 
 ## What changed and why
+- **Hero: the man and the woman (Mir, 2026-11-07):** the two figures from Anwar Sohel's feature illustration (the OG
+  image) are a faint layer in the hero, under the sword, splatters and drips; all the hero's art and motion are unchanged.
+  `tools/hero_figures.py` cuts them from `tools/src/feature-anwar-sohel.jpg`: silhouettes = dark or red-icon pixels,
+  closed and hole-filled; the white ring erased where it crosses them (ellipse fitted to its arcs on the wall; each pixel
+  copied from one icon row up or down, smooth inpaint in the windows' light); soft edges, the wall between hair strands
+  transparent; black lifted to maroon so the shapes read on #080506, windows toned down (they sit behind the title), the
+  foot faded. `img/hero-figures-640/960/1280.webp` (27/49/73 KB) + `-640.png` fallback. Drawn into `canvas.hero__fig`
+  by story.js, fading in to .42: as an `<img>` or any CSS background (element, pseudo-element, full-cover) it became
+  desktop LCP (1.2 s to 1.9 s at 1.6 Mbps, 4x CPU); the canvas keeps the headline as LCP (paired medians, 3 runs:
+  desktop 1272 vs 1268 ms, phone 1188 vs 1280 ms). Portrait: full width (their faces are at the outer edges), top
+  max(64px, 10.5%); landscape: right 3vw, top 13%, min(54vw, 102vh) wide. No JS: a `<noscript>` img. Save-Data: the 640
+  file. Checked 320x568 to 2560x1300, tablets, rotation, reduced motion, no JS, 3x DPR: no console errors; lint only
+  the two old errors. story.js `?v=20261107b`.
 - **Scene 1 colours, copy, categories, related coverage (Mir, 2026-11-07):** scene 1 drug-related dots are now white
   and murder red (scene 2 keeps ta’zir red, qisas blue). `C.D`/`C.M` in story.js; the scene-2 tabs now read their own
   `--c-t/--c-q/--c-h`. The white legend key has a dark 1px edge (`.leg i.w`); the card’s “53.78 pc” can’t be white text

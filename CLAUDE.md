@@ -20,6 +20,8 @@ Use the `daily-star-story` skill for house rules, QA scripts and the evaluator.
   the 16x9/4x3/1x1 JSON-LD images and `img/s1-bg.webp`, the faint greyscale backdrop of `#s1` (loaded late by story.js).
 - `tools/splatter.py`: draws the `#spl` blood-splatter symbols. `tools/flags.py`: builds `img/flags.png` (country list).
 - `tools/related_thumbs.py`: the "Related coverage" thumbnails (`img/rel-*`) from `tools/src/related/`.
+- `tools/hero_figures.py`: cuts the man and the woman from the feature illustration into `img/hero-figures-*`, drawn
+  faintly into the hero's `canvas.hero__fig` by story.js (a canvas so the decorative layer never becomes LCP).
 - `robots.txt`, `sitemap.xml` (news + image), `llms.txt`, `.htaccess`: SEO and server config; see README.md.
 
 ## Rules for this story

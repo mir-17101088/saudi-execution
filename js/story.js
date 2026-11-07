@@ -495,6 +495,28 @@
     pick(0);
   });
 
+  /* ---------- hero figures: the man and the woman (tools/hero_figures.py), drawn into a canvas once loaded ----------
+     A decorative layer, so it must not become the page's largest paint: as an <img> or any CSS background it outweighed
+     the headline on wide screens and moved desktop LCP to the image's download (1.2 s to 1.9 s at 1.6 Mbps). A canvas
+     is never an LCP candidate. The file fits the box at up to 2x; it is redrawn only when the box changes size. */
+  guard(function () {
+    var cv = $('canvas.hero__fig'), g = cv && cv.getContext && cv.getContext('2d');
+    if (!g) return;
+    var img = new Image(), w0 = 0, h0 = 0, dpr = Math.min(2, window.devicePixelRatio || 1);
+    var save = navigator.connection && navigator.connection.saveData, need = cv.clientWidth * dpr;
+    function draw() {
+      var w = Math.round(cv.clientWidth * dpr), h = Math.round(cv.clientHeight * dpr);
+      if (!w || !h || !img.naturalWidth || (w === w0 && h === h0)) return;
+      cv.width = w0 = w; cv.height = h0 = h;
+      g.drawImage(img, 0, 0, w, h);
+      cv.classList.add('on');
+    }
+    img.onload = function () { if (img.decode) img.decode().then(draw, draw); else draw(); };
+    img.onerror = function () { if (img.src.indexOf('.png') < 0) img.src = 'img/hero-figures-640.png'; };
+    img.src = 'img/hero-figures-' + (save || need <= 640 ? 640 : need <= 960 ? 960 : 1280) + '.webp';
+    addEventListener('resize', draw);
+  });
+
   /* ---------- hero paint runs where CSS can't tie animation to scroll (Safari before 26, Firefox) ----------
      The same motion as the scroll-driven CSS: each run starts at var(--from) of its length and reaches full length when
      the foot of the hero is 55% of the way up the screen (animation-range: contain 0% exit 45%). */

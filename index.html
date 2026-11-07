@@ -229,6 +229,39 @@
          background: radial-gradient(ellipse 90% 60% at 50% 0, #2a0b10 0, rgba(42, 11, 16, 0) 72%)
       }
 
+      /* the man and the woman, cut from Anwar Sohel's feature illustration (tools/hero_figures.py): a faint layer under
+         the sword and the drips, so the hero says who was executed as well as how. Portrait screens: full width (their
+         faces are at the outer edges), heads between the drips and the title; landscape: on the right, heads just under
+         the drips. Their feet fade out in the image itself */
+      .hero__fig {
+         position: absolute;
+         top: max(64px, 10.5%);
+         left: 0;
+         width: 100%;
+         height: auto;
+         opacity: 0;
+         transition: opacity 1.2s ease-out
+      }
+
+      .hero__fig.on {
+         opacity: .42
+      }
+
+      @media (min-aspect-ratio:1/1) {
+         .hero__fig {
+            top: 13%;
+            left: auto;
+            right: 3vw;
+            width: min(54vw, 102vh)
+         }
+      }
+
+      @media (prefers-reduced-motion:reduce) {
+         .hero__fig {
+            transition: none
+         }
+      }
+
       .sword {
          position: absolute;
          right: -4%;
@@ -2213,7 +2246,8 @@
          </svg></div>
       <header class="hero" id="top">
          <div class="hero__art" aria-hidden="true">
-            <div class="hero__glow"></div><svg class="spl" style="left:85%;top:26%;--s:300px;--r:0deg">
+            <div class="hero__glow"></div><canvas class="hero__fig" width="1258" height="958"></canvas><noscript><img
+                  class="hero__fig on" src="img/hero-figures-960.webp" width="1258" height="958" alt=""></noscript><svg class="spl" style="left:85%;top:26%;--s:300px;--r:0deg">
                <use href="#spl3" />
             </svg><svg class="spl" style="left:11%;top:62%;--s:240px;--r:70deg">
                <use href="#spl" />
@@ -4885,7 +4919,7 @@
    <a class="totop" href="#top" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true">
          <path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" />
       </svg></a>
-   <script src="js/story.js?v=20261107a" defer></script>
+   <script src="js/story.js?v=20261107b" defer></script>
 </body>
 
 </html>
