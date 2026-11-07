@@ -1,4 +1,4 @@
-/* Two extraordinary executions: dot-chart scenes, war-on-drugs chart, hero runs, names list (with flags), press release, categories tabs, back to top, methodology links. */
+/* Two extraordinary executions: dot-chart scenes, war-on-drugs chart, hero runs, names list (with flags), press release, categories tabs, related-coverage row, back to top, methodology links. */
 (function () {
   'use strict';
   var RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -443,11 +443,11 @@
     chk();
   });
 
-  /* ---------- back to top: after the hero, never over a chart, a control, the related-coverage cards or the footer ---------- */
+  /* ---------- back to top: after the hero, never over a chart, a control, the Nazrul and Sweety card, the related-coverage cards or the footer ---------- */
   guard(function () {
     var b = $('.totop'), hero = $('.hero');
     if (!b || !hero) return;
-    var AV = '.scrolly, figure, .rel, #ctl, .pg, .site-footer', on = false, tick = 0;
+    var AV = '.scrolly, figure, .duo, .rel, #ctl, .pg, .site-footer', on = false, tick = 0;
     function chk() {
       tick = 0;
       var H = innerHeight, show = hero.getBoundingClientRect().bottom < 0;
@@ -465,6 +465,37 @@
       var h1 = $('h1'); if (h1 && h1.focus) h1.focus({ preventScroll: true });
     });
     chk();
+  });
+
+  /* ---------- related coverage: one row that swipes (Mir, 2026-11-07); the arrows step one article at a time ----------
+     A step scrolls by one card's pitch and scroll-snap settles it. An arrow hides at its end of the row; if it had
+     focus, focus moves to the other arrow. Without JS the arrows stay hidden and the row scrolls with its scrollbar. */
+  guard(function () {
+    var list = $('#rel-list'), prev = $('.rel__prev'), next = $('.rel__next'), items = list ? $$('li', list) : [];
+    if (!prev || !next || items.length < 2) return;
+    var tick = 0;
+    function go(dir) {
+      var dx = dir * (items[1].offsetLeft - items[0].offsetLeft);
+      if (list.scrollBy) list.scrollBy({ left: dx, behavior: RM ? 'auto' : 'smooth' });
+      else list.scrollLeft += dx;
+    }
+    function set(b, off, other) {
+      if (b.classList.contains('off') === off) return;
+      if (off && document.activeElement === b && !other.classList.contains('off')) other.focus();
+      b.classList.toggle('off', off);
+    }
+    function upd() {
+      tick = 0;
+      var x = list.scrollLeft, max = list.scrollWidth - list.clientWidth;
+      set(prev, x <= 4, next);
+      set(next, x >= max - 4, prev);
+    }
+    prev.hidden = next.hidden = false;
+    prev.addEventListener('click', function () { go(-1); });
+    next.addEventListener('click', function () { go(1); });
+    list.addEventListener('scroll', function () { if (!tick) tick = requestAnimationFrame(upd); }, { passive: true });
+    addEventListener('resize', upd);
+    upd();
   });
 
   /* ---------- three categories: side-by-side tabs in the panel (open from the start, Mir 2026-11-07), Hudud first each time it opens ---------- */

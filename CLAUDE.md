@@ -2,7 +2,7 @@
 
 Scroll-driven visual story on Saudi Arabia's execution of Nazrul Islam Abdul Basir and Sweety Akhtar, with
 an analysis of 887 executions (Jan 2024 to 20 Oct 2026). Reporting: Abdullah Hel Bubun, Tarek Hosen.
-Development: Mir Rownak. Live URL: https://campaign.thedailystar.net/saudi-execution/ (published 2026-11-07).
+Development: Mir Rownak. Live URL: https://campaign.thedailystar.net/saudi-execution/ (published 2026-11-10).
 
 Not built on the house kit: it is a polish of a hand-built single page whose look the desk asked to keep.
 Use the `daily-star-story` skill for house rules, QA scripts and the evaluator.
@@ -11,8 +11,8 @@ Use the `daily-star-story` skill for house rules, QA scripts and the evaluator.
 - `index.html`: all text, inline CSS (inlined on purpose: LCP 0.87 s vs 1.6 s external), SEO meta, JSON-LD,
   the 887-name list as static HTML (SEO, works without JS).
 - `js/story.js`: canvas dot scenes `#s1` (offence) and `#s2` (punishment), war-on-drugs chart `#exp`,
-  names filter/pager (phone: tapped country opens under its row), press-release dialog, back-to-top.
-- `fonts/bebas-neue.woff2`: tile numbers only (subset A-Z, a-z, 0-9).
+  names filter/pager (phone: tapped country opens under its row), press-release dialog, related-coverage arrows, back-to-top.
+- `fonts/bebas-neue.woff2`: the opening drop cap and the Nazrul/Sweety card's dates (subset A-Z, a-z, 0-9, space).
 - `img/`: WebP + JPEG fallbacks, `share.jpg` 1200x630, `logo.png` (JSON-LD), `canvas.webp` texture tile.
 - `fonts/`: Merriweather 400/700/400i subset to the page's characters (Google Fonts `text=` subset).
   Re-subset if new characters appear in the copy. Arabic in the dialog uses system fonts.
@@ -26,8 +26,8 @@ Use the `daily-star-story` skill for house rules, QA scripts and the evaluator.
 
 ## Rules for this story
 - Reporter text is verbatim. Do not change any word or number without Mir's permission.
-- Card numbers are set in their category colour (`mark.k k-*`, text only), matching the dots in `C` in story.js;
-  scene 1's white drug number is white on the chart's dark ground (`mark.k-d`), since white text can't show on the card.
+- Card numbers are highlighters in their category's dot colour (`mark.k k-*`, one line), matching `C` in story.js (reds and
+  blue deepened for white text); scene 1's white drug number is white on the chart's dark ground (`mark.k-d`).
 - Both scene legends are colour-only; the cards carry the numbers.
 
 ## Checks

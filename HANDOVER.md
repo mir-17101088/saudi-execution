@@ -1,6 +1,35 @@
 # Handover: Two extraordinary executions (2026-11-07)
 
 ## What changed and why
+- **Related coverage as a swipeable row; publish date 10 November 2026 (Mir, 2026-11-07):** "Related coverage" left
+  the end of the story and now sits after the Methodology Note, before the footer. The seven cards are one row that
+  swipes (`.rel__list`: flex, scroll-snap to each card's left edge; phones run it to the screen edges and size cards
+  to the screen minus 36px so the next one shows; 340px max), so the section is 207-244px tall instead of seven
+  stacked cards. Small round arrows over the row's ends (`.rel__prev`/`.rel__next`, story.js) step one card and hide
+  at either end; if a hidden arrow had focus, focus moves to the other. Without JS the arrows stay hidden and the row
+  keeps its scrollbar. Publish date is now 2026-11-10 in `article:published_time`/`modified_time`, `og:updated_time`,
+  JSON-LD `datePublished`/`dateModified`, sitemap `lastmod` and `news:publication_date`, llms.txt, README and
+  CLAUDE.md. story.js `?v=20261110b`. Checked Chrome, WebKit and Firefox at 320/390/768/1440: order methodology →
+  related → footer, every arrow step and both ends, no overflow, no console errors; JS off, the row scrolls. Lint 0
+  errors. perf @390 4x, 5 runs each against the last commit: LCP 0.90 → 1.00 s on slow 4G, eager 240 → 250 KB. A
+  bisect (without the font 0.94, the card 0.99, the related row 0.95) found no single cause, so it is the ~10 KB
+  added today; loading the font after `load` didn't change it, so it stays a plain `@font-face`.
+- **Intro, drop cap, Nazrul and Sweety card, highlighters (Mir, 2026-11-07):** intro P1 drops "in 2022" and a new
+  paragraph follows it, Mir's wording verbatim: "They arrived in Saudi Arabia about four months apart — Nazrul in November
+  2022 and Sweety in March 2023." P1 opens on a drop cap from Mir's newspaper reference (`.dropcap::first-letter`, so
+  "Nazrul" stays one word): a Bebas Neue N in `--red`, its cap from line 1's cap height to line 4's baseline, on a bar in
+  the text colour (the reference's black bar is its text colour). Firefox sizes a floated first letter to the glyph's
+  ink, so `@supports (-moz-appearance:none)` adds the .1em gap the others get from line-height; Chrome, WebKit and
+  Firefox measured the same. Bebas `@font-face` is back (6.7 KB, swap). New card `aside.duo` before "Confusion over
+  charges", from Mir's data sheet: name, home, left Bangladesh, detained; the shared job spans both columns. One card,
+  not two: one grid, so the dates line up across, and the illustration's man and woman stand back to back behind his
+  and her column (the hero's `img/hero-figures-*.webp`; srcset 640/960 only so phones reuse the hero's file), .45,
+  masked out above the lit windows (grey smudges behind the dates). Dates in Bebas, labels sentence case, square frame
+  like the categories panel. Back-to-top hides over it (`.duo` in story.js, `?v=20261107c`). Every scrolly number is
+  now a highlighter in its dots' colour like the 15 (`mark.k`; white on #d1323b and #2f6fd0, #1a1a1a on #7f9cbb).
+  wordCount 2746 → 2805. Checked 320/390/768/1440 in Chrome, WebKit, Firefox: no overflow, no console errors, card
+  text present without JS. Lint 0 errors. perf @390 4x, 3 runs vs the last commit: eager 240 → 248 KB (the font),
+  LCP 0.96 → 0.93 s, CLS 0; gates fail only `doc_css_kb`/`dom`, as before.
 - **Hero, cards, Facebook figure, lint (Mir, 2026-11-07):** removed the hero splatter that sat over the woman's face
   (`left:85%;top:26%`, 300px); sword opacity .3 → .22. Scene 1's "15 individuals" and "13 cases" are amber highlighters
   in the dots' colour (`mark.k-s`, dark text, one line), like al-fahisha's green. Nazrul's Facebook airport screenshot
