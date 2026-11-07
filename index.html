@@ -107,13 +107,8 @@
          --c-q: #3b7ddd;
          --c-h: #7f9cbb;
          --c-i: #34c38f;
+         /* where the canvas splatters below the hero start (the hero itself is 112svh where supported) */
          --hero-h: 112vh;
-      }
-
-      @supports (height:1svh) {
-         :root {
-            --hero-h: 112svh
-         }
       }
 
       * {
@@ -211,7 +206,8 @@
       /* ---------- hero ---------- */
       .hero {
          position: relative;
-         min-height: var(--hero-h);
+         min-height: 112vh;
+         min-height: 112svh;
          display: flex;
          flex-direction: column;
          overflow: hidden
@@ -267,7 +263,7 @@
          right: -4%;
          top: 10%;
          width: min(80vw, 780px);
-         opacity: .3;
+         opacity: .22;
          transform: rotate(-14deg);
          fill: #8f1119
       }
@@ -441,12 +437,12 @@
 
       /* phones: once the logo shrinks, a bar of the page ground sits behind it so text scrolls under a clear edge
    instead of running into the logo; it ends where the pinned charts' room (--mast) ends */
-      .mbar {
+      .masthead-bar {
          display: none
       }
 
       @media (max-width:759px) {
-         .mbar {
+         .masthead-bar {
             display: block;
             position: fixed;
             top: 0;
@@ -462,7 +458,7 @@
             transition: opacity .3s, visibility 0s .3s
          }
 
-         .masthead.sm:not(.off)+.mbar {
+         .masthead.sm:not(.off)+.masthead-bar {
             opacity: 1;
             visibility: visible;
             transition: opacity .3s, visibility 0s
@@ -473,8 +469,8 @@
 
          .masthead,
          .masthead.off,
-         .mbar,
-         .masthead.sm:not(.off)+.mbar {
+         .masthead-bar,
+         .masthead.sm:not(.off)+.masthead-bar {
             transition: none
          }
       }
@@ -658,8 +654,12 @@
          color: #0f7f57
       }
 
-      .k-s {
-         color: #946400
+      /* the 15 and the 13 (scene 1's amber): a highlighter in the dots' amber, like al-fahisha's green, so they stand out */
+      mark.k-s {
+         color: #1a1a1a;
+         background: #f4b740;
+         padding: 1px 4px;
+         white-space: nowrap
       }
 
       /* ---------- three categories of Islamic criminal law: tap the line, then a tab ---------- */
@@ -932,24 +932,6 @@
          display: block;
          width: 100%;
          height: auto
-      }
-
-      figure.fb {
-         max-width: 380px
-      }
-
-      figure.fb img {
-         border: 1px solid #5a1015
-      }
-
-      @media (min-width:700px) {
-         figure.fb {
-            max-width: 520px
-         }
-
-         figure.fb img {
-            aspect-ratio: 606/763
-         }
       }
 
       figure.ch {
@@ -2189,7 +2171,7 @@
             aria-hidden="true">
             <use href="#tds-logo" />
          </svg></a></div>
-   <div class="mbar" aria-hidden="true"></div>
+   <div class="masthead-bar" aria-hidden="true"></div>
    <div class="page">
       <div class="page__canvas" aria-hidden="true"><svg class="spl" style="left:6%;--p:0.017;--s:260px;--r:247deg">
             <use href="#spl" />
@@ -2247,9 +2229,7 @@
       <header class="hero" id="top">
          <div class="hero__art" aria-hidden="true">
             <div class="hero__glow"></div><canvas class="hero__fig" width="1258" height="958"></canvas><noscript><img
-                  class="hero__fig on" src="img/hero-figures-960.webp" width="1258" height="958" alt=""></noscript><svg class="spl" style="left:85%;top:26%;--s:300px;--r:0deg">
-               <use href="#spl3" />
-            </svg><svg class="spl" style="left:11%;top:62%;--s:240px;--r:70deg">
+                  class="hero__fig on" src="img/hero-figures-960.webp" width="1258" height="958" alt=""></noscript><svg class="spl" style="left:11%;top:62%;--s:240px;--r:70deg">
                <use href="#spl" />
             </svg><svg class="spl" style="left:72%;top:88%;--s:190px;--r:140deg">
                <use href="#spl2" />
@@ -2398,21 +2378,6 @@
             <p>But the memo did not establish any link between either of these separate allegations and the offence
                cited in the execution announcement. It remains unclear with whom Sweety committed this “act of
                indecency.”</p>
-            <figure class="fb">
-               <picture>
-                  <source media="(min-width: 700px)" type="image/webp" srcset="img/nazrul-fb-d-606.webp">
-                  <source media="(min-width: 700px)" srcset="img/nazrul-fb-d-606.jpg">
-                  <source type="image/webp" srcset="img/nazrul-fb-m-480.webp 480w, img/nazrul-fb-m-720.webp 720w"
-                     sizes="(max-width: 699px) calc(100vw - 32px)"><img src="img/nazrul-fb-m-720.jpg"
-                     srcset="img/nazrul-fb-m-480.jpg 480w, img/nazrul-fb-m-720.jpg 720w"
-                     sizes="(max-width: 699px) calc(100vw - 32px)" width="720" height="993" loading="lazy"
-                     decoding="async"
-                     alt="Facebook post by Nazrul, 13 November 2022: three photos of him at an airport, captioned Good Bye Bangladesh">
-               </picture>
-               <figcaption>Before leaving for Saudi Arabia, Nazrul posted these airport pictures on Facebook on 13
-                  November 2022. “Good Bye Bangladesh,” he wrote, adding in Bangla: “I miss everyone so much. Please,
-                  all of you, pray for me.” <i>Screenshot: Nazrul’s Facebook profile</i></figcaption>
-            </figure>
             <p>The consulate said it knew of no earlier case of a Bangladeshi sentenced to death in Saudi Arabia for
                cybercrime or adultery. It cited three cybercrime cases involving Bangladeshis in which sentences ranged
                from six months to five years. The memo also notes that neither family had asked the consulate for legal

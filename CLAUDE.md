@@ -36,5 +36,5 @@ python -m http.server 5190                      # from the parent folder; open /
 python ~/.claude/skills/daily-star-story/scripts/lint.py .
 python ~/.claude/skills/daily-star-story/scripts/perf.py http://127.0.0.1:5190/saudi-execution/ --runs 3
 ```
-Known lint flags kept on purpose: hero glow and drip gradients (original hero art), shadows on the floating
-legend, cards and dialog. perf gates `doc_css_kb` and `dom` fail only because of the 887-name list.
+Lint passes (0 errors); its one warning, no `source/story.md`, doesn't apply to this hand-built page. perf gates
+`doc_css_kb` and `dom` fail only because of the 887-name list.

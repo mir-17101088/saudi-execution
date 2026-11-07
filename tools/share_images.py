@@ -27,8 +27,12 @@ CROPS = {
 im = Image.open(SRC).convert('RGB')
 for name, (size, box) in CROPS.items():
     out = os.path.join(ROOT, 'img', name)
-    im.crop(box).resize(size, Image.LANCZOS).save(out, quality=86, optimize=True, progressive=True)
-    print(name, size, box, os.path.getsize(out) // 1024, 'KB')
+    img = im.crop(box).resize(size, Image.LANCZOS)
+    for q in range(86, 69, -2):   # the best quality that keeps the card inside the kit's 250 KB budget
+        img.save(out, quality=q, optimize=True, progressive=True)
+        if os.path.getsize(out) <= 250 * 1024:
+            break
+    print(name, size, box, 'q', q, os.path.getsize(out) // 1024, 'KB')
 
 # softened so the illustration's rows of tiny figures do not compete with the chart's own figures
 bg = ImageOps.grayscale(im).resize((1280, 650), Image.LANCZOS).filter(ImageFilter.GaussianBlur(2.5))

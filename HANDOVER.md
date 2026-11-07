@@ -1,6 +1,15 @@
 # Handover: Two extraordinary executions (2026-11-07)
 
 ## What changed and why
+- **Hero, cards, Facebook figure, lint (Mir, 2026-11-07):** removed the hero splatter that sat over the woman's face
+  (`left:85%;top:26%`, 300px); sword opacity .3 → .22. Scene 1's "15 individuals" and "13 cases" are amber highlighters
+  in the dots' colour (`mark.k-s`, dark text, one line), like al-fahisha's green. Nazrul's Facebook airport screenshot
+  and caption are gone from "Confusion over charges" (images, sitemap entry and `figure.fb` CSS removed). Lint now passes
+  (0 errors): the phone logo bar is `.masthead-bar` (was `.mbar`, same CSS); the hero's height is a plain
+  `min-height: 112vh; min-height: 112svh` pair (Chrome 87 drops the second) instead of an svh custom property inside
+  `@supports`, and `--hero-h: 112vh` now only places the canvas splatters below the hero (pinned in px by story.js).
+  `tools/share_images.py` steps JPEG quality down until each card fits 250 KB: share-1x1.jpg q82, 233 KB (others
+  unchanged). The one remaining warning, no `source/story.md`, doesn't apply to this hand-built page.
 - **Hero: the man and the woman (Mir, 2026-11-07):** the two figures from Anwar Sohel's feature illustration (the OG
   image) are a faint layer in the hero, under the sword, splatters and drips; all the hero's art and motion are unchanged.
   `tools/hero_figures.py` cuts them from `tools/src/feature-anwar-sohel.jpg`: silhouettes = dark or red-icon pixels,
