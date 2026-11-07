@@ -19,11 +19,13 @@ Use the `daily-star-story` skill for house rules, QA scripts and the evaluator.
 - `tools/share_images.py`: crops Anwar Sohel's feature illustration (`tools/src/`, not deployed) into `img/share.jpg` (OG),
   the 16x9/4x3/1x1 JSON-LD images and `img/s1-bg.webp`, the faint greyscale backdrop of `#s1` (loaded late by story.js).
 - `tools/splatter.py`: draws the `#spl` blood-splatter symbols. `tools/flags.py`: builds `img/flags.png` (country list).
+- `tools/related_thumbs.py`: the "Related coverage" thumbnails (`img/rel-*`) from `tools/src/related/`.
 - `robots.txt`, `sitemap.xml` (news + image), `llms.txt`, `.htaccess`: SEO and server config; see README.md.
 
 ## Rules for this story
 - Reporter text is verbatim. Do not change any word or number without Mir's permission.
-- Card numbers are set in their category colour (`mark.k k-*`, text only), matching the dots in `C` in story.js.
+- Card numbers are set in their category colour (`mark.k k-*`, text only), matching the dots in `C` in story.js;
+  scene 1's white drug number is white on the chart's dark ground (`mark.k-d`), since white text can't show on the card.
 - Both scene legends are colour-only; the cards carry the numbers.
 
 ## Checks

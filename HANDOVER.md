@@ -1,6 +1,20 @@
-# Handover: Two extraordinary executions (2026-10-28)
+# Handover: Two extraordinary executions (2026-11-07)
 
 ## What changed and why
+- **Scene 1 colours, copy, categories, related coverage (Mir, 2026-11-07):** scene 1 drug-related dots are now white
+  and murder red (scene 2 keeps ta’zir red, qisas blue). `C.D`/`C.M` in story.js; the scene-2 tabs now read their own
+  `--c-t/--c-q/--c-h`. The white legend key has a dark 1px edge (`.leg i.w`); the card’s “53.78 pc” can’t be white text
+  on the white card, so it is white on the chart’s ground (`mark.k-d`). Copy (Mir’s wording): “Media reports reviewed by
+  The Daily Star show lighter sentences for similar crimes in Saudi Arabia, whether the offender was a Saudi or foreign
+  national.” (wordCount 2746). The categories panel is open from the start (`<details open>`, still closable), summary
+  “More about these three categories of punishment: hudud, qisas and ta’zir.” The Amnesty illustration at the end is
+  gone (files, sitemap image entry and `figure.wide` CSS removed); in its place, after the story’s last line, “Related
+  coverage”: seven Daily Star stories on the case from Mir’s “news articles” folder, in Mir’s order, each card one link
+  in a new tab (`.rel`; thumbnail, title, “Read article”). One column on phones, two from 960px with the odd seventh
+  card full width (as in Mir’s reference, minus its stub line and source kicker, house rules). Thumbnails 320x320
+  WebP + JPEG, lazy, from `tools/related_thumbs.py`; stories 1, 6 and 7 share one photo (`rel-nazrul`). Back-to-top
+  hides over the cards. story.js `?v=20261107a`. Checked 320/360/768/1024/1440 in Chrome: no overflow, no console
+  errors, scene 1 steps, tabs on Hudud. Lint: only the two errors already on the last commit.
 - **Sections, chart, dek & scene 1 card 6 (Mir, 2026-11-01):** replaced "Confusions over allegations" with "Confusion
   over charges" and new copy (keeping Nazrul's Facebook figure in place); replaced "Saudi’s ‘war on drugs’" and "Killing
   foreign nationals" with "Was the trial fair?" and "Who gets executed in Saudi Arabia?" from `changes.docx` (all
